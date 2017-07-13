@@ -1,7 +1,7 @@
 ﻿
 namespace AutoMainTreeMaker
 {
-    partial class Wizard1
+    public partial class Wizard1
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -35,14 +35,14 @@ namespace AutoMainTreeMaker
             this.BtnEnumAuto = new System.Windows.Forms.Button();
             this.BtnColumnAuto = new System.Windows.Forms.Button();
             this.BtnNext = new System.Windows.Forms.Button();
-            this.RichCol = new AutoMainTreeMaker.CRichEditBox();
-            this.RichEnum = new AutoMainTreeMaker.CRichEditBox();
-            this.RichMainTree = new AutoMainTreeMaker.CRichEditBox();
+            this.richCol = new AutoMainTreeMaker.CRichEditBox();
+            this.richEnum = new AutoMainTreeMaker.CRichEditBox();
+            this.richMainTree = new AutoMainTreeMaker.CRichEditBox();
             this.button1 = new System.Windows.Forms.Button();
             this.labelGubun = new System.Windows.Forms.Label();
-            this.RichGubun = new AutoMainTreeMaker.CRichEditBox();
+            this.richGubun = new AutoMainTreeMaker.CRichEditBox();
             this.label1_variable = new System.Windows.Forms.Label();
-            this.RichVar = new AutoMainTreeMaker.CRichEditBox();
+            this.richVar = new AutoMainTreeMaker.CRichEditBox();
             this.BtnMakeTree = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -104,48 +104,51 @@ namespace AutoMainTreeMaker
             this.BtnNext.Text = "다음 진행하기";
             this.BtnNext.UseVisualStyleBackColor = true;
             // 
-            // RichCol
+            // richCol
             // 
-            this.RichCol.AcceptsTab = true;
-            this.RichCol.IsDrawingLine = false;
-            this.RichCol.IsNumeric = false;
-            this.RichCol.Location = new System.Drawing.Point(596, 41);
-            this.RichCol.Name = "RichCol";
-            this.RichCol.Size = new System.Drawing.Size(108, 376);
-            this.RichCol.TabIndex = 3;
-            this.RichCol.TabStop = false;
-            this.RichCol.Text = "";
-            this.RichCol.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
-            this.RichCol.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
+            this.richCol.AcceptsTab = true;
+            this.richCol.IsChanged = false;
+            this.richCol.IsDrawingLine = false;
+            this.richCol.IsNumeric = false;
+            this.richCol.Location = new System.Drawing.Point(596, 41);
+            this.richCol.Name = "richCol";
+            this.richCol.Size = new System.Drawing.Size(108, 376);
+            this.richCol.TabIndex = 3;
+            this.richCol.TabStop = false;
+            this.richCol.Text = "";
+            this.richCol.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
+            this.richCol.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 
-            // RichEnum
+            // richEnum
             // 
-            this.RichEnum.AcceptsTab = true;
-            this.RichEnum.IsDrawingLine = false;
-            this.RichEnum.IsNumeric = true;
-            this.RichEnum.Location = new System.Drawing.Point(508, 41);
-            this.RichEnum.Name = "RichEnum";
-            this.RichEnum.Size = new System.Drawing.Size(82, 376);
-            this.RichEnum.TabIndex = 1;
-            this.RichEnum.TabStop = false;
-            this.RichEnum.Text = "";
-            this.RichEnum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
-            this.RichEnum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
+            this.richEnum.AcceptsTab = true;
+            this.richEnum.IsChanged = false;
+            this.richEnum.IsDrawingLine = false;
+            this.richEnum.IsNumeric = true;
+            this.richEnum.Location = new System.Drawing.Point(508, 41);
+            this.richEnum.Name = "richEnum";
+            this.richEnum.Size = new System.Drawing.Size(82, 376);
+            this.richEnum.TabIndex = 1;
+            this.richEnum.TabStop = false;
+            this.richEnum.Text = "";
+            this.richEnum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
+            this.richEnum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 
-            // RichMainTree
+            // richMainTree
             // 
-            this.RichMainTree.AcceptsTab = true;
-            this.RichMainTree.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RichMainTree.IsDrawingLine = false;
-            this.RichMainTree.IsNumeric = false;
-            this.RichMainTree.Location = new System.Drawing.Point(12, 41);
-            this.RichMainTree.Name = "RichMainTree";
-            this.RichMainTree.Size = new System.Drawing.Size(490, 376);
-            this.RichMainTree.TabIndex = 0;
-            this.RichMainTree.Text = "//New Main Tree\n//\tDepth는 Tab으로 구분.\n//\t동일 Depth은 같은 Tab 갯수로 구분.\n//\t\t현재의 Depth는 3." +
+            this.richMainTree.AcceptsTab = true;
+            this.richMainTree.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.richMainTree.IsChanged = false;
+            this.richMainTree.IsDrawingLine = false;
+            this.richMainTree.IsNumeric = false;
+            this.richMainTree.Location = new System.Drawing.Point(12, 41);
+            this.richMainTree.Name = "richMainTree";
+            this.richMainTree.Size = new System.Drawing.Size(490, 376);
+            this.richMainTree.TabIndex = 0;
+            this.richMainTree.Text = "//New Main Tree\n//\tDepth는 Tab으로 구분.\n//\t동일 Depth은 같은 Tab 갯수로 구분.\n//\t\t현재의 Depth는 3." +
     "";
-            this.RichMainTree.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
-            this.RichMainTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
+            this.richMainTree.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
+            this.richMainTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 
             // button1
             // 
@@ -166,19 +169,20 @@ namespace AutoMainTreeMaker
             this.labelGubun.TabIndex = 12;
             this.labelGubun.Text = "Gubun Name";
             // 
-            // RichGubun
+            // richGubun
             // 
-            this.RichGubun.AcceptsTab = true;
-            this.RichGubun.IsDrawingLine = false;
-            this.RichGubun.IsNumeric = false;
-            this.RichGubun.Location = new System.Drawing.Point(710, 41);
-            this.RichGubun.Name = "RichGubun";
-            this.RichGubun.Size = new System.Drawing.Size(108, 376);
-            this.RichGubun.TabIndex = 11;
-            this.RichGubun.TabStop = false;
-            this.RichGubun.Text = "";
-            this.RichGubun.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
-            this.RichGubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
+            this.richGubun.AcceptsTab = true;
+            this.richGubun.IsChanged = false;
+            this.richGubun.IsDrawingLine = false;
+            this.richGubun.IsNumeric = false;
+            this.richGubun.Location = new System.Drawing.Point(710, 41);
+            this.richGubun.Name = "richGubun";
+            this.richGubun.Size = new System.Drawing.Size(108, 376);
+            this.richGubun.TabIndex = 11;
+            this.richGubun.TabStop = false;
+            this.richGubun.Text = "";
+            this.richGubun.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
+            this.richGubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 
             // label1_variable
             // 
@@ -190,19 +194,20 @@ namespace AutoMainTreeMaker
             this.label1_variable.TabIndex = 15;
             this.label1_variable.Text = "Variable Name";
             // 
-            // RichVar
+            // richVar
             // 
-            this.RichVar.AcceptsTab = true;
-            this.RichVar.IsDrawingLine = false;
-            this.RichVar.IsNumeric = false;
-            this.RichVar.Location = new System.Drawing.Point(824, 41);
-            this.RichVar.Name = "RichVar";
-            this.RichVar.Size = new System.Drawing.Size(108, 376);
-            this.RichVar.TabIndex = 14;
-            this.RichVar.TabStop = false;
-            this.RichVar.Text = "";
-            this.RichVar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
-            this.RichVar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
+            this.richVar.AcceptsTab = true;
+            this.richVar.IsChanged = false;
+            this.richVar.IsDrawingLine = false;
+            this.richVar.IsNumeric = false;
+            this.richVar.Location = new System.Drawing.Point(824, 41);
+            this.richVar.Name = "richVar";
+            this.richVar.Size = new System.Drawing.Size(108, 376);
+            this.richVar.TabIndex = 14;
+            this.richVar.TabStop = false;
+            this.richVar.Text = "";
+            this.richVar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
+            this.richVar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 
             // BtnMakeTree
             // 
@@ -221,21 +226,22 @@ namespace AutoMainTreeMaker
             this.ClientSize = new System.Drawing.Size(1016, 539);
             this.Controls.Add(this.BtnMakeTree);
             this.Controls.Add(this.label1_variable);
-            this.Controls.Add(this.RichVar);
+            this.Controls.Add(this.richVar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelGubun);
-            this.Controls.Add(this.RichGubun);
+            this.Controls.Add(this.richGubun);
             this.Controls.Add(this.BtnNext);
             this.Controls.Add(this.BtnColumnAuto);
             this.Controls.Add(this.BtnEnumAuto);
             this.Controls.Add(this.label_Col);
             this.Controls.Add(this.label_enum);
             this.Controls.Add(this.label_tree);
-            this.Controls.Add(this.RichCol);
-            this.Controls.Add(this.RichEnum);
-            this.Controls.Add(this.RichMainTree);
+            this.Controls.Add(this.richCol);
+            this.Controls.Add(this.richEnum);
+            this.Controls.Add(this.richMainTree);
             this.Name = "Wizard1";
-            this.Text = "Wizard1Form";
+            this.Text = "Wizard1";
+            this.Resize += new System.EventHandler(this.Wizard1_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,11 +249,11 @@ namespace AutoMainTreeMaker
 
         #endregion
 
-        private CRichEditBox RichEnum;
-        private CRichEditBox RichCol;
-        private CRichEditBox RichMainTree;
-        private CRichEditBox RichGubun;
-        private CRichEditBox RichVar;
+        private CRichEditBox richEnum;
+        private CRichEditBox richCol;
+        private CRichEditBox richMainTree;
+        private CRichEditBox richGubun;
+        private CRichEditBox richVar;
         private System.Windows.Forms.Label label_tree;
         private System.Windows.Forms.Label label_enum;
         private System.Windows.Forms.Label label_Col;
@@ -259,7 +265,70 @@ namespace AutoMainTreeMaker
         private System.Windows.Forms.Label label1_variable;
         private System.Windows.Forms.Button BtnMakeTree;
 
-        
+        public CRichEditBox RichEnum
+        {
+            get
+            {
+                return richEnum;
+            }
+
+            set
+            {
+                richEnum = value;
+            }
+        }
+
+        public CRichEditBox RichCol
+        {
+            get
+            {
+                return richCol;
+            }
+
+            set
+            {
+                richCol = value;
+            }
+        }
+
+        public CRichEditBox RichMainTree
+        {
+            get
+            {
+                return richMainTree;
+            }
+
+            set
+            {
+                richMainTree = value;
+            }
+        }
+
+        public CRichEditBox RichGubun
+        {
+            get
+            {
+                return richGubun;
+            }
+
+            set
+            {
+                richGubun = value;
+            }
+        }
+
+        public CRichEditBox RichVar
+        {
+            get
+            {
+                return richVar;
+            }
+
+            set
+            {
+                richVar = value;
+            }
+        }
     }
 }
 

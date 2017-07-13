@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AutoMainTreeMaker
 {
-    class CRichEditBox : RichTextBox
+    public class CRichEditBox : RichTextBox
     {
 
         private bool isChanged;
@@ -45,6 +42,7 @@ namespace AutoMainTreeMaker
 
         public bool IsNuemricString()
         {
+            
             foreach (char c in Text)
             {
                 switch(c)

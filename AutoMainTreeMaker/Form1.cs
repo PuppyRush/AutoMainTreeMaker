@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AutoMainTreeMaker
@@ -16,6 +11,19 @@ namespace AutoMainTreeMaker
 
         List<RichTextBox> richs;
 
+        public List<RichTextBox> Richs
+        {
+            get
+            {
+                return richs;
+            }
+
+            set
+            {
+                richs = value;
+            }
+        }
+
         public Wizard1()
         {
             InitializeComponent();
@@ -23,25 +31,12 @@ namespace AutoMainTreeMaker
             mainTree = new Tree();
             
             richs = new List<RichTextBox>();
-            richs.Add(RichMainTree);
-            richs.Add(RichEnum);
-            richs.Add(RichVar);
-            richs.Add(RichCol);
-
-            const int len = 20;
-            foreach (CRichEditBox r in richs)
-            {
-                for (int l = 0; l < origins.Count; l++ )
-                {
-                    origins[l] = new string[len];
-                    for (int i = 0; i < len; i++)
-                    {
-                        origins[l][i] = "\n";
-                    }
-                }
-            }
-            
-
+            richs.Add(richMainTree);
+            richs.Add(richEnum);
+            richs.Add(richVar);
+            richs.Add(richCol);
+   
+         
         }
 
      
@@ -83,15 +78,20 @@ namespace AutoMainTreeMaker
             {
                 if (r.IsChanged)
                 {
-                    mainTree.MainTree = RichMainTree.Lines;
-                    mainTree.ColumnName = RichCol.Lines;
-                    mainTree.GubunName = RichGubun.Lines;
-                    mainTree.VariableName = RichVar.Lines;
-                    mainTree.EnumValue = RichEnum.Lines;
-                    mainTree.MakeTree();
+                    mainTree.MainTree = richMainTree.Lines;
+                    mainTree.ColumnName = richCol.Lines;
+                    mainTree.GubunName = richGubun.Lines;
+                    mainTree.VariableName = richVar.Lines;
+                    mainTree.EnumValue = richEnum.Lines;
+                    mainTree.MakeTree(this);
                     break;
                 }
             }
+        }
+
+        private void Wizard1_Resize(object sender, EventArgs e)
+        {
+            
         }
     }
 }
