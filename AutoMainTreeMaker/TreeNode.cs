@@ -8,6 +8,21 @@ namespace AutoMainTreeMaker
     class TreeNode
     {
 
+        private int displaySeq;
+        public int DisplaySeq
+        {
+            get { return displaySeq; }
+            set { displaySeq = value; }
+        }
+
+
+        private bool isVirtualNode;
+        public bool IsVirtualNode
+        {
+            get { return isVirtualNode; }
+            set { isVirtualNode = value; }
+        }
+
         private bool isParent;
         public bool IsParent
         {
@@ -67,6 +82,19 @@ namespace AutoMainTreeMaker
         {
             get { return columnName; }
             set { columnName = value; }
+        }
+
+
+
+        public TreeNode(int nodeSeq)
+        {
+            nodeSequence = nodeSeq;
+        }
+
+        public TreeNode(int nodeSeq, int depth)
+        {
+            nodeSequence = nodeSeq;
+            this.depth = depth;
         }
 
     }

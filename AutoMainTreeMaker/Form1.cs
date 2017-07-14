@@ -78,20 +78,57 @@ namespace AutoMainTreeMaker
             {
                 if (r.IsChanged)
                 {
-                    mainTree.MainTree = richMainTree.Lines;
-                    mainTree.ColumnName = richCol.Lines;
-                    mainTree.GubunName = richGubun.Lines;
-                    mainTree.VariableName = richVar.Lines;
-                    mainTree.EnumValue = richEnum.Lines;
-                    mainTree.MakeTree(this);
+                    MessageBox.Show("목록들 중에 변경사항이 있습니다. 트리를 다시 생성합니다");
                     break;
                 }
             }
+
+            mainTree.MainTree = richMainTree.Lines;
+            mainTree.ColumnName = richCol.Lines;
+            mainTree.GubunName = richGubun.Lines;
+            mainTree.VariableName = richVar.Lines;
+            mainTree.EnumValue = richEnum.Lines;
+            mainTree.MakeTree(this);
+
         }
 
         private void Wizard1_Resize(object sender, EventArgs e)
         {
             
+        }
+
+        private void ChkAutoEnum_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAutoEnum.CheckState == CheckState.Checked)
+                RichEnum.Enabled = false;
+            else if (chkAutoEnum.CheckState == CheckState.Unchecked)
+                RichEnum.Enabled = true;
+
+
+        }
+
+        private void ChkAutoCol_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAutoCol.CheckState == CheckState.Checked)
+                RichCol.Enabled = false;
+            else if (chkAutoCol.CheckState == CheckState.Unchecked)
+                RichCol.Enabled = true;
+        }
+
+        private void ChkAutoGubun_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAutoGubun.CheckState == CheckState.Checked)
+                RichGubun.Enabled = false;
+            else if (chkAutoGubun.CheckState == CheckState.Unchecked)
+                RichGubun.Enabled = true;
+        }
+
+        private void ChkAutoVar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAutoVar.CheckState == CheckState.Checked)
+                RichVar.Enabled = false;
+            else if (chkAutoVar.CheckState == CheckState.Unchecked)
+                RichVar.Enabled = true;
         }
     }
 }

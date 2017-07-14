@@ -117,4 +117,145 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richVar.Text" xml:space="preserve">
+    <value>
+PUSCH Power
+PUCCH Power
+SRS Power
+Total Tx Power
+Power Headroom
+
+
+DL MCS0
+DL MCS1
+DL Modulation0
+DL Modulation1
+PDSCH PRB Number
+PDSCH BLER
+
+DL MCS0
+DL MCS1
+DL Modulation0
+DL Modulation1
+PDSCH PRB Number
+PDSCH BLER
+
+UL MCS
+UL Modulation
+PUSCH PRB Number
+PUSCH BLER</value>
+  </data>
+  <data name="richGubun.Text" xml:space="preserve">
+    <value>GL_CODE
+LTEMTKL1DLMCS0
+LTEMTKL1DLMCS1
+LTEMTKL1DLMOD0
+LTEMTKL1DLMOD1
+LTEMTKL1PRBNUM
+LTEMTKL1BLER
+LTEMTKLTHPPDSCHPC
+LTEMTKLTHPPDSCHSC
+LTEMTKLTHPPDSCHALL
+LTEMTKL1ULMCS
+LTEMTKL1ULMOD
+LTEMTKL1ULPRBNUM
+LTEMTKL1ULBLER
+AASAS
+LTEMTKLTHPMACDL
+LTEMTKLTHPMACUL
+LTEMTKLTHPRLCDL
+LTEMTKLTHPRLCUL
+LTEMTKLTHPDCPDL
+LTEMTKLTHPDCPUL
+GL_CODE
+LTEMTKPPOUCTHTOT
+LTEMTKPPOUCTH100DB
+LTEMTKPPOUCDIFF3DB
+LTEMTKPPOUCTHNEW
+ASDSD</value>
+  </data>
+  <data name="richCol.Text" xml:space="preserve">
+    <value>
+PUSCH Power
+PUCCH Power
+SRS Power
+Total Tx Power
+Power Headroom
+
+
+DL MCS0
+DL MCS1
+DL Modulation0
+DL Modulation1
+PDSCH PRB Number
+PDSCH BLER
+
+DL MCS0
+DL MCS1
+DL Modulation0
+DL Modulation1
+PDSCH PRB Number
+PDSCH BLER
+
+UL MCS
+UL Modulation
+PUSCH PRB Number
+PUSCH BLER</value>
+  </data>
+  <data name="richEnum.Text" xml:space="preserve">
+    <value>793520000
+793520100
+793520200
+793520300
+793520400
+793520500
+793530000
+793530050
+793530100
+793530200
+793530300
+793530400
+793530500
+793530600
+793530700
+793530800
+793530900
+793531000
+793531100
+793531200
+793531300
+793540000
+793540100
+793540200
+793540300
+793540400</value>
+  </data>
+  <data name="richMainTree.Text" xml:space="preserve">
+    <value>Tx Power Info
+	PUSCH Power
+	PUCCH Power
+	SRS Power
+	Total Tx Power
+	Power Headroom
+L1 DownIink Info
+	PCell
+		DL MCS0
+		DL MCS1
+		DL Modulation0
+		DL Modulation1
+		PDSCH PRB Number
+		PDSCH BLER
+	SCell[#] #:1-7
+		DL MCS0
+		DL MCS1
+		DL Modulation0
+		DL Modulation1
+		PDSCH PRB Number
+		PDSCH BLER
+L1 Uplink Info
+	UL MCS
+	UL Modulation
+	PUSCH PRB Number
+	PUSCH BLER</value>
+  </data>
 </root>
