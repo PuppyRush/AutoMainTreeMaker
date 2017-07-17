@@ -84,17 +84,22 @@ namespace AutoMainTreeMaker
             set { columnName = value; }
         }
 
-
-
-        public TreeNode(int nodeSeq)
+        public TreeNode(bool isParent, bool isVirtual,int nodeSeq, int depth=-1)
         {
-            nodeSequence = nodeSeq;
-        }
+            
+            if (isVirtual)
+            {
+                displaySeq = -1;
+                depth = -1;
+            }
+            else
+                this.depth = depth;
 
-        public TreeNode(int nodeSeq, int depth)
-        {
-            nodeSequence = nodeSeq;
-            this.depth = depth;
+            this.isVirtualNode = isVirtual;
+            this.isParent = isParent;
+
+            
+            this.nodeSequence = nodeSeq;
         }
 
     }

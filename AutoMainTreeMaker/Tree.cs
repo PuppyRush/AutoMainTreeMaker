@@ -23,7 +23,7 @@ namespace AutoMainTreeMaker
         
         //ColumnSequence가 키.
         Dictionary<int, List<TreeNode>> tree;
-        List<TreeNode> treeAsList;
+        Stack<TreeNode> stack;
 
         string[] mainTree;
 
@@ -71,7 +71,7 @@ namespace AutoMainTreeMaker
             gubunDepthGap = 10;
             gubunNodeGap = 1;
             tree = new Dictionary<int, List<TreeNode>>();
-            treeAsList = new List<TreeNode>();
+            stack = new Stack<TreeNode>();
         }
         
 
@@ -127,12 +127,16 @@ namespace AutoMainTreeMaker
             if (!IsValidData())
                 return false;
 
-            TreeNode firstNode = new TreeNode(0, 1);
+            TreeNode firstNode = new TreeNode(true, false, 0,0);
+            firstNode.ColumnNumber = 3;
+
             firstNode = GetNewNode(firstNode,true);            
 
             List<TreeNode> list = new List<TreeNode>();
             list.Add(firstNode);
             tree.Add(firstNode.NodeSequence, list);
+
+            stack.Push(firstNode);
 
             List<string> nodes = new List<string>(mainTree);
             MakeTree_Recursive(nodes, firstNode);
@@ -143,38 +147,48 @@ namespace AutoMainTreeMaker
 
 
 
-        private void MakeTree_Recursive(List<string> nodes, TreeNode prevNode)
+        private TreeNode MakeTree_Recursive(List<string> nodes, TreeNode prevNode)
         {
 
+            TreeNode newNode = null;
             List<int> sameDepthNodes = GetSameDepthNodes(nodes, prevNode.NodeSequence);
             for (int i = 0; i < sameDepthNodes.Count; i++)
             {
-                List<TreeNode> list = tree[sameDepthNodes[0]+1];
-                TreeNode newNode = null;
+                if (prevNode == null)
+                    return null;
 
+                List<TreeNode> list = tree[sameDepthNodes[0]+1];
                 int presentIndex = sameDepthNodes[i];
                 string parentString = nodes[presentIndex];
                 string childString = nodes[presentIndex + 1];
 
                 //base contidion
                 if (nodes.Count <= prevNode.NodeSequence)
-                    return;
+                    return null;
 
                 int depthGap = GetDepthGap(parentString, childString);
                 if (depthGap == 0)
                 {
-                    newNode = GetNewNode(prevNode, false);
+                    if (GetDepthGap(childString, nodes[presentIndex + 2])==1)
+                        newNode = GetNewNode(prevNode, true);
+                    else
+                        newNode = GetNewNode(prevNode, false);
                     prevNode = newNode;
                     list.Add(newNode);
+                    stack.Push(newNode);
                 }
                 else if (depthGap == 1)
                 {
+                    if (GetDepthGap(childString, nodes[presentIndex + 2]) == 1)
+                        newNode = GetNewNode(prevNode, true);
+                    else
+                        newNode = GetNewNode(prevNode, false);
+
                     List<TreeNode> newList = new List<TreeNode>();
-                    newNode = GetNewNode(prevNode, true);
                     newList.Add(newNode);
                     tree.Add(newNode.NodeSequence, newList);
 
-                    MakeTree_Recursive(nodes, newNode);
+                    prevNode = MakeTree_Recursive(nodes, newNode);
                 }
                 //if (Math.Abs(depthParent - depthChild) > 1)
                 //{
@@ -182,6 +196,11 @@ namespace AutoMainTreeMaker
                 //    throw new NullReferenceException("트리의 깊이가 한번에 1보다 커질 수 없습니다.");
                 //}
             }
+
+            for (int i = 0; i < sameDepthNodes.Count; i++)
+                stack.Pop();
+
+            return newNode;
         }
 
         private List<int> GetSameDepthNodes(List<string> nodes, int nodeSeq)
@@ -203,15 +222,19 @@ namespace AutoMainTreeMaker
 
         private TreeNode GetNewNode(TreeNode prevNode,bool isParent)
         {
-            TreeNode node = new TreeNode(prevNode.NodeSequence + 1);
+            TreeNode node = null;
             int index = prevNode.NodeSequence;
 
-            if (mainTree[index].IndexOf("[x]") > 0 )
+            if (mainTree[index].IndexOf("[x]") > 0)
+            {
+                node = new TreeNode(isParent,true, prevNode.NodeSequence + 1);
                 node.IsVirtualNode = true;
+            }
             else
+            {
+                node = new TreeNode(isParent, false, prevNode.NodeSequence + 1);
                 node.IsVirtualNode = false;
-
-           
+            }
 
             ///
 
@@ -263,7 +286,7 @@ namespace AutoMainTreeMaker
             if (isParent)
             {
 
-                node.ColumnNumber = -1;
+                node.ColumnNumber = prevNode.ColumnNumber;
                 node.Depth = prevNode.Depth + 1;
 
                 if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
