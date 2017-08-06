@@ -8,7 +8,24 @@ namespace AutoMainTreeMaker
     class TreeNode
     {
 
+        //변수상의 순서. 0부터 시작이다.
+        private int nodeSequence;
+
+        private bool isParent;
+        private bool isHead;
+        private bool isLastSon;
+        private bool isFinal;
+
+        private bool isVirtualNode;
+        private int enumNumber;
         private int displaySeq;
+        private int depth;
+        private int columnNumber;
+        private string variableName;
+        private string gubun;
+        private string columnName;
+
+
         public int DisplaySeq
         {
             get { return displaySeq; }
@@ -16,14 +33,14 @@ namespace AutoMainTreeMaker
         }
 
 
-        private bool isVirtualNode;
+        
         public bool IsVirtualNode
         {
             get { return isVirtualNode; }
             set { isVirtualNode = value; }
         }
 
-        private bool isParent;
+        
         public bool IsParent
         {
             get { return isParent; }
@@ -31,60 +48,93 @@ namespace AutoMainTreeMaker
         }
 
 
-        private int nodeSequence;
+        
         public int NodeSequence
         {
             get { return nodeSequence; }
             set { nodeSequence = value; }
         }
 
-
-        private int depth;
+        
         public int Depth
         {
             get { return depth; }
             set { depth = value; }
         }
 
-        private int columnNumber;
+
         public int ColumnNumber
         {
             get { return columnNumber; }
             set { columnNumber = value; }
         }
 
-        private int enumNumber;
+        
         public int EnumNumber
         {
             get { return enumNumber; }
             set { enumNumber = value; }
         }
 
-
-        private string variableName;
+        
         public string VariableName
         {
             get { return variableName; }
             set { variableName = value; }
         }
 
-
-        private string gubun;
+        
         public string Gubun
         {
             get { return gubun; }
             set { gubun = value; }
         }
 
-
-        private string columnName;
+        
         public string ColumnName
         {
             get { return columnName; }
             set { columnName = value; }
         }
 
+        public bool IsHead
+        {
+            get
+            {
+                return isHead;
+            }
 
+            set
+            {
+                isHead = value;
+            }
+        }
+
+        public bool IsLastSon
+        {
+            get
+            {
+                return isLastSon;
+            }
+
+            set
+            {
+                isLastSon = value;
+            }
+        }
+
+        public bool IsFinal
+        {
+            get
+            {
+                return isFinal;
+            }
+
+            set
+            {
+                isFinal = value;
+            }
+        }
 
         public TreeNode(int nodeSeq)
         {

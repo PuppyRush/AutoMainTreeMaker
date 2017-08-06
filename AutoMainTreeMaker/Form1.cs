@@ -27,8 +27,6 @@ namespace AutoMainTreeMaker
         public Wizard1()
         {
             InitializeComponent();
-
-            mainTree = new Tree();
             
             richs = new List<RichTextBox>();
             richs.Add(richMainTree);
@@ -83,13 +81,20 @@ namespace AutoMainTreeMaker
                 }
             }
 
-            mainTree.MainTree = richMainTree.Lines;
-            mainTree.ColumnName = richCol.Lines;
-            mainTree.GubunName = richGubun.Lines;
-            mainTree.VariableName = richVar.Lines;
-            mainTree.EnumValue = richEnum.Lines;
-            mainTree.MakeTree(this);
+            TreeMaker maker = new TreeMaker(this);
 
+            
+            maker.ColumnName = richCol.Lines;
+            maker.GubunName = richGubun.Lines;
+            maker.VariableName = richVar.Lines;
+            maker.EnumValue = richEnum.Lines;
+
+            maker.Do(richMainTree.Lines);
+            if (maker.IsSuccessedForMaking)
+                mainTree = maker.Tree;
+            else
+                MessageBox.Show("DOOOOOOOOOOOOHP");
+                
         }
 
         private void Wizard1_Resize(object sender, EventArgs e)
