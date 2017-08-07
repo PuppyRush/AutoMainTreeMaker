@@ -143,8 +143,20 @@ namespace AutoMainTreeMaker
 
         public TreeNode(int nodeSeq, int depth)
         {
-            nodeSequence = nodeSeq;
-            this.depth = depth;
+            
+            if (isVirtualNode)
+            {
+                displaySeq = -1;
+                depth = -1;
+            }
+            else
+                this.depth = depth;
+
+            this.isVirtualNode = isVirtualNode;
+            this.isParent = isParent;
+
+            
+            this.nodeSequence = nodeSeq;
         }
 
     }
