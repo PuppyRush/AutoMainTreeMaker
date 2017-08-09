@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AutoMainTreeMaker
 {
-    class TreeNode
+    public class TreeNode
     {
 
         //변수상의 순서. 0부터 시작이다.
