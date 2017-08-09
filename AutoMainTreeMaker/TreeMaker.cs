@@ -9,6 +9,8 @@ namespace AutoMainTreeMaker
     class TreeMaker
     {
 
+
+
         private Wizard1 wizard1;
         int gubunDepthGap;
         int gubunNodeGap;
@@ -145,20 +147,21 @@ namespace AutoMainTreeMaker
             if (!IsValidData())
                 return false;
 
-            TreeNode firstNode = new TreeNode(-1, 0);
-            firstNode = GetNewNode(firstNode, true,true);
-
             List<string> nodes = new List<string>(mainTree);
-            MakeTree_Recursive(nodes, firstNode, tree);
+
+            TreeNode firstNode = new TreeNode(-1, 0);
+            firstNode.ColumnNumber = 3;
+            firstNode = GetNewNode(nodes, firstNode, true,true);
+            SetParnetNode(firstNode, true);
+
+            MakeTreeRecursive(nodes, firstNode, tree);
 
             return isSuccessedForMaking=true;
         }
 
-        private void MakeTree_Recursive(List<string> originNodes, TreeNode presentNode, Tree tree)
+        private TreeNode MakeTreeRecursive(List<string> originNodes, TreeNode presentNode, Tree tree)
         {
-            //base contidion
-            if (originNodes.Count - 2 <= presentNode.NodeSequence)
-                return;
+           
 
             List<int> sameDepthNodes = GetSameDepthNodes(originNodes, presentNode.NodeSequence);
 
@@ -166,48 +169,47 @@ namespace AutoMainTreeMaker
             depthedList.Add(presentNode);
             tree.TreeMap.Add(sameDepthNodes[0], depthedList);
 
-            for (int i = 0; i < sameDepthNodes.Count; i++)
+            for(int i=0; i < sameDepthNodes.Count; i++)
             {
-                TreeNode newNode = null;
+                int nodeSeq = sameDepthNodes[i];
 
-                int presentIndex = sameDepthNodes[i];
+                //base contidion
+                if (originNodes.Count - 1 <= nodeSeq)
+                    continue;
 
-                int nextDepthGap=int.MinValue, depthGap = GetDepthGap(presentIndex, presentIndex+1);
-                if (presentIndex + 2 < originNodes.Count)
-                    nextDepthGap = GetDepthGap(presentIndex + 1, presentIndex + 2);
+                
+                int depthGap = GetDepthGap(nodeSeq, nodeSeq + 1);
 
-                if (depthGap == 0 && nextDepthGap == 1)
+                if (depthGap == 1)
                 {
-                    newNode = GetNewNode(presentNode, false, false);    // aaaa    childNode(presnetNode)
-                    SetChildNode(newNode, presentNode);                 // bbbb    parentNode(presnetNode+1)
-                    depthedList.Add(newNode);                           //  cccc   headNode(presnetNode+2)
+                    TreeNode parentNode = null;
+                    if (tree.containsNode(nodeSeq))
+                        parentNode = tree.GetNode(nodeSeq);
+                    else
+                    {
+                        presentNode = parentNode = GetNewNode(originNodes, presentNode, false, true);
+                        SetParnetNode(parentNode, false);
+                        tree.PutNodeToMap(parentNode.NodeSequence, parentNode);
+                        depthedList.Add(parentNode);
+                    }
 
-                    newNode = GetNewNode(newNode, false, true);
-                    SetParnetNode(newNode);
-                    depthedList.Add(newNode);
-
-                    presentNode = newNode;
-                    i++;
+                    TreeNode headNode = GetNewNode(originNodes, presentNode, true, false);
+                    SetHeadNode(headNode, presentNode);
+                    presentNode = MakeTreeRecursive(originNodes, headNode, tree);
                 }
-                else if (depthGap == 0)
+                else if(depthGap==0)
                 {
-                    newNode = GetNewNode(presentNode, false,false);
-                    SetChildNode(newNode, presentNode);
-                    presentNode = newNode;
-                    depthedList.Add(newNode);
-                }
-                else if (depthGap == 1)
-                {
-                    List<TreeNode> newList = new List<TreeNode>();
-                    newNode = GetNewNode(presentNode, true,false);
-                    SetParnetNode(presentNode);
-                    SetHeadNode(newNode, presentNode);
-                    MakeTree_Recursive(originNodes, newNode,tree);
+                    TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
+                    SetSilblingNode(siblingNode, presentNode);
+
+                    tree.PutNodeToMap(siblingNode.NodeSequence, siblingNode);
+                    depthedList.Add(siblingNode);
+                    presentNode = siblingNode;
                 }
             }
 
             depthedList[depthedList.Count - 1].IsLastSon = true;
-
+            return depthedList[depthedList.Count - 1];
         }
 
         private List<int> GetSameDepthNodes(List<string> nodes, int nodeSeq)
@@ -232,16 +234,12 @@ namespace AutoMainTreeMaker
             presentNode.IsLastSon = false;
             presentNode.IsFinal = false;
 
-
             if (isFirstNode)
             {
-                presentNode.ColumnNumber = 1;
-                presentNode.NodeSequence = 0;
                 presentNode.IsHead = true;
             }
             else
             {
-                presentNode.NodeSequence++;
                 presentNode.IsHead = false;
             }
         }
@@ -250,28 +248,17 @@ namespace AutoMainTreeMaker
         {
             presentNode.IsHead = true;
             presentNode.IsParent = false;
-            presentNode.ColumnNumber = prevNode.ColumnNumber + 1;
-            presentNode.NodeSequence = prevNode.NodeSequence + 1;
         }
 
-        private void SetChildNode(TreeNode presentNode, TreeNode prevNode)
+        private void SetSilblingNode(TreeNode presentNode, TreeNode prevNode)
         {
-            if (prevNode.IsVirtualNode)
-            {
-                presentNode.ColumnNumber = -1;
-                prevNode.DisplaySeq = -1;
-            }
-            else
-            {
-                presentNode.ColumnNumber = prevNode.ColumnNumber + 1;
-            }
-
+ 
             prevNode.IsHead = false;
             prevNode.IsParent = false;
 
         }
 
-        private TreeNode GetNewNode(TreeNode presentNode, bool isNewHeadNode, bool isNewParentNode)
+        private TreeNode GetNewNode(List<string> originNodes, TreeNode presentNode, bool isNewHeadNode, bool isNewParentNode)
         {
             TreeNode newNode = new TreeNode(presentNode.NodeSequence + 1);
             int presentIdx = newNode.NodeSequence;
@@ -280,6 +267,7 @@ namespace AutoMainTreeMaker
                 newNode.IsVirtualNode = true;
             else
                 newNode.IsVirtualNode = false;
+            
 
             if (wizard1.ChkAutoGubun.CheckState == CheckState.Unchecked)
             {
@@ -318,59 +306,24 @@ namespace AutoMainTreeMaker
                 newNode.EnumNumber = presentNode.EnumNumber + gubunDepthGap;
             }
 
-
-            if (isNewHeadNode)
+            if (isNewHeadNode && !isNewParentNode)
             {
                 newNode.Depth = presentNode.Depth + 1;
-
-                newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
-                newNode.VariableName = GetVariableName(presentIdx, isNewParentNode);
-
+                newNode.ColumnNumber = presentNode.ColumnNumber;
+            }
+            else if (isNewParentNode)
+            {
+                newNode.ColumnNumber = presentNode.ColumnNumber;
+                newNode.Depth = GetDepth(originNodes[newNode.NodeSequence]);
             }
             else
             {
-
+                newNode.ColumnNumber = presentNode.ColumnNumber + 1;
                 newNode.Depth = presentNode.Depth;
-                if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
-                {
+            }
 
-                    if (columnName[presentIdx].Length > 0)
-                        newNode.ColumnName = columnName[presentIdx];
-                    else
-                    {
-                        MessageBox.Show("부모에 컬럼명을 넣을 수 없습니다.");
-                        wizard1.RichCol.Focus();
-                        wizard1.RichCol.SelectionStart = wizard1.RichCol.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return null;
-                    }
-                }
-                else if (wizard1.ChkAutoCol.CheckState == CheckState.Checked)
-                {
-                    newNode.ColumnName = "";
-                }
-
-
-                if (wizard1.ChkAutoVar.CheckState == CheckState.Unchecked)
-                {
-                    if (variableName[presentIdx].Length > 0)
-                        newNode.VariableName = variableName[presentIdx];
-                    else
-                    {
-                        MessageBox.Show("노드에는 변수명이 있어야합니다.");
-                        wizard1.RichVar.Focus();
-                        wizard1.RichVar.SelectionStart = wizard1.RichVar.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return null;
-                    }
-
-                }
-                else if (wizard1.ChkAutoVar.CheckState == CheckState.Checked)
-                {
-                    newNode.VariableName = wizard1.RichVar.Lines[presentIdx - 1];
-                }
-            }//isParent else
-
+            newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
+            newNode.VariableName = GetVariableName(presentIdx, isNewParentNode);
 
             return newNode;
         }
@@ -494,7 +447,7 @@ namespace AutoMainTreeMaker
 
         private int GetDepthGap(int parent, int child)
         {
-            return GetDepthGap(mainTree[child], mainTree[parent]);
+            return GetDepthGap(mainTree[parent],mainTree[child]);
         }
 
         private string GetGubunNameAutomatically(string str)
