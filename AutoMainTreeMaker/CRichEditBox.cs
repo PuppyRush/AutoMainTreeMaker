@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -212,7 +213,12 @@ namespace AutoMainTreeMaker
             DrawBlockedLineCurrently();
         }
 
+        public static implicit operator CRichEditBox(List<CRichEditBox> v)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
-        
+
     }
 }

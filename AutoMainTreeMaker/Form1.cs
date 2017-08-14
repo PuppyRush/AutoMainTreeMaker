@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMainTreeMaker;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,9 +10,9 @@ namespace AutoMainTreeMaker
 
         Tree mainTree;
 
-        List<RichTextBox> richs;
+        List<CRichEditBox> richs;
 
-        public List<RichTextBox> Richs
+        public List<CRichEditBox> Richs
         {
             get
             {
@@ -28,7 +29,7 @@ namespace AutoMainTreeMaker
         {
             InitializeComponent();
 
-            richs = new List<RichTextBox>();
+            richs = new List<CRichEditBox>();
             richs.Add(richMainTree);
             richs.Add(richEnum);
             richs.Add(richVar);
@@ -36,8 +37,10 @@ namespace AutoMainTreeMaker
             richs.Add(richGubun);
             richs.Add(richLineNumber);
 
-            string [] lines = new string[30];
-            for (int i = 0; i < 30; i++)
+            int count = GetEditBoxFromLines(richs).Lines.Length;
+
+            string [] lines = new string[count];
+            for (int i = 0; i < count; i++)
                 lines[i] = (i + 1).ToString();
             richLineNumber.Lines = lines;
 
@@ -47,6 +50,20 @@ namespace AutoMainTreeMaker
             }
         }
 
+        private CRichEditBox GetEditBoxFromLines(List<CRichEditBox> richs)
+        {
+            if (richs.Count == 0)
+                new ArgumentException("배열의 크기가 0이상 이어야 합니다.");
+
+            CRichEditBox rich = richs[0];
+            foreach(CRichEditBox r in richs)
+            {
+                if (r.Lines.Length > r.Lines.Length)
+                    rich = r;
+            }
+
+            return rich;
+        }
      
         private void Click_DrawLineAllForms(object sender, MouseEventArgs e)
         {
@@ -99,6 +116,7 @@ namespace AutoMainTreeMaker
             maker.GubunName = richGubun.Lines;
             maker.VariableName = richVar.Lines;
             maker.EnumValue = richEnum.Lines;
+            maker.GubunName = richGubun.Lines;
 
             maker.Do(richMainTree.Lines);
             if (maker.IsSuccessedForMaking)

@@ -112,7 +112,7 @@ namespace AutoMainTreeMaker
                 if (NodeCount != r.Lines.Length)
                 {
                     r.Focus();
-                    MessageBox.Show(r.Name + "목록이 트리와 불일치 합니다.");
+                    MessageBox.Show(r.Name + "목록이 트리와의 갯수가 불일치 합니다.");
                     return false;
                 }
             }

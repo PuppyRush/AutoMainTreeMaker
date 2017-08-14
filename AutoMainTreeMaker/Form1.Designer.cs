@@ -165,6 +165,9 @@ namespace AutoMainTreeMaker
             // 
             // richLineNumber
             // 
+            this.richLineNumber.IsChanged = false;
+            this.richLineNumber.IsDrawingLine = false;
+            this.richLineNumber.IsNumeric = false;
             this.richLineNumber.Location = new System.Drawing.Point(12, 41);
             this.richLineNumber.Name = "richLineNumber";
             this.richLineNumber.Size = new System.Drawing.Size(45, 376);
@@ -314,7 +317,7 @@ namespace AutoMainTreeMaker
             set { chkAutoGubun = value; }
         }
         private System.Windows.Forms.CheckBox chkAutoVar;
-        private System.Windows.Forms.RichTextBox richLineNumber;
+        private CRichEditBox richLineNumber;
 
         public System.Windows.Forms.CheckBox ChkAutoVar
         {
