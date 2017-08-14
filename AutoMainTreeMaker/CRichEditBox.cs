@@ -184,15 +184,14 @@ namespace AutoMainTreeMaker
                 case Keys.Left:
                 case Keys.Right:
                 case Keys.Enter:
-                    DrawBlockedLineCurrently(this.SelectionStart, true);
+                    EraseBlockedLineCurrently();
+                    DrawBlockedLineCurrently();
                     break;
                                     
 
                 default:
                     break;
             }
-
-          
 
             if (IsNumeric && Text.Length > 0 && !IsNuemricString())
             {

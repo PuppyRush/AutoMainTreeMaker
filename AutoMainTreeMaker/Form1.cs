@@ -67,19 +67,18 @@ namespace AutoMainTreeMaker
 
         private void KeyUp_DrawLineAllForms(object sender, KeyEventArgs e)
         {
-            //CRichEditBox thisBox = (CRichEditBox)sender;
-            //int beginIndex = thisBox.SelectionStart;
-            //int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
-            //foreach (CRichEditBox r in richs)
-            //{
-            //    if (!sender.Equals(r))
-            //    {
-            //        if (currentLine <= r.Lines.Length - 1)
-            //            r.DrawBlockedLineCurrently(beginIndex, currentLine);
-            //    }
+            CRichEditBox thisBox = (CRichEditBox)sender;
+            int beginIndex = thisBox.SelectionStart;
+            int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
+            foreach (CRichEditBox r in richs)
+            {
 
-
-            //}
+                if (currentLine <= r.Lines.Length - 1)
+                {
+                    r.EraseBlockedLineCurrently();
+                    r.DrawBlockedLineCurrently(currentLine);
+                }
+            }
         }
 
         private void BtnMakeTree_Click(object sender, EventArgs e)
