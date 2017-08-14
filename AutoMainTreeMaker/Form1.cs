@@ -27,14 +27,24 @@ namespace AutoMainTreeMaker
         public Wizard1()
         {
             InitializeComponent();
-            
+
             richs = new List<RichTextBox>();
             richs.Add(richMainTree);
             richs.Add(richEnum);
             richs.Add(richVar);
             richs.Add(richCol);
-   
-         
+            richs.Add(richGubun);
+            richs.Add(richLineNumber);
+
+            string [] lines = new string[30];
+            for (int i = 0; i < 30; i++)
+                lines[i] = (i + 1).ToString();
+            richLineNumber.Lines = lines;
+
+            foreach (CRichEditBox r in richs)
+            {
+                r.SaveNowSelectInfo();
+            }
         }
 
      
@@ -45,29 +55,31 @@ namespace AutoMainTreeMaker
             int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
             foreach (CRichEditBox r in richs)
             {
-                if (!sender.Equals(r))
+                if (currentLine <= r.Lines.Length - 1)
                 {
-                    if (currentLine<= r.Lines.Length - 1)
-                        r.DrawBlockedLineCurrently(beginIndex, currentLine);
+                    r.EraseBlockedLineCurrently();
+                    r.DrawBlockedLineCurrently(currentLine);
                 }
+                
             }
+            
         }
 
         private void KeyUp_DrawLineAllForms(object sender, KeyEventArgs e)
         {
-            CRichEditBox thisBox = (CRichEditBox)sender;
-            int beginIndex = thisBox.SelectionStart;
-            int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
-            foreach (CRichEditBox r in richs)
-            {
-                if (!sender.Equals(r))
-                {
-                    if (currentLine <= r.Lines.Length - 1)
-                        r.DrawBlockedLineCurrently(beginIndex, currentLine);
-                }
+            //CRichEditBox thisBox = (CRichEditBox)sender;
+            //int beginIndex = thisBox.SelectionStart;
+            //int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
+            //foreach (CRichEditBox r in richs)
+            //{
+            //    if (!sender.Equals(r))
+            //    {
+            //        if (currentLine <= r.Lines.Length - 1)
+            //            r.DrawBlockedLineCurrently(beginIndex, currentLine);
+            //    }
 
 
-            }
+            //}
         }
 
         private void BtnMakeTree_Click(object sender, EventArgs e)

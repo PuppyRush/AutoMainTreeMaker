@@ -41,6 +41,7 @@ namespace AutoMainTreeMaker
             this.chkAutoCol = new System.Windows.Forms.CheckBox();
             this.chkAutoGubun = new System.Windows.Forms.CheckBox();
             this.chkAutoVar = new System.Windows.Forms.CheckBox();
+            this.richLineNumber = new AutoMainTreeMaker.CRichEditBox();
             this.richVar = new AutoMainTreeMaker.CRichEditBox();
             this.richGubun = new AutoMainTreeMaker.CRichEditBox();
             this.richCol = new AutoMainTreeMaker.CRichEditBox();
@@ -162,6 +163,15 @@ namespace AutoMainTreeMaker
             this.chkAutoVar.UseVisualStyleBackColor = true;
             this.chkAutoVar.CheckedChanged += new System.EventHandler(this.ChkAutoVar_CheckedChanged);
             // 
+            // richLineNumber
+            // 
+            this.richLineNumber.Location = new System.Drawing.Point(12, 41);
+            this.richLineNumber.Name = "richLineNumber";
+            this.richLineNumber.Size = new System.Drawing.Size(45, 376);
+            this.richLineNumber.TabIndex = 21;
+            this.richLineNumber.TabStop = false;
+            this.richLineNumber.Text = "";
+            // 
             // richVar
             // 
             this.richVar.AcceptsTab = true;
@@ -229,9 +239,9 @@ namespace AutoMainTreeMaker
             this.richMainTree.IsChanged = false;
             this.richMainTree.IsDrawingLine = false;
             this.richMainTree.IsNumeric = false;
-            this.richMainTree.Location = new System.Drawing.Point(12, 41);
+            this.richMainTree.Location = new System.Drawing.Point(63, 41);
             this.richMainTree.Name = "richMainTree";
-            this.richMainTree.Size = new System.Drawing.Size(490, 376);
+            this.richMainTree.Size = new System.Drawing.Size(439, 376);
             this.richMainTree.TabIndex = 0;
             this.richMainTree.TabStop = false;
             this.richMainTree.Text = resources.GetString("richMainTree.Text");
@@ -243,6 +253,7 @@ namespace AutoMainTreeMaker
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1299, 664);
+            this.Controls.Add(this.richLineNumber);
             this.Controls.Add(this.chkAutoVar);
             this.Controls.Add(this.chkAutoGubun);
             this.Controls.Add(this.chkAutoCol);
@@ -303,6 +314,7 @@ namespace AutoMainTreeMaker
             set { chkAutoGubun = value; }
         }
         private System.Windows.Forms.CheckBox chkAutoVar;
+        private System.Windows.Forms.RichTextBox richLineNumber;
 
         public System.Windows.Forms.CheckBox ChkAutoVar
         {
