@@ -164,5 +164,11 @@ namespace AutoMainTreeMaker
             else if (chkAutoVar.CheckState == CheckState.Unchecked)
                 RichVar.Enabled = true;
         }
+
+        private void 도움말ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpForm form = new HelpForm();
+            form.ShowDialog();
+        }
     }
 }
