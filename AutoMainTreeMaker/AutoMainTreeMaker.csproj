@@ -61,11 +61,11 @@
     <Compile Include="1.Enterance\HelpForm.Designer.cs">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="1.Enterance\MainForm.cs">
+    <Compile Include="1.Enterance\Dialog_MainTree.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1.Enterance\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="1.Enterance\Dialog_MainTree.Designer.cs">
+      <DependentUpon>Dialog_MainTree.cs</DependentUpon>
     </Compile>
     <Compile Include="CRichTextBoxInterface.cs" />
     <Compile Include="Tree\TreeMaker.cs" />
@@ -76,8 +76,8 @@
     <EmbeddedResource Include="2.ResultForSource\Dialog_ResultForSource.resx">
       <DependentUpon>Dialog_ResultForSource.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1.Enterance\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="1.Enterance\Dialog_MainTree.resx">
+      <DependentUpon>Dialog_MainTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

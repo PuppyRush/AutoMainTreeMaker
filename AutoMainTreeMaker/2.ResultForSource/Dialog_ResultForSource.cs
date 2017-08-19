@@ -18,6 +18,20 @@ namespace AutoMainTreeMaker
 
         CRichTextBoxInterface richInterface;
         List<CRichTextbox> richs;
+        Dialog_MainTree mainTreeDlg;
+
+        public Dialog_MainTree MainTreeDlg
+        {
+            get
+            {
+                return mainTreeDlg;
+            }
+
+            set
+            {
+                mainTreeDlg = value;
+            }
+        }
 
         public Dialog_ResultForSource(string [] mainTree, string[] enumValue, string[] enumName)
         {
@@ -64,6 +78,14 @@ namespace AutoMainTreeMaker
                 richEnumName.Enabled = false;
             else
                 richEnumName.Enabled = true;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            mainTreeDlg.Show();
+
         }
     }
 }

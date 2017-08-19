@@ -1,7 +1,7 @@
 ﻿
 namespace AutoMainTreeMaker
 {
-    public partial class Wizard1
+    public partial class Dialog_MainTree
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -29,7 +29,7 @@ namespace AutoMainTreeMaker
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Wizard1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dialog_MainTree));
             this.label_tree = new System.Windows.Forms.Label();
             this.label_enum = new System.Windows.Forms.Label();
             this.label_Col = new System.Windows.Forms.Label();

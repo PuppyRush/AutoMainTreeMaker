@@ -11,7 +11,7 @@ namespace AutoMainTreeMaker
 
 
 
-        private Wizard1 wizard1;
+        private Dialog_MainTree wizard1;
         int gubunDepthGap;
         int gubunNodeGap;
         bool isSuccessedForMaking;
@@ -87,7 +87,7 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public TreeMaker(Wizard1 wizard)
+        public TreeMaker(Dialog_MainTree wizard)
         {
             tree = new AutoMainTreeMaker.Tree();
             isSuccessedForMaking = false;
@@ -161,8 +161,6 @@ namespace AutoMainTreeMaker
 
         private TreeNode MakeTreeRecursive(List<string> originNodes, TreeNode presentNode, Tree tree)
         {
-           
-
             List<int> sameDepthNodes = GetSameDepthNodes(originNodes, presentNode.NodeSequence);
 
             List<TreeNode> depthedList = new List<TreeNode>();

@@ -37,13 +37,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // richResult
+            // richMainTree
             // 
             this.richMainTree.IsChanged = false;
             this.richMainTree.IsDrawingLine = false;
             this.richMainTree.IsNumeric = false;
             this.richMainTree.Location = new System.Drawing.Point(12, 34);
-            this.richMainTree.Name = "richResult";
+            this.richMainTree.Name = "richMainTree";
             this.richMainTree.ReadOnly = true;
             this.richMainTree.Size = new System.Drawing.Size(635, 404);
             this.richMainTree.TabIndex = 0;
@@ -97,6 +97,7 @@
             this.btnBack.TabIndex = 5;
             this.btnBack.Text = "<- 뒤로가기";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // label2
             // 
