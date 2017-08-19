@@ -176,7 +176,6 @@ namespace AutoMainTreeMaker
                 //base contidion
                 if (originNodes.Count - 1 <= nodeSeq)
                     continue;
-
                 
                 int depthGap = GetDepthGap(nodeSeq, nodeSeq + 1);
 
@@ -193,7 +192,8 @@ namespace AutoMainTreeMaker
                         depthedList.Add(parentNode);
                     }
 
-                    TreeNode headNode = GetNewNode(originNodes, presentNode, true, false);
+                    bool _isParent = isParent(originNodes, presentNode.NodeSequence+1);
+                    TreeNode headNode = GetNewNode(originNodes, presentNode, true, _isParent);
                     SetHeadNode(headNode, presentNode);
                     presentNode = MakeTreeRecursive(originNodes, headNode, tree);
                 }
@@ -209,7 +209,7 @@ namespace AutoMainTreeMaker
             }
 
             depthedList[depthedList.Count - 1].IsLastSon = true;
-            return depthedList[depthedList.Count - 1];
+            return presentNode;
         }
 
         private List<int> GetSameDepthNodes(List<string> nodes, int nodeSeq)
@@ -256,6 +256,14 @@ namespace AutoMainTreeMaker
             prevNode.IsHead = false;
             prevNode.IsParent = false;
 
+        }
+
+        private bool isParent(List<string> originNodes, int nodeSeq)
+        {
+            if (originNodes.Count - 1 == nodeSeq)
+                return false;
+
+            return GetDepthGap(nodeSeq, nodeSeq + 1) == 1 ? true : false;
         }
 
         private TreeNode GetNewNode(List<string> originNodes, TreeNode presentNode, bool isNewHeadNode, bool isNewParentNode)
