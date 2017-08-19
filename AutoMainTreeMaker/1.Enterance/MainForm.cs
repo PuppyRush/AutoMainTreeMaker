@@ -8,11 +8,13 @@ namespace AutoMainTreeMaker
     public partial class Wizard1 : Form
     {
 
+        private bool isCreatedTree;
+
         Tree mainTree;
+        List<CRichTextbox> richs;
+        CRichTextBoxInterface richInterface;
 
-        List<CRichEditBox> richs;
-
-        public List<CRichEditBox> Richs
+        public List<CRichTextbox> Richs
         {
             get
             {
@@ -29,7 +31,11 @@ namespace AutoMainTreeMaker
         {
             InitializeComponent();
 
-            richs = new List<CRichEditBox>();
+            isCreatedTree = false;
+
+            richInterface = new CRichTextBoxInterface();
+
+            richs = new List<CRichTextbox>();
             richs.Add(richMainTree);
             richs.Add(richEnum);
             richs.Add(richVar);
@@ -37,40 +43,38 @@ namespace AutoMainTreeMaker
             richs.Add(richGubun);
             richs.Add(richLineNumber);
 
-            int count = GetEditBoxFromLines(richs).Lines.Length;
+            richInterface.SetInterface(richs);
 
-            string [] lines = new string[count];
-            for (int i = 0; i < count; i++)
-                lines[i] = (i + 1).ToString();
-            richLineNumber.Lines = lines;
-
-            foreach (CRichEditBox r in richs)
-            {
-                r.SaveNowSelectInfo();
-            }
+            SetLineNumbers();
         }
 
-        private CRichEditBox GetEditBoxFromLines(List<CRichEditBox> richs)
+
+        private void SetLineNumbers()
         {
             if (richs.Count == 0)
                 new ArgumentException("배열의 크기가 0이상 이어야 합니다.");
 
-            CRichEditBox rich = richs[0];
-            foreach(CRichEditBox r in richs)
+            CRichTextbox rich = richs[0];
+            foreach(CRichTextbox r in richs)
             {
                 if (r.Lines.Length > r.Lines.Length)
                     rich = r;
             }
 
-            return rich;
+            int count = rich.Lines.Length;
+
+            string[] lines = new string[count];
+            for (int i = 0; i < count; i++)
+                lines[i] = (i + 1).ToString();
+            richLineNumber.Lines = lines;
         }
      
         private void Click_DrawLineAllForms(object sender, MouseEventArgs e)
         {
-            CRichEditBox thisBox = (CRichEditBox)sender;
+            CRichTextbox thisBox = (CRichTextbox)sender;
             int beginIndex = thisBox.SelectionStart;
             int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
-            foreach (CRichEditBox r in richs)
+            foreach (CRichTextbox r in richs)
             {
                 if (currentLine <= r.Lines.Length - 1)
                 {
@@ -84,10 +88,10 @@ namespace AutoMainTreeMaker
 
         private void KeyUp_DrawLineAllForms(object sender, KeyEventArgs e)
         {
-            CRichEditBox thisBox = (CRichEditBox)sender;
+            CRichTextbox thisBox = (CRichTextbox)sender;
             int beginIndex = thisBox.SelectionStart;
             int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
-            foreach (CRichEditBox r in richs)
+            foreach (CRichTextbox r in richs)
             {
 
                 if (currentLine <= r.Lines.Length - 1)
@@ -100,7 +104,7 @@ namespace AutoMainTreeMaker
 
         private void BtnMakeTree_Click(object sender, EventArgs e)
         {
-            foreach (CRichEditBox r in richs)
+            foreach (CRichTextbox r in richs)
             {
                 if (r.IsChanged)
                 {
@@ -120,7 +124,10 @@ namespace AutoMainTreeMaker
 
             maker.Do(richMainTree.Lines);
             if (maker.IsSuccessedForMaking)
+            {
                 mainTree = maker.Tree;
+                isCreatedTree = maker.IsSuccessedForMaking;
+            }
             else
                 MessageBox.Show("DOOOOOOOOOOOOHP");
                 
@@ -169,6 +176,18 @@ namespace AutoMainTreeMaker
         {
             HelpForm form = new HelpForm();
             form.ShowDialog();
+        }
+
+        private void BtnNext_Click(object sender, EventArgs e)
+        {
+
+            if(isCreatedTree)
+            {
+                this.Hide();
+                Dialog_ResultForSource dlg = new Dialog_ResultForSource(richMainTree.Lines, RichEnum.Lines, richCol.Lines );
+                dlg.ShowDialog();
+            }
+
         }
     }
 }

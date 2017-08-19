@@ -103,7 +103,7 @@ namespace AutoMainTreeMaker
             char[] buf = new char[1];
             buf[0] = ' ';
 
-            foreach (CRichEditBox r in wizard1.Richs)
+            foreach (CRichTextbox r in wizard1.Richs)
             {
                 if (r.Equals(wizard1.RichMainTree))
                     continue;

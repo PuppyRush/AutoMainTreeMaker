@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace AutoMainTreeMaker
 {
-    public class CRichEditBox : RichTextBox
+    public class CRichTextbox : RichTextBox
     {
 
         #region field
@@ -41,7 +41,7 @@ namespace AutoMainTreeMaker
         #region public Properties
 
 
-        public CRichEditBox()
+        public CRichTextbox()
         {
             isDrawingLine = false;
             IsNumeric = false;
@@ -213,7 +213,7 @@ namespace AutoMainTreeMaker
             DrawBlockedLineCurrently();
         }
 
-        public static implicit operator CRichEditBox(List<CRichEditBox> v)
+        public static implicit operator CRichTextbox(List<CRichTextbox> v)
         {
             throw new NotImplementedException();
         }
