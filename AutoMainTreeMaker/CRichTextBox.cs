@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace AutoMainTreeMaker
 {
-    public class CRichEditBox : RichTextBox
+    public class CRichTextbox : RichTextBox
     {
 
         #region field
 
-        
+        private int preLineIndex;
+        private int preStrLen;
 
         private bool isChanged;
         public bool IsChanged
@@ -39,12 +41,14 @@ namespace AutoMainTreeMaker
         #region public Properties
 
 
-        public CRichEditBox()
+        public CRichTextbox()
         {
-            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             isDrawingLine = false;
             IsNumeric = false;
             IsChanged = false;
+            preLineIndex = preStrLen = 0;
+            this.SelectionStart = 0;
+            
         }
 
         public bool IsNuemricString()
@@ -75,7 +79,7 @@ namespace AutoMainTreeMaker
             return true;
         }
 
-        public void DrawBlockedLineCurrently(int prevIndex, bool isKeyPress = false)
+        public void DrawBlockedLineCurrently(int currentLine=-1, bool isKeyPress = false)
         {
             if (Lines.Length == 0)
                 return;
@@ -83,67 +87,39 @@ namespace AutoMainTreeMaker
             if (isDrawingLine)
                 return;
 
-
-            isDrawingLine = true;
-            int beginIndex = SelectionStart;
-            int line = GetLineFromCharIndex(beginIndex);
-
-            int lenghthOfLineCurrently = Lines[line].Length;
-
-
-
-            this.SelectionStart = 0;
-            this.SelectionLength = Text.Length;
-            this.SelectionBackColor = Color.White;
-            this.ForeColor = Color.Black;
-
-            int lengthOfPrevLines = GetLenghtAsLineNumber(line);
-
-
-            this.SelectionStart = lengthOfPrevLines;
-            this.SelectionLength = lenghthOfLineCurrently;
-            this.SelectionBackColor = Color.DimGray;
-            this.ForeColor = Color.Black;
-            //Focus();
-
-            this.SelectionStart = prevIndex;
-            this.SelectionLength = 0;
-
-            isDrawingLine = false;
-        }
-
-        public void DrawBlockedLineCurrently(int prevIndex, int currentLine, bool isKeyPress = false)
-        {
-
-            if (Lines.Length == 0)
-                return;
-            if (isDrawingLine)
-                return;
-
             isDrawingLine = true;
 
+            if (currentLine == -1)
+            {
+                int beginIndex = SelectionStart;
+                currentLine = GetLineFromCharIndex(beginIndex);
+            }
 
             int lenghthOfLineCurrently = Lines[currentLine].Length;
 
-
-            this.SelectionStart = 0;
-            this.SelectionLength = Text.Length;
-            this.SelectionBackColor = Color.White;
-            this.ForeColor = Color.Black;
-
-            int lengthOfPrevLines = GetLenghtAsLineNumber(currentLine);
-
-
-            this.SelectionStart = lengthOfPrevLines;
-            this.SelectionLength = lenghthOfLineCurrently + 1;
+            int lengthOfLines = GetLenghtAsLineNumber(currentLine);
+            this.SelectionStart = GetFirstCharIndexFromLine(currentLine);
+            this.SelectionLength = lenghthOfLineCurrently;
             this.SelectionBackColor = Color.DimGray;
             this.ForeColor = Color.Black;
-            //Focus();
-
-            this.SelectionStart = prevIndex;
-            this.SelectionLength = 0;
 
             isDrawingLine = false;
+
+            SaveNowSelectInfo();
+        }
+
+        public void SaveNowSelectInfo()
+        {
+            preLineIndex = this.GetLineFromCharIndex(this.SelectionStart);
+            preStrLen = this.Lines[preLineIndex].Length;
+        }
+
+        public void EraseBlockedLineCurrently()
+        {
+            this.SelectionStart = this.GetFirstCharIndexFromLine(preLineIndex);
+            this.SelectionLength = this.preStrLen;
+            this.SelectionBackColor = Color.White;
+            this.ForeColor = Color.Black;
         }
 
         public int GetLenghtAsLineNumber(int line)
@@ -209,15 +185,14 @@ namespace AutoMainTreeMaker
                 case Keys.Left:
                 case Keys.Right:
                 case Keys.Enter:
-                    DrawBlockedLineCurrently(this.SelectionStart, true);
+                    EraseBlockedLineCurrently();
+                    DrawBlockedLineCurrently();
                     break;
                                     
 
                 default:
                     break;
             }
-
-          
 
             if (IsNumeric && Text.Length > 0 && !IsNuemricString())
             {
@@ -232,15 +207,18 @@ namespace AutoMainTreeMaker
             IsChanged = true;
         }
 
-   
-
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
-            DrawBlockedLineCurrently(this.SelectionStart);
+            DrawBlockedLineCurrently();
+        }
+
+        public static implicit operator CRichTextbox(List<CRichTextbox> v)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
-        
+
     }
 }

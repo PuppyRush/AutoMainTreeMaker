@@ -41,11 +41,16 @@ namespace AutoMainTreeMaker
             this.chkAutoCol = new System.Windows.Forms.CheckBox();
             this.chkAutoGubun = new System.Windows.Forms.CheckBox();
             this.chkAutoVar = new System.Windows.Forms.CheckBox();
-            this.richVar = new AutoMainTreeMaker.CRichEditBox();
-            this.richGubun = new AutoMainTreeMaker.CRichEditBox();
-            this.richCol = new AutoMainTreeMaker.CRichEditBox();
-            this.richEnum = new AutoMainTreeMaker.CRichEditBox();
-            this.richMainTree = new AutoMainTreeMaker.CRichEditBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.메뉴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.richLineNumber = new AutoMainTreeMaker.CRichTextbox();
+            this.richVar = new AutoMainTreeMaker.CRichTextbox();
+            this.richGubun = new AutoMainTreeMaker.CRichTextbox();
+            this.richCol = new AutoMainTreeMaker.CRichTextbox();
+            this.richEnum = new AutoMainTreeMaker.CRichTextbox();
+            this.richMainTree = new AutoMainTreeMaker.CRichTextbox();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_tree
@@ -80,13 +85,14 @@ namespace AutoMainTreeMaker
             // 
             // BtnNext
             // 
-            this.BtnNext.Font = new System.Drawing.Font("돋움", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnNext.Location = new System.Drawing.Point(443, 467);
+            this.BtnNext.Font = new System.Drawing.Font("Dotum", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnNext.Location = new System.Drawing.Point(608, 471);
             this.BtnNext.Name = "BtnNext";
-            this.BtnNext.Size = new System.Drawing.Size(175, 63);
+            this.BtnNext.Size = new System.Drawing.Size(175, 41);
             this.BtnNext.TabIndex = 10;
             this.BtnNext.Text = "다음 진행하기";
             this.BtnNext.UseVisualStyleBackColor = true;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // labelGubun
             // 
@@ -162,6 +168,43 @@ namespace AutoMainTreeMaker
             this.chkAutoVar.UseVisualStyleBackColor = true;
             this.chkAutoVar.CheckedChanged += new System.EventHandler(this.ChkAutoVar_CheckedChanged);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.메뉴ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1299, 24);
+            this.menuStrip1.TabIndex = 22;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 메뉴ToolStripMenuItem
+            // 
+            this.메뉴ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.도움말ToolStripMenuItem});
+            this.메뉴ToolStripMenuItem.Name = "메뉴ToolStripMenuItem";
+            this.메뉴ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.메뉴ToolStripMenuItem.Text = "메뉴";
+            // 
+            // 도움말ToolStripMenuItem
+            // 
+            this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
+            this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.도움말ToolStripMenuItem.Text = "도움말";
+            this.도움말ToolStripMenuItem.Click += new System.EventHandler(this.도움말ToolStripMenuItem_Click);
+            // 
+            // richLineNumber
+            // 
+            this.richLineNumber.IsChanged = false;
+            this.richLineNumber.IsDrawingLine = false;
+            this.richLineNumber.IsNumeric = false;
+            this.richLineNumber.Location = new System.Drawing.Point(12, 41);
+            this.richLineNumber.Name = "richLineNumber";
+            this.richLineNumber.Size = new System.Drawing.Size(45, 376);
+            this.richLineNumber.TabIndex = 21;
+            this.richLineNumber.TabStop = false;
+            this.richLineNumber.Text = "";
+            // 
             // richVar
             // 
             this.richVar.AcceptsTab = true;
@@ -229,9 +272,9 @@ namespace AutoMainTreeMaker
             this.richMainTree.IsChanged = false;
             this.richMainTree.IsDrawingLine = false;
             this.richMainTree.IsNumeric = false;
-            this.richMainTree.Location = new System.Drawing.Point(12, 41);
+            this.richMainTree.Location = new System.Drawing.Point(63, 41);
             this.richMainTree.Name = "richMainTree";
-            this.richMainTree.Size = new System.Drawing.Size(490, 376);
+            this.richMainTree.Size = new System.Drawing.Size(439, 376);
             this.richMainTree.TabIndex = 0;
             this.richMainTree.TabStop = false;
             this.richMainTree.Text = resources.GetString("richMainTree.Text");
@@ -242,7 +285,8 @@ namespace AutoMainTreeMaker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1299, 664);
+            this.ClientSize = new System.Drawing.Size(1299, 537);
+            this.Controls.Add(this.richLineNumber);
             this.Controls.Add(this.chkAutoVar);
             this.Controls.Add(this.chkAutoGubun);
             this.Controls.Add(this.chkAutoCol);
@@ -259,9 +303,13 @@ namespace AutoMainTreeMaker
             this.Controls.Add(this.richCol);
             this.Controls.Add(this.richEnum);
             this.Controls.Add(this.richMainTree);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Wizard1";
             this.Text = "Wizard1";
             this.Resize += new System.EventHandler(this.Wizard1_Resize);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,11 +317,11 @@ namespace AutoMainTreeMaker
 
         #endregion
 
-        private CRichEditBox richEnum;
-        private CRichEditBox richCol;
-        private CRichEditBox richMainTree;
-        private CRichEditBox richGubun;
-        private CRichEditBox richVar;
+        private CRichTextbox richEnum;
+        private CRichTextbox richCol;
+        private CRichTextbox richMainTree;
+        private CRichTextbox richGubun;
+        private CRichTextbox richVar;
         private System.Windows.Forms.Label label_tree;
         private System.Windows.Forms.Label label_enum;
         private System.Windows.Forms.Label label_Col;
@@ -303,6 +351,10 @@ namespace AutoMainTreeMaker
             set { chkAutoGubun = value; }
         }
         private System.Windows.Forms.CheckBox chkAutoVar;
+        private CRichTextbox richLineNumber;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 메뉴ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 도움말ToolStripMenuItem;
 
         public System.Windows.Forms.CheckBox ChkAutoVar
         {
@@ -310,7 +362,7 @@ namespace AutoMainTreeMaker
             set { chkAutoVar = value; }
         }
 
-        public CRichEditBox RichEnum
+        public CRichTextbox RichEnum
         {
             get
             {
@@ -323,7 +375,7 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public CRichEditBox RichCol
+        public CRichTextbox RichCol
         {
             get
             {
@@ -336,7 +388,7 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public CRichEditBox RichMainTree
+        public CRichTextbox RichMainTree
         {
             get
             {
@@ -349,7 +401,7 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public CRichEditBox RichGubun
+        public CRichTextbox RichGubun
         {
             get
             {
@@ -362,7 +414,7 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public CRichEditBox RichVar
+        public CRichTextbox RichVar
         {
             get
             {

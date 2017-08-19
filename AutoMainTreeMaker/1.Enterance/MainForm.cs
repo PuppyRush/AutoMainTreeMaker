@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMainTreeMaker;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -7,11 +8,13 @@ namespace AutoMainTreeMaker
     public partial class Wizard1 : Form
     {
 
+        private bool isCreatedTree;
+
         Tree mainTree;
+        List<CRichTextbox> richs;
+        CRichTextBoxInterface richInterface;
 
-        List<RichTextBox> richs;
-
-        public List<RichTextBox> Richs
+        public List<CRichTextbox> Richs
         {
             get
             {
@@ -27,52 +30,81 @@ namespace AutoMainTreeMaker
         public Wizard1()
         {
             InitializeComponent();
-            
-            richs = new List<RichTextBox>();
+
+            isCreatedTree = false;
+
+            richInterface = new CRichTextBoxInterface();
+
+            richs = new List<CRichTextbox>();
             richs.Add(richMainTree);
             richs.Add(richEnum);
             richs.Add(richVar);
             richs.Add(richCol);
-   
-         
+            richs.Add(richGubun);
+            richs.Add(richLineNumber);
+
+            richInterface.SetInterface(richs);
+
+            SetLineNumbers();
         }
 
+
+        private void SetLineNumbers()
+        {
+            if (richs.Count == 0)
+                new ArgumentException("배열의 크기가 0이상 이어야 합니다.");
+
+            CRichTextbox rich = richs[0];
+            foreach(CRichTextbox r in richs)
+            {
+                if (r.Lines.Length > r.Lines.Length)
+                    rich = r;
+            }
+
+            int count = rich.Lines.Length;
+
+            string[] lines = new string[count];
+            for (int i = 0; i < count; i++)
+                lines[i] = (i + 1).ToString();
+            richLineNumber.Lines = lines;
+        }
      
         private void Click_DrawLineAllForms(object sender, MouseEventArgs e)
         {
-            CRichEditBox thisBox = (CRichEditBox)sender;
+            CRichTextbox thisBox = (CRichTextbox)sender;
             int beginIndex = thisBox.SelectionStart;
             int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
-            foreach (CRichEditBox r in richs)
+            foreach (CRichTextbox r in richs)
             {
-                if (!sender.Equals(r))
+                if (currentLine <= r.Lines.Length - 1)
                 {
-                    if (currentLine<= r.Lines.Length - 1)
-                        r.DrawBlockedLineCurrently(beginIndex, currentLine);
+                    r.EraseBlockedLineCurrently();
+                    r.DrawBlockedLineCurrently(currentLine);
                 }
+                
             }
+            
         }
 
         private void KeyUp_DrawLineAllForms(object sender, KeyEventArgs e)
         {
-            CRichEditBox thisBox = (CRichEditBox)sender;
+            CRichTextbox thisBox = (CRichTextbox)sender;
             int beginIndex = thisBox.SelectionStart;
             int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
-            foreach (CRichEditBox r in richs)
+            foreach (CRichTextbox r in richs)
             {
-                if (!sender.Equals(r))
+
+                if (currentLine <= r.Lines.Length - 1)
                 {
-                    if (currentLine <= r.Lines.Length - 1)
-                        r.DrawBlockedLineCurrently(beginIndex, currentLine);
+                    r.EraseBlockedLineCurrently();
+                    r.DrawBlockedLineCurrently(currentLine);
                 }
-
-
             }
         }
 
         private void BtnMakeTree_Click(object sender, EventArgs e)
         {
-            foreach (CRichEditBox r in richs)
+            foreach (CRichTextbox r in richs)
             {
                 if (r.IsChanged)
                 {
@@ -88,10 +120,14 @@ namespace AutoMainTreeMaker
             maker.GubunName = richGubun.Lines;
             maker.VariableName = richVar.Lines;
             maker.EnumValue = richEnum.Lines;
+            maker.GubunName = richGubun.Lines;
 
             maker.Do(richMainTree.Lines);
             if (maker.IsSuccessedForMaking)
+            {
                 mainTree = maker.Tree;
+                isCreatedTree = maker.IsSuccessedForMaking;
+            }
             else
                 MessageBox.Show("DOOOOOOOOOOOOHP");
                 
@@ -134,6 +170,24 @@ namespace AutoMainTreeMaker
                 RichVar.Enabled = false;
             else if (chkAutoVar.CheckState == CheckState.Unchecked)
                 RichVar.Enabled = true;
+        }
+
+        private void 도움말ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpForm form = new HelpForm();
+            form.ShowDialog();
+        }
+
+        private void BtnNext_Click(object sender, EventArgs e)
+        {
+
+            if(isCreatedTree)
+            {
+                this.Hide();
+                Dialog_ResultForSource dlg = new Dialog_ResultForSource(richMainTree.Lines, RichEnum.Lines, richCol.Lines );
+                dlg.ShowDialog();
+            }
+
         }
     }
 }
