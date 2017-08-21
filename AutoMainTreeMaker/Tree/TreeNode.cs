@@ -24,7 +24,10 @@ namespace AutoMainTreeMaker
         private string variableName;
         private string gubun;
         private string columnName;
+        private string enumName;
 
+        private TreeNode parentNode;
+        private TreeNode childNode;
 
         public int DisplaySeq
         {
@@ -133,6 +136,45 @@ namespace AutoMainTreeMaker
             set
             {
                 isFinal = value;
+            }
+        }
+
+        public string EnumName
+        {
+            get
+            {
+                return enumName;
+            }
+
+            set
+            {
+                enumName = value;
+            }
+        }
+
+        public TreeNode ParentNode
+        {
+            get
+            {
+                return parentNode;
+            }
+
+            set
+            {
+                parentNode = value;
+            }
+        }
+
+        public TreeNode ChildNode
+        {
+            get
+            {
+                return childNode;
+            }
+
+            set
+            {
+                childNode = value;
             }
         }
 

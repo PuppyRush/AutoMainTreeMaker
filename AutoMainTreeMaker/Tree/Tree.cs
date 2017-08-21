@@ -14,7 +14,7 @@ namespace AutoMainTreeMaker
 
         public Tree()
         {
-            nodeMap = new Dictionary<int, TreeNode>();
+            NodeMap = new Dictionary<int, TreeNode>();
             TreeMap = new Dictionary<int, List<TreeNode>>();
 
         }
@@ -34,15 +34,28 @@ namespace AutoMainTreeMaker
             }
         }
 
+        public Dictionary<int, TreeNode> NodeMap
+        {
+            get
+            {
+                return nodeMap;
+            }
+
+            set
+            {
+                nodeMap = value;
+            }
+        }
+
         public void PutNodeToMap(int nodeSequence, TreeNode node)
         {
-            nodeMap[nodeSequence] = node;
+            NodeMap[nodeSequence] = node;
         }
 
         public TreeNode GetNode(int nodeSequece)
         {
-            if (nodeMap.ContainsKey(nodeSequece))
-                return nodeMap[nodeSequece];
+            if (NodeMap.ContainsKey(nodeSequece))
+                return NodeMap[nodeSequece];
 
             if (tree.ContainsKey(nodeSequece))
             {
@@ -70,6 +83,27 @@ namespace AutoMainTreeMaker
         {
             return tree.ContainsKey(nodeSeq);
                 
+        }
+
+        public List<TreeNode> GetChildList(TreeNode parentNode)
+        {
+            return TreeMap[parentNode.ChildNode.NodeSequence];
+        }
+
+        public List<TreeNode> GetSiblings(TreeNode sibling)
+        {
+            if (TreeMap.ContainsKey(sibling.NodeSequence))
+                return TreeMap[sibling.NodeSequence];
+            else
+            {
+                foreach(List<TreeNode> list in TreeMap.Values)
+                {
+                    foreach (TreeNode node in list)
+                        if (node.Equals(sibling))
+                            return list;
+                }
+            }
+            return new List<TreeNode>();
         }
 
     }

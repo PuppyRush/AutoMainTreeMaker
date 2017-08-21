@@ -58,6 +58,21 @@ namespace AutoMainTreeMaker
             set { gubunName = value; }
         }
 
+        private string[] enumName;
+        public string[] EnumName
+        {
+            get
+            {
+                return enumName;
+            }
+
+            set
+            {
+                enumName = value;
+            }
+        }
+
+
         public Tree Tree
         {
             get
@@ -86,6 +101,7 @@ namespace AutoMainTreeMaker
                 isSuccessedForMaking = value;
             }
         }
+
 
         public TreeMaker(Dialog_MainTree wizard)
         {
@@ -141,7 +157,30 @@ namespace AutoMainTreeMaker
             return newStr.ToArray();
         }
 
-        public bool Do(string[] mainTree)
+        public void MakeNames(List<TreeNode> list, string gubunParent, string enumParent)
+        {
+            foreach (TreeNode node in list)
+            {
+                if (enumParent.Equals(""))
+                {
+                    node.EnumName = enumName[node.NodeSequence];
+                    node.Gubun = gubunName[node.NodeSequence];
+                }
+                else
+                {
+                    node.EnumName = enumParent + "_" + enumName[node.NodeSequence];
+                    node.Gubun = gubunParent + "_" + gubunName[node.NodeSequence];
+
+                }
+                if (node.IsParent)
+                {
+                    MakeNames(tree.GetChildList(node), node.Gubun, node.EnumName);
+                }
+            }
+
+        }
+
+        public bool MakeTree(string[] mainTree)
         {
             this.mainTree = mainTree;
             if (!IsValidData())
@@ -152,9 +191,12 @@ namespace AutoMainTreeMaker
             TreeNode firstNode = new TreeNode(-1, 0);
             firstNode.ColumnNumber = 3;
             firstNode = GetNewNode(nodes, firstNode, true,true);
-            SetParnetNode(firstNode, true);
+            SetParnetNode(firstNode, firstNode,true);
 
             MakeTreeRecursive(nodes, firstNode, tree);
+
+            List<TreeNode> siblings = tree.GetSiblings(firstNode);
+            MakeNames(siblings, "","");
 
             return isSuccessedForMaking=true;
         }
@@ -185,7 +227,7 @@ namespace AutoMainTreeMaker
                     else
                     {
                         presentNode = parentNode = GetNewNode(originNodes, presentNode, false, true);
-                        SetParnetNode(parentNode, false);
+                        
                         tree.PutNodeToMap(parentNode.NodeSequence, parentNode);
                         depthedList.Add(parentNode);
                     }
@@ -193,6 +235,8 @@ namespace AutoMainTreeMaker
                     bool _isParent = isParent(originNodes, presentNode.NodeSequence+1);
                     TreeNode headNode = GetNewNode(originNodes, presentNode, true, _isParent);
                     SetHeadNode(headNode, presentNode);
+                    SetParnetNode(parentNode, headNode, false);
+
                     presentNode = MakeTreeRecursive(originNodes, headNode, tree);
                 }
                 else if(depthGap==0)
@@ -202,6 +246,7 @@ namespace AutoMainTreeMaker
 
                     tree.PutNodeToMap(siblingNode.NodeSequence, siblingNode);
                     depthedList.Add(siblingNode);
+
                     presentNode = siblingNode;
                 }
             }
@@ -226,19 +271,26 @@ namespace AutoMainTreeMaker
             return indexs;
         }
 
-        private void SetParnetNode(TreeNode presentNode, bool isFirstNode = false)
+        private void AppendEnumName(TreeNode presentNode, TreeNode parentNode, string appededName)
         {
-            presentNode.IsParent = true;
-            presentNode.IsLastSon = false;
-            presentNode.IsFinal = false;
+            presentNode.EnumName += parentNode.EnumName + "_" + appededName;
+        }
+
+        private void SetParnetNode(TreeNode parentNode, TreeNode headNode, bool isFirstNode = false)
+        {
+            parentNode.ChildNode = headNode;
+            parentNode.IsParent = true;
+            parentNode.IsLastSon = false;
+            parentNode.IsFinal = false;
 
             if (isFirstNode)
             {
-                presentNode.IsHead = true;
+                parentNode.IsHead = true;
+                parentNode.EnumName = enumName[0];
             }
             else
             {
-                presentNode.IsHead = false;
+                parentNode.IsHead = false;
             }
         }
 
@@ -246,6 +298,7 @@ namespace AutoMainTreeMaker
         {
             presentNode.IsHead = true;
             presentNode.IsParent = false;
+            presentNode.ParentNode = prevNode;
         }
 
         private void SetSilblingNode(TreeNode presentNode, TreeNode prevNode)
@@ -273,8 +326,7 @@ namespace AutoMainTreeMaker
                 newNode.IsVirtualNode = true;
             else
                 newNode.IsVirtualNode = false;
-            
-
+                        
             if (wizard1.ChkAutoGubun.CheckState == CheckState.Unchecked)
             {
                 if (gubunName[presentIdx].Length > 0)

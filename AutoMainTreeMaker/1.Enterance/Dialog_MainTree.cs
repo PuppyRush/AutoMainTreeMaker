@@ -42,6 +42,7 @@ namespace AutoMainTreeMaker
             richs.Add(richCol);
             richs.Add(richGubun);
             richs.Add(richLineNumber);
+            richs.Add(richEnumName);
 
             richInterface.SetInterface(richs);
 
@@ -121,12 +122,14 @@ namespace AutoMainTreeMaker
             maker.VariableName = richVar.Lines;
             maker.EnumValue = richEnum.Lines;
             maker.GubunName = richGubun.Lines;
+            maker.EnumName = richEnumName.Lines;
 
-            maker.Do(richMainTree.Lines);
+            maker.MakeTree(richMainTree.Lines);
             if (maker.IsSuccessedForMaking)
             {
                 mainTree = maker.Tree;
                 isCreatedTree = maker.IsSuccessedForMaking;
+                MessageBox.Show("트리생성에 성공하였습니다.");
             }
             else
                 MessageBox.Show("DOOOOOOOOOOOOHP");

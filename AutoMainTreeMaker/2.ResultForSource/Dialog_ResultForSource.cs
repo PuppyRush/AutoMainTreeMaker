@@ -56,7 +56,6 @@ namespace AutoMainTreeMaker
         private void MakeSource()
         {
 
-
         }
 
         public int GetLengthestEnumName()
@@ -85,6 +84,11 @@ namespace AutoMainTreeMaker
 
             this.Hide();
             mainTreeDlg.Show();
+
+        }
+
+        private void richEnumName_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

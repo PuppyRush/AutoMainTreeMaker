@@ -41,6 +41,7 @@
             // 
             this.richMainTree.IsChanged = false;
             this.richMainTree.IsDrawingLine = false;
+            this.richMainTree.IsEditMode = true;
             this.richMainTree.IsNumeric = false;
             this.richMainTree.Location = new System.Drawing.Point(12, 34);
             this.richMainTree.Name = "richMainTree";
@@ -53,12 +54,15 @@
             // 
             this.richEnumName.IsChanged = false;
             this.richEnumName.IsDrawingLine = false;
+            this.richEnumName.IsEditMode = true;
             this.richEnumName.IsNumeric = false;
             this.richEnumName.Location = new System.Drawing.Point(653, 34);
             this.richEnumName.Name = "richEnumName";
             this.richEnumName.Size = new System.Drawing.Size(153, 404);
             this.richEnumName.TabIndex = 1;
-            this.richEnumName.Text = "";
+            this.richEnumName.Text = "TXPWR\nPUS\nPUC\nSRS\nTOT\nPWR\nL1DL\nPC\nMCS0\nMCS1\nMOD0\nMOD1\nPRB\nBLER\nSC\nMCS0\nMCS1\nMOD0\n" +
+    "MOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER";
+            this.richEnumName.TextChanged += new System.EventHandler(this.richEnumName_TextChanged);
             // 
             // btnMake
             // 
