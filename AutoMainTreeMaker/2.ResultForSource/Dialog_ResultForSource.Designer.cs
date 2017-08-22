@@ -1,4 +1,4 @@
-﻿namespace AutoMainTreeMaker
+﻿namespace AutoMainTreeMaker.ResltForSource
 {
     partial class Dialog_ResultForSource
     {
@@ -30,7 +30,7 @@
         {
             this.richMainTree = new AutoMainTreeMaker.CRichTextbox();
             this.richEnumName = new AutoMainTreeMaker.CRichTextbox();
-            this.btnMake = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.chkAutoEnumName = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             // 
             this.richMainTree.IsChanged = false;
             this.richMainTree.IsDrawingLine = false;
+            this.richMainTree.IsEditMode = true;
             this.richMainTree.IsNumeric = false;
             this.richMainTree.Location = new System.Drawing.Point(12, 34);
             this.richMainTree.Name = "richMainTree";
@@ -53,6 +54,7 @@
             // 
             this.richEnumName.IsChanged = false;
             this.richEnumName.IsDrawingLine = false;
+            this.richEnumName.IsEditMode = true;
             this.richEnumName.IsNumeric = false;
             this.richEnumName.Location = new System.Drawing.Point(653, 34);
             this.richEnumName.Name = "richEnumName";
@@ -60,14 +62,15 @@
             this.richEnumName.TabIndex = 1;
             this.richEnumName.Text = "";
             // 
-            // btnMake
+            // btnNext
             // 
-            this.btnMake.Location = new System.Drawing.Point(294, 454);
-            this.btnMake.Name = "btnMake";
-            this.btnMake.Size = new System.Drawing.Size(244, 41);
-            this.btnMake.TabIndex = 2;
-            this.btnMake.Text = "소스 생성하기";
-            this.btnMake.UseVisualStyleBackColor = true;
+            this.btnNext.Location = new System.Drawing.Point(379, 454);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(130, 41);
+            this.btnNext.TabIndex = 2;
+            this.btnNext.Text = "다음 ->";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // chkAutoEnumName
             // 
@@ -91,11 +94,11 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(181, 454);
+            this.btnBack.Location = new System.Drawing.Point(240, 454);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(89, 41);
             this.btnBack.TabIndex = 5;
-            this.btnBack.Text = "<- 뒤로가기";
+            this.btnBack.Text = "<- 이전";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -117,7 +120,7 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chkAutoEnumName);
-            this.Controls.Add(this.btnMake);
+            this.Controls.Add(this.btnNext);
             this.Controls.Add(this.richEnumName);
             this.Controls.Add(this.richMainTree);
             this.Name = "Dialog_ResultForSource";
@@ -131,7 +134,7 @@
 
         private CRichTextbox richMainTree;
         private CRichTextbox richEnumName;
-        private System.Windows.Forms.Button btnMake;
+        private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.CheckBox chkAutoEnumName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBack;

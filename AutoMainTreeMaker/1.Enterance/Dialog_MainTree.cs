@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using AutoMainTreeMaker.ResltForSource;
 
-namespace AutoMainTreeMaker
+namespace AutoMainTreeMaker.MainTree
 {
     public partial class Dialog_MainTree : Form
     {
@@ -186,6 +187,7 @@ namespace AutoMainTreeMaker
                 this.Hide();
                 Dialog_ResultForSource dlg = new Dialog_ResultForSource(richMainTree.Lines, RichEnum.Lines, richCol.Lines );
                 dlg.MainTreeDlg = this;
+                dlg.Tree = mainTree;
                 dlg.ShowDialog();
             }
 

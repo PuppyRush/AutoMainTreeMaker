@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AutoMainTreeMaker.Database;
+using AutoMainTreeMaker.MainTree;
 
-namespace AutoMainTreeMaker
+namespace AutoMainTreeMaker.ResltForSource
 {
     public partial class Dialog_ResultForSource : Form
     {
@@ -16,9 +18,17 @@ namespace AutoMainTreeMaker
         private string [] enumValue;
         private string[] enumName;
 
-        CRichTextBoxInterface richInterface;
-        List<CRichTextbox> richs;
-        Dialog_MainTree mainTreeDlg;
+        private CRichTextBoxInterface richInterface;
+        private List<CRichTextbox> richs;
+        private Dialog_MainTree mainTreeDlg;
+        private Dialog_ColumnNumberAndRecordset columnRecordsetDlg;
+        private Tree tree;
+
+        public Tree Tree
+        {
+            get { return tree; }
+            set { tree = value; }
+        }
 
         public Dialog_MainTree MainTreeDlg
         {
@@ -36,7 +46,6 @@ namespace AutoMainTreeMaker
         public Dialog_ResultForSource(string [] mainTree, string[] enumValue, string[] enumName)
         {
             InitializeComponent();
-
             
             richs = new List<CRichTextbox>();
 
@@ -86,6 +95,16 @@ namespace AutoMainTreeMaker
             this.Hide();
             mainTreeDlg.Show();
 
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            if (columnRecordsetDlg == null)
+                columnRecordsetDlg = new Dialog_ColumnNumberAndRecordset(tree, mainTree);
+
+            columnRecordsetDlg.Show();
         }
     }
 }
