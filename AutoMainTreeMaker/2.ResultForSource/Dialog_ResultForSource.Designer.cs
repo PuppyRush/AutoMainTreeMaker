@@ -29,12 +29,9 @@
         private void InitializeComponent()
         {
             this.richMainTree = new AutoMainTreeMaker.CRichTextbox();
-<<<<<<< HEAD
-=======
             this.richEnumName = new AutoMainTreeMaker.CRichTextbox();
             this.btnNext = new System.Windows.Forms.Button();
             this.chkAutoEnumName = new System.Windows.Forms.CheckBox();
->>>>>>> origin/master
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
@@ -53,8 +50,7 @@
             this.richMainTree.TabIndex = 0;
             this.richMainTree.Text = "";
             // 
-<<<<<<< HEAD
-=======
+
             // richEnumName
             // 
             this.richEnumName.IsChanged = false;
@@ -86,9 +82,8 @@
             this.chkAutoEnumName.TabIndex = 3;
             this.chkAutoEnumName.Text = "자동생성";
             this.chkAutoEnumName.UseVisualStyleBackColor = true;
-            this.chkAutoEnumName.CheckedChanged += new System.EventHandler(this.chkAutoEnumName_CheckedChanged);
             // 
->>>>>>> origin/master
+
             // label1
             // 
             this.label1.AutoSize = true;
@@ -100,11 +95,8 @@
             // 
             // btnBack
             // 
-<<<<<<< HEAD
-            this.btnBack.Location = new System.Drawing.Point(327, 454);
-=======
+
             this.btnBack.Location = new System.Drawing.Point(240, 454);
->>>>>>> origin/master
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(89, 41);
             this.btnBack.TabIndex = 5;
@@ -130,12 +122,10 @@
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.label1);
-<<<<<<< HEAD
-=======
+
             this.Controls.Add(this.chkAutoEnumName);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.richEnumName);
->>>>>>> origin/master
             this.Controls.Add(this.richMainTree);
             this.Name = "Dialog_ResultForSource";
             this.Text = "Dialog_ResultForSource";
