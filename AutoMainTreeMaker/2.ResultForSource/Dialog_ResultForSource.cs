@@ -12,9 +12,9 @@ namespace AutoMainTreeMaker
     public partial class Dialog_ResultForSource : Form
     {
 
-        private string [] mainTree;
-        private string [] enumValue;
-        private string[] enumName;
+        private string[] enumname;
+        private string[] enumNumber;
+        private string[] mainTree;
 
         CRichTextBoxInterface richInterface;
         List<CRichTextbox> richs;
@@ -33,6 +33,45 @@ namespace AutoMainTreeMaker
             }
         }
 
+        public string[] Enumname
+        {
+            get
+            {
+                return enumname;
+            }
+
+            set
+            {
+                enumname = value;
+            }
+        }
+
+        public string[] EnumNumber
+        {
+            get
+            {
+                return enumNumber;
+            }
+
+            set
+            {
+                enumNumber = value;
+            }
+        }
+
+        public string[] MainTree
+        {
+            get
+            {
+                return mainTree;
+            }
+
+            set
+            {
+                mainTree = value;
+            }
+        }
+
         public Dialog_ResultForSource(string [] mainTree, string[] enumValue, string[] enumName)
         {
             InitializeComponent();
@@ -41,27 +80,30 @@ namespace AutoMainTreeMaker
             richs = new List<CRichTextbox>();
 
             richs.Add(richMainTree);
-            richs.Add(richEnumName);
 
             richInterface = new CRichTextBoxInterface();
             richInterface.SetInterface(richs);
 
-            this.mainTree = mainTree;
-            this.enumValue = enumValue;
-            this.enumName = enumName;
-
             richMainTree.Lines = mainTree;
         }
 
-        private void MakeSource()
+        public void MakeSource()
         {
+            string[] sources = enumname;
+            int maxi = GetLengthestOf(sources);
+            EqualizeStringLengths(sources, maxi);
+            AppendBlanketAndEqualAndEnumNumberAndTree("        ", sources, enumNumber, mainTree);
 
+            maxi = GetLengthestOf(sources);
+            EqualizeStringLengths(sources, maxi);
+
+            richMainTree.Lines = sources;
         }
 
-        public int GetLengthestEnumName()
+        private int GetLengthestOf(string [] list)
         {
             int max = -1;
-            foreach(string s in this.enumName)
+            foreach(string s in list)
             {
                 if (max < s.Length)
                     max = s.Length;
@@ -70,13 +112,40 @@ namespace AutoMainTreeMaker
 
         }
 
-        private void chkAutoEnumName_CheckedChanged(object sender, EventArgs e)
+        private void EqualizeStringLengths(string [] list, int len)
         {
+            for(int i=0; i < list.Length; i++)
+            {
+                if (list[i].Length == len)
+                    continue;
+                else if(list[i].Length > len)
+                {
+                    EqualizeStringLengths(list, list[i].Length);
+                    break;
+                }
+                else
+                {
+                    int gap = len - list[i].Length;
+                    list[i].PadRight(gap*2, ' ');
+                }
+            }
+        }
 
-            if (((CheckBox)sender).Checked)
-                richEnumName.Enabled = false;
-            else
-                richEnumName.Enabled = true;
+        private void AppendBlanketAndEqualAndEnumNumberAndTree(string blankets,string [] dest, string [] enumNumber, string [] mainTree)
+        {
+            
+            for (int i = 0; i < dest.Length; i++)
+            {
+                string s = dest[i];
+                StringBuilder bld = new StringBuilder(s);
+                bld.Append(blankets);
+                bld.Append("=");
+                bld.Append(enumNumber[i]);
+                bld.Append(blankets);
+                bld.Append("//");
+                bld.Append(mainTree[i]);
+                dest[i] = bld.ToString();
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -88,6 +157,11 @@ namespace AutoMainTreeMaker
         }
 
         private void richEnumName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
         {
 
         }

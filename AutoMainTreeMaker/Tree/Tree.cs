@@ -106,5 +106,27 @@ namespace AutoMainTreeMaker
             return new List<TreeNode>();
         }
 
+        public List<TreeNode> GetOrderedNodeAsNodeSequence()
+        {
+            List<TreeNode> firstSiblings = GetSiblings(GetNode(0));
+            return GetOrderedNodeAsNodeSequence_Recursive(firstSiblings);
+        }
+
+        private List<TreeNode> GetOrderedNodeAsNodeSequence_Recursive(List<TreeNode> list)
+        {
+            List<TreeNode> _list = new List<TreeNode>();
+            foreach (TreeNode node in list)
+            {
+                _list.Add(node);
+                if (node.IsParent)
+                {
+                    List<TreeNode> childs = GetSiblings(node.ChildNode);
+                    _list.AddRange(GetOrderedNodeAsNodeSequence_Recursive(childs));
+                }
+                    
+            }
+
+            return _list;
+        }
     }
 }

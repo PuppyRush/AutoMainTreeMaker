@@ -10,6 +10,7 @@ namespace AutoMainTreeMaker
 
         private bool isCreatedTree;
 
+        TreeMaker maker;
         Tree mainTree;
         List<CRichTextbox> richs;
         CRichTextBoxInterface richInterface;
@@ -47,6 +48,8 @@ namespace AutoMainTreeMaker
             richInterface.SetInterface(richs);
 
             SetLineNumbers();
+
+            maker = new TreeMaker(this);
         }
 
 
@@ -114,9 +117,7 @@ namespace AutoMainTreeMaker
                 }
             }
 
-            TreeMaker maker = new TreeMaker(this);
-
-            
+                        
             maker.ColumnName = richCol.Lines;
             maker.GubunName = richGubun.Lines;
             maker.VariableName = richVar.Lines;
@@ -188,7 +189,21 @@ namespace AutoMainTreeMaker
             {
                 this.Hide();
                 Dialog_ResultForSource dlg = new Dialog_ResultForSource(richMainTree.Lines, RichEnum.Lines, richCol.Lines );
+                
+
+                List<TreeNode> nodes = maker.Tree.GetOrderedNodeAsNodeSequence();
+                string[] enums = new string[richMainTree.Lines.Length];
+
+                for (int i=0; i < enums.Length; i++)
+                {
+                    enums[i] = nodes[i].EnumName;
+                }
+
+                dlg.MainTree = RichMainTree.Lines;
+                dlg.EnumNumber = RichEnum.Lines;
+                dlg.Enumname = enums;
                 dlg.MainTreeDlg = this;
+                dlg.MakeSource();
                 dlg.ShowDialog();
             }
 

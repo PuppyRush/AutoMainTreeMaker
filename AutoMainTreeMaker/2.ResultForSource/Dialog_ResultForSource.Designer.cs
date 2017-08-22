@@ -29,12 +29,9 @@
         private void InitializeComponent()
         {
             this.richMainTree = new AutoMainTreeMaker.CRichTextbox();
-            this.richEnumName = new AutoMainTreeMaker.CRichTextbox();
-            this.btnMake = new System.Windows.Forms.Button();
-            this.chkAutoEnumName = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richMainTree
@@ -46,43 +43,9 @@
             this.richMainTree.Location = new System.Drawing.Point(12, 34);
             this.richMainTree.Name = "richMainTree";
             this.richMainTree.ReadOnly = true;
-            this.richMainTree.Size = new System.Drawing.Size(635, 404);
+            this.richMainTree.Size = new System.Drawing.Size(795, 404);
             this.richMainTree.TabIndex = 0;
             this.richMainTree.Text = "";
-            // 
-            // richEnumName
-            // 
-            this.richEnumName.IsChanged = false;
-            this.richEnumName.IsDrawingLine = false;
-            this.richEnumName.IsEditMode = true;
-            this.richEnumName.IsNumeric = false;
-            this.richEnumName.Location = new System.Drawing.Point(653, 34);
-            this.richEnumName.Name = "richEnumName";
-            this.richEnumName.Size = new System.Drawing.Size(153, 404);
-            this.richEnumName.TabIndex = 1;
-            this.richEnumName.Text = "TXPWR\nPUS\nPUC\nSRS\nTOT\nPWR\nL1DL\nPC\nMCS0\nMCS1\nMOD0\nMOD1\nPRB\nBLER\nSC\nMCS0\nMCS1\nMOD0\n" +
-    "MOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER";
-            this.richEnumName.TextChanged += new System.EventHandler(this.richEnumName_TextChanged);
-            // 
-            // btnMake
-            // 
-            this.btnMake.Location = new System.Drawing.Point(294, 454);
-            this.btnMake.Name = "btnMake";
-            this.btnMake.Size = new System.Drawing.Size(244, 41);
-            this.btnMake.TabIndex = 2;
-            this.btnMake.Text = "소스 생성하기";
-            this.btnMake.UseVisualStyleBackColor = true;
-            // 
-            // chkAutoEnumName
-            // 
-            this.chkAutoEnumName.AutoSize = true;
-            this.chkAutoEnumName.Location = new System.Drawing.Point(698, 444);
-            this.chkAutoEnumName.Name = "chkAutoEnumName";
-            this.chkAutoEnumName.Size = new System.Drawing.Size(72, 16);
-            this.chkAutoEnumName.TabIndex = 3;
-            this.chkAutoEnumName.Text = "자동생성";
-            this.chkAutoEnumName.UseVisualStyleBackColor = true;
-            this.chkAutoEnumName.CheckedChanged += new System.EventHandler(this.chkAutoEnumName_CheckedChanged);
             // 
             // label1
             // 
@@ -95,7 +58,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(181, 454);
+            this.btnBack.Location = new System.Drawing.Point(327, 454);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(89, 41);
             this.btnBack.TabIndex = 5;
@@ -103,26 +66,24 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // label2
+            // btnNext
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(696, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "단축이름";
+            this.btnNext.Location = new System.Drawing.Point(432, 454);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(89, 41);
+            this.btnNext.TabIndex = 6;
+            this.btnNext.Text = "다음 ->";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // Dialog_ResultForSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 521);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.chkAutoEnumName);
-            this.Controls.Add(this.btnMake);
-            this.Controls.Add(this.richEnumName);
             this.Controls.Add(this.richMainTree);
             this.Name = "Dialog_ResultForSource";
             this.Text = "Dialog_ResultForSource";
@@ -134,11 +95,8 @@
         #endregion
 
         private CRichTextbox richMainTree;
-        private CRichTextbox richEnumName;
-        private System.Windows.Forms.Button btnMake;
-        private System.Windows.Forms.CheckBox chkAutoEnumName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnNext;
     }
 }
