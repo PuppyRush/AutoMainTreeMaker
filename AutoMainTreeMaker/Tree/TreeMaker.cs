@@ -3,13 +3,12 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMainTreeMaker.MainTree;
 
 namespace AutoMainTreeMaker
 {
     class TreeMaker
     {
-
-
 
         private Dialog_MainTree wizard1;
         int gubunDepthGap;

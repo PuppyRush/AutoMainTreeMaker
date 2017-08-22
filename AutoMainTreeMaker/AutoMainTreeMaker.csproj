@@ -46,6 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="3.Database\DatabaseMaker.cs" />
+    <Compile Include="3.Database\Dialog_ColumnNumberAndRecordset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3.Database\Dialog_ColumnNumberAndRecordset.Designer.cs">
+      <DependentUpon>Dialog_ColumnNumberAndRecordset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3.Database\Dialog_Database.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3.Database\Dialog_Database.Designer.cs">
+      <DependentUpon>Dialog_Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3.Database\HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3.Database\HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CRichTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -78,6 +100,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1.Enterance\Dialog_MainTree.resx">
       <DependentUpon>Dialog_MainTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3.Database\Dialog_ColumnNumberAndRecordset.resx">
+      <DependentUpon>Dialog_ColumnNumberAndRecordset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3.Database\Dialog_Database.resx">
+      <DependentUpon>Dialog_Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3.Database\HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

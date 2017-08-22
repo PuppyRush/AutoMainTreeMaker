@@ -1,5 +1,5 @@
 ﻿
-namespace AutoMainTreeMaker
+namespace AutoMainTreeMaker.MainTree
 {
     public partial class Dialog_MainTree
     {
