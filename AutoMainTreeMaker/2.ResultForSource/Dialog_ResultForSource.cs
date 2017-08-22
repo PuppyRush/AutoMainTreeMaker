@@ -125,18 +125,18 @@ namespace AutoMainTreeMaker.ResltForSource
         {
             for(int i=0; i < list.Length; i++)
             {
-                if (list[i].Length == len)
-                    continue;
-                else if(list[i].Length > len)
-                {
-                    EqualizeStringLengths(list, list[i].Length);
-                    break;
-                }
-                else
-                {
+                //if (list[i].Length == len)
+                //    continue;
+                //else if(list[i].Length > len)
+                //{
+                //    EqualizeStringLengths(list, list[i].Length);
+                //    break;
+                //}
+                //else
+                //{
                     int gap = len - list[i].Length;
-                    list[i].PadRight(gap*2, ' ');
-                }
+                    list[i] = list[i].PadRight(len);
+                //}
             }
         }
 
@@ -148,10 +148,16 @@ namespace AutoMainTreeMaker.ResltForSource
                 string s = dest[i];
                 StringBuilder bld = new StringBuilder(s);
                 bld.Append(blankets);
-                bld.Append("=");
+                bld.Append(" = ");
                 bld.Append(enumNumber[i]);
+                bld.Append(",");
                 bld.Append(blankets);
-                bld.Append("//");
+
+                dest[i] = bld.ToString();
+                bld.Clear();
+                dest[i] = dest[i].PadRight(100);
+                bld.Append(dest[i]);
+                bld.Append("//        ");
                 bld.Append(mainTree[i]);
                 dest[i] = bld.ToString();
             }
@@ -161,7 +167,7 @@ namespace AutoMainTreeMaker.ResltForSource
         {
 
             this.Hide();
-            mainTreeDlg.Show();
+            mainTreeDlg.ShowDialog();
 
         }
 
@@ -173,7 +179,7 @@ namespace AutoMainTreeMaker.ResltForSource
             if (columnRecordsetDlg == null)
                 columnRecordsetDlg = new Dialog_ColumnNumberAndRecordset(tree, mainTree);
 
-            columnRecordsetDlg.Show();
+            columnRecordsetDlg.ShowDialog();
         }
     }
 }

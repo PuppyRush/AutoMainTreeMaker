@@ -205,7 +205,7 @@ namespace AutoMainTreeMaker.MainTree
                 dlg.Enumname = enums;
                 dlg.MainTreeDlg = this;
                 dlg.Tree = mainTree;
-
+                dlg.MakeSource();
                 dlg.ShowDialog();
             }
 

@@ -51,6 +51,10 @@ namespace AutoMainTreeMaker.Database
         private void btnNext_Click(object sender, EventArgs e)
         {
             this.Hide();
+
+            if (databaseDlg == null)
+                databaseDlg = new Dialog_Database(tree.GetOrderedNodeAsNodeSequence());
+
             databaseDlg.ShowDialog();
         }
       
