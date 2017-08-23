@@ -11,6 +11,7 @@ namespace AutoMainTreeMaker.MainTree
 
         private bool isCreatedTree;
 
+        TreeMaker maker;
         Tree mainTree;
         List<CRichTextbox> richs;
         CRichTextBoxInterface richInterface;
@@ -43,10 +44,13 @@ namespace AutoMainTreeMaker.MainTree
             richs.Add(richCol);
             richs.Add(richGubun);
             richs.Add(richLineNumber);
+            richs.Add(richEnumName);
 
             richInterface.SetInterface(richs);
 
             SetLineNumbers();
+
+            maker = new TreeMaker(this);
         }
 
 
@@ -114,20 +118,20 @@ namespace AutoMainTreeMaker.MainTree
                 }
             }
 
-            TreeMaker maker = new TreeMaker(this);
-
-            
+                        
             maker.ColumnName = richCol.Lines;
             maker.GubunName = richGubun.Lines;
             maker.VariableName = richVar.Lines;
             maker.EnumValue = richEnum.Lines;
             maker.GubunName = richGubun.Lines;
+            maker.EnumName = richEnumName.Lines;
 
-            maker.Do(richMainTree.Lines);
+            maker.MakeTree(richMainTree.Lines);
             if (maker.IsSuccessedForMaking)
             {
                 mainTree = maker.Tree;
                 isCreatedTree = maker.IsSuccessedForMaking;
+                MessageBox.Show("트리생성에 성공하였습니다.");
             }
             else
                 MessageBox.Show("DOOOOOOOOOOOOHP");
@@ -186,8 +190,22 @@ namespace AutoMainTreeMaker.MainTree
             {
                 this.Hide();
                 Dialog_ResultForSource dlg = new Dialog_ResultForSource(richMainTree.Lines, RichEnum.Lines, richCol.Lines );
+                
+
+                List<TreeNode> nodes = maker.Tree.GetOrderedNodeAsNodeSequence();
+                string[] enums = new string[richMainTree.Lines.Length];
+
+                for (int i=0; i < enums.Length; i++)
+                {
+                    enums[i] = nodes[i].EnumName;
+                }
+
+                dlg.MainTree = RichMainTree.Lines;
+                dlg.EnumNumber = RichEnum.Lines;
+                dlg.Enumname = enums;
                 dlg.MainTreeDlg = this;
                 dlg.Tree = mainTree;
+                dlg.MakeSource();
                 dlg.ShowDialog();
             }
 
