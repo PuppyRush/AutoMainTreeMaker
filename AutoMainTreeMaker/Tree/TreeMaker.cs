@@ -15,6 +15,9 @@ namespace AutoMainTreeMaker
         int gubunNodeGap;
         bool isSuccessedForMaking;
 
+        const int MAX_COL_LEN = 100;
+        const char COL_NAME_DELIMETER = '=';
+        
         Tree tree;
 
         string[] mainTree;
@@ -156,27 +159,58 @@ namespace AutoMainTreeMaker
             return newStr.ToArray();
         }
 
-        public void MakeNames(List<TreeNode> list, string gubunParent, string enumParent)
+        public void MakeNames(List<TreeNode> list, string gubunParent, string enumParent, string colParent)
         {
             foreach (TreeNode node in list)
             {
-                if (enumParent.Equals(""))
+                
+
+                if (node.IsParent)
                 {
-                    node.EnumName = enumName[node.NodeSequence];
-                    node.Gubun = gubunName[node.NodeSequence];
+                    MakeNames(tree.GetChildList(node), node.Gubun, node.EnumName,node.ColumnName);
                 }
                 else
                 {
-                    node.EnumName = enumParent + "_" + enumName[node.NodeSequence];
-                    node.Gubun = gubunParent + "_" + gubunName[node.NodeSequence];
+                    if (enumParent.Equals(""))
+                    {
+                        node.EnumName = enumName[node.NodeSequence];
+                        node.Gubun = gubunName[node.NodeSequence];
+                    }
+                    else
+                    {
+                        node.EnumName = enumParent + "_" + enumName[node.NodeSequence];
+                        node.Gubun = gubunParent + "_" + gubunName[node.NodeSequence];
+                    }
 
-                }
-                if (node.IsParent)
-                {
-                    MakeNames(tree.GetChildList(node), node.Gubun, node.EnumName);
+                    AppendColumName(node, colParent);
+
                 }
             }
 
+        }
+
+        public void AppendColumName(TreeNode node, string parentColumnName)
+        {
+            if(!parentColumnName.Equals(""))
+                node.ColumnName = parentColumnName + "=" + node.ColumnName;
+            while(node.ColumnName.Length > MAX_COL_LEN)
+            {
+                int idx = node.ColumnName.IndexOf(COL_NAME_DELIMETER);
+                node.ColumnName = node.ColumnName.Remove(0, idx);
+            }
+        }
+
+        /// <summary>
+        /// 부모노드는 DB상에서 column이름을 필요로 하지 않음.
+        /// </summary>
+        public void RemoveColumnNameOfParent()
+        {
+            List<TreeNode> list = tree.GetOrderedNodeAsNodeSequence();
+            foreach(TreeNode node in list)
+            {
+                if (node.IsParent)
+                    node.ColumnName = "";
+            }
         }
 
         public bool MakeTree(string[] mainTree)
@@ -195,7 +229,8 @@ namespace AutoMainTreeMaker
             MakeTreeRecursive(nodes, firstNode, tree);
 
             List<TreeNode> siblings = tree.GetSiblings(firstNode);
-            MakeNames(siblings, "","");
+            MakeNames(siblings, "","","");
+            RemoveColumnNameOfParent();
 
             return isSuccessedForMaking=true;
         }
