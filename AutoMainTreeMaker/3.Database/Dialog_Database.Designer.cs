@@ -59,6 +59,7 @@ namespace AutoMainTreeMaker.Database
             this.VERSION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RS_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IS_PARSING = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnMakeSource = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -254,11 +255,21 @@ namespace AutoMainTreeMaker.Database
             this.IS_PARSING.HeaderText = "IS_PARSING";
             this.IS_PARSING.Name = "IS_PARSING";
             // 
+            // btnMakeSource
+            // 
+            this.btnMakeSource.Location = new System.Drawing.Point(656, 456);
+            this.btnMakeSource.Name = "btnMakeSource";
+            this.btnMakeSource.Size = new System.Drawing.Size(129, 52);
+            this.btnMakeSource.TabIndex = 2;
+            this.btnMakeSource.Text = "소스파일 생성하기";
+            this.btnMakeSource.UseVisualStyleBackColor = true;
+            // 
             // Dialog_Database
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 451);
+            this.ClientSize = new System.Drawing.Size(1001, 529);
+            this.Controls.Add(this.btnMakeSource);
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.comboBoxDB);
             this.Name = "Dialog_Database";
@@ -300,6 +311,7 @@ namespace AutoMainTreeMaker.Database
         private System.Windows.Forms.DataGridViewTextBoxColumn VERSION;
         private System.Windows.Forms.DataGridViewTextBoxColumn RS_NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn IS_PARSING;
+        private System.Windows.Forms.Button btnMakeSource;
 
     }
 }
