@@ -20,5 +20,21 @@ namespace AutoMainTreeMaker
             return -1;
 
         }
+
+       
+        /// <summary>
+        /// 헤더순서대로 리스트로 이름을 반환합니다.
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetHeaderNameOfColumns()
+        {
+            List<string> names = new List<string>();
+            foreach (DataGridViewColumn col in Columns)
+            {
+                names.Add(col.Name);
+            }
+            return names;
+        }
+
     }
 }
