@@ -10,8 +10,10 @@ namespace AutoMainTreeMaker
 
         #region field
 
+        private int selectionStartForEdit;
         private int preLineIndex;
         private int preStrLen;
+        private bool isEditMode;
 
         private bool isChanged;
         public bool IsChanged
@@ -36,6 +38,19 @@ namespace AutoMainTreeMaker
             set { isDrawingLine = value; }
         }
 
+        public bool IsEditMode
+        {
+            get
+            {
+                return isEditMode;
+            }
+
+            set
+            {
+                isEditMode = value;
+            }
+        }
+
         #endregion
 
         #region public Properties
@@ -43,11 +58,12 @@ namespace AutoMainTreeMaker
 
         public CRichTextbox()
         {
+            IsEditMode = true;
             isDrawingLine = false;
             IsNumeric = false;
             IsChanged = false;
             preLineIndex = preStrLen = 0;
-            this.SelectionStart = 0;
+            SelectionStart = 0;
             
         }
 
@@ -98,10 +114,10 @@ namespace AutoMainTreeMaker
             int lenghthOfLineCurrently = Lines[currentLine].Length;
 
             int lengthOfLines = GetLenghtAsLineNumber(currentLine);
-            this.SelectionStart = GetFirstCharIndexFromLine(currentLine);
-            this.SelectionLength = lenghthOfLineCurrently;
-            this.SelectionBackColor = Color.DimGray;
-            this.ForeColor = Color.Black;
+            SelectionStart = GetFirstCharIndexFromLine(currentLine);
+            SelectionLength = lenghthOfLineCurrently;
+            SelectionBackColor = Color.DimGray;
+            ForeColor = Color.Black;
 
             isDrawingLine = false;
 
@@ -116,10 +132,10 @@ namespace AutoMainTreeMaker
 
         public void EraseBlockedLineCurrently()
         {
-            this.SelectionStart = this.GetFirstCharIndexFromLine(preLineIndex);
-            this.SelectionLength = this.preStrLen;
-            this.SelectionBackColor = Color.White;
-            this.ForeColor = Color.Black;
+            SelectionStart = this.GetFirstCharIndexFromLine(preLineIndex);
+            SelectionLength = this.preStrLen;
+            SelectionBackColor = Color.White;
+            ForeColor = Color.Black;
         }
 
         public int GetLenghtAsLineNumber(int line)
@@ -151,7 +167,9 @@ namespace AutoMainTreeMaker
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-           
+
+
+
             if (e.Shift && e.KeyCode == Keys.Tab)
             {
                 int index = GetFirstCharIndexOfCurrentLine();
@@ -162,37 +180,53 @@ namespace AutoMainTreeMaker
                 Lines[line] = str;
                 return;
             }
+            else if( !(e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right ))
+            {                
+
+                if (!isEditMode)
+                {
+                    EraseBlockedLineCurrently();
+                    SelectionStart = selectionStartForEdit;
+                    preStrLen = 0;
+                    preLineIndex = GetLineFromCharIndex(SelectionStart);
+                    SelectionLength = 0;
+                }
+                             
+                
+                IsEditMode = true;
+            }             
             base.OnKeyDown(e);
         }
 
+       
+
         protected override void OnKeyUp(KeyEventArgs e)
         {
-            base.OnKeyUp(e);
-            switch (e.KeyData)
-            {
-                case Keys.D0:
-                case Keys.D1:
-                case Keys.D2:
-                case Keys.D3:
-                case Keys.D4:
-                case Keys.D5:
-                case Keys.D6:
-                case Keys.D7:
-                case Keys.D8:
-                case Keys.D9:
-                case Keys.Up:
-                case Keys.Down:
-                case Keys.Left:
-                case Keys.Right:
-                case Keys.Enter:
-                    EraseBlockedLineCurrently();
-                    DrawBlockedLineCurrently();
-                    break;
-                                    
+            //base.OnKeyUp(e);
+            //switch (e.KeyData)
+            //{
+            //    case Keys.D0:
+            //    case Keys.D1:
+            //    case Keys.D2:
+            //    case Keys.D3:
+            //    case Keys.D4:
+            //    case Keys.D5:
+            //    case Keys.D6:
+            //    case Keys.D7:
+            //    case Keys.D8:
+            //    case Keys.D9:
+            //    case Keys.Up:
+            //    case Keys.Down:
+            //    case Keys.Left:
+            //    case Keys.Right:
+            //    case Keys.Enter:
+            //        EraseBlockedLineCurrently();
+            //        DrawBlockedLineCurrently();
+            //        break;
 
-                default:
-                    break;
-            }
+            //    default:
+            //        break;
+            //}
 
             if (IsNumeric && Text.Length > 0 && !IsNuemricString())
             {
@@ -209,6 +243,10 @@ namespace AutoMainTreeMaker
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
+            
+            IsEditMode = false;
+            selectionStartForEdit = SelectionStart;
+
             base.OnMouseClick(e);
             DrawBlockedLineCurrently();
         }

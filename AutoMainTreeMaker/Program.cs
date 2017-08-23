@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using AutoMainTreeMaker.MainTree;
 
 namespace AutoMainTreeMaker
 {
@@ -15,7 +16,7 @@ namespace AutoMainTreeMaker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Wizard1());
+            Application.Run(new Dialog_MainTree());
         }
     }
 }

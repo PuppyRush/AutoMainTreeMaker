@@ -47,7 +47,7 @@ namespace AutoMainTreeMaker
             int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
             foreach (CRichTextbox r in richs)
             {
-                if (currentLine <= r.Lines.Length - 1)
+                if ( currentLine <= r.Lines.Length - 1)
                 {
                     r.EraseBlockedLineCurrently();
                     r.DrawBlockedLineCurrently(currentLine);
@@ -59,18 +59,7 @@ namespace AutoMainTreeMaker
 
         private void KeyUp_DrawLineAllForms(object sender, KeyEventArgs e)
         {
-            CRichTextbox thisBox = (CRichTextbox)sender;
-            int beginIndex = thisBox.SelectionStart;
-            int currentLine = thisBox.GetLineFromCharIndex(beginIndex);
-            foreach (CRichTextbox r in richs)
-            {
-
-                if (currentLine <= r.Lines.Length - 1)
-                {
-                    r.EraseBlockedLineCurrently();
-                    r.DrawBlockedLineCurrently(currentLine);
-                }
-            }
+            
         }
     }
 

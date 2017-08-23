@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using AutoMainTreeMaker.ResltForSource;
 
-namespace AutoMainTreeMaker
+namespace AutoMainTreeMaker.MainTree
 {
-    public partial class Wizard1 : Form
+    public partial class Dialog_MainTree : Form
     {
 
         private bool isCreatedTree;
@@ -27,7 +28,7 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public Wizard1()
+        public Dialog_MainTree()
         {
             InitializeComponent();
 
@@ -185,6 +186,8 @@ namespace AutoMainTreeMaker
             {
                 this.Hide();
                 Dialog_ResultForSource dlg = new Dialog_ResultForSource(richMainTree.Lines, RichEnum.Lines, richCol.Lines );
+                dlg.MainTreeDlg = this;
+                dlg.Tree = mainTree;
                 dlg.ShowDialog();
             }
 
