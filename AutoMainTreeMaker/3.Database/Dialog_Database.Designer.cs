@@ -59,6 +59,9 @@ namespace AutoMainTreeMaker.Database
             this.VERSION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RS_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IS_PARSING = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnMakeSource = new System.Windows.Forms.Button();
+            this.btnMakeExcel = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -254,11 +257,42 @@ namespace AutoMainTreeMaker.Database
             this.IS_PARSING.HeaderText = "IS_PARSING";
             this.IS_PARSING.Name = "IS_PARSING";
             // 
+            // btnMakeSource
+            // 
+            this.btnMakeSource.Location = new System.Drawing.Point(579, 456);
+            this.btnMakeSource.Name = "btnMakeSource";
+            this.btnMakeSource.Size = new System.Drawing.Size(129, 52);
+            this.btnMakeSource.TabIndex = 2;
+            this.btnMakeSource.Text = "소스파일 생성하기";
+            this.btnMakeSource.UseVisualStyleBackColor = true;
+            // 
+            // btnMakeExcel
+            // 
+            this.btnMakeExcel.Location = new System.Drawing.Point(399, 456);
+            this.btnMakeExcel.Name = "btnMakeExcel";
+            this.btnMakeExcel.Size = new System.Drawing.Size(129, 52);
+            this.btnMakeExcel.TabIndex = 3;
+            this.btnMakeExcel.Text = "엑셀파일 생성하기";
+            this.btnMakeExcel.UseVisualStyleBackColor = true;
+            this.btnMakeExcel.Click += new System.EventHandler(this.btnMake_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(219, 456);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(129, 52);
+            this.btnBack.TabIndex = 4;
+            this.btnBack.Text = "뒤로가기";
+            this.btnBack.UseVisualStyleBackColor = true;
+            // 
             // Dialog_Database
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 451);
+            this.ClientSize = new System.Drawing.Size(1001, 529);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btnMakeExcel);
+            this.Controls.Add(this.btnMakeSource);
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.comboBoxDB);
             this.Name = "Dialog_Database";
@@ -300,6 +334,8 @@ namespace AutoMainTreeMaker.Database
         private System.Windows.Forms.DataGridViewTextBoxColumn VERSION;
         private System.Windows.Forms.DataGridViewTextBoxColumn RS_NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn IS_PARSING;
-
+        private System.Windows.Forms.Button btnMakeSource;
+        private System.Windows.Forms.Button btnMakeExcel;
+        private System.Windows.Forms.Button btnBack;
     }
 }

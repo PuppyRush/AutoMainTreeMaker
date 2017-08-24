@@ -62,6 +62,24 @@ namespace AutoMainTreeMaker.Database
                 case "COLUMN_NO":
                     str = node.ColumnNumber.ToString();
                     break;
+                case "COLUMN_NAME":
+                    str = node.ColumnName;
+                    break;
+                case "TREE_DEPTH":
+                    str = node.Depth.ToString();
+                    break;
+                case "PARAM_TYPE":
+                    str = "34";
+                    break;
+                case "DISPLAY_SEQ":
+                    str = "";
+                    break;
+                case "IS_DBLCLICK":
+                    if (node.IsParent)
+                        str = "0";
+                    else
+                        str = "1";
+                    break;
                 default:
                     str = "";
                     break;
