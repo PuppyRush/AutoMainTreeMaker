@@ -164,27 +164,25 @@ namespace AutoMainTreeMaker
             foreach (TreeNode node in list)
             {
                 
-
-                if (node.IsParent)
+                if (enumParent.Equals(""))
                 {
-                    MakeNames(tree.GetChildList(node), node.Gubun, node.EnumName,node.ColumnName);
+                    node.EnumName = enumName[node.NodeSequence];
+                    node.Gubun = gubunName[node.NodeSequence];
                 }
                 else
                 {
-                    if (enumParent.Equals(""))
-                    {
-                        node.EnumName = enumName[node.NodeSequence];
-                        node.Gubun = gubunName[node.NodeSequence];
-                    }
-                    else
-                    {
-                        node.EnumName = enumParent + "_" + enumName[node.NodeSequence];
-                        node.Gubun = gubunParent + "_" + gubunName[node.NodeSequence];
-                    }
-
-                    AppendColumName(node, colParent);
-
+                    node.EnumName = enumParent + "_" + enumName[node.NodeSequence];
+                    node.Gubun = gubunParent + "_" + gubunName[node.NodeSequence];
                 }
+
+                AppendColumName(node, colParent);
+
+                if (node.IsParent)
+                {
+                    MakeNames(tree.GetChildList(node), node.Gubun, node.EnumName, node.ColumnName);
+                    node.ColumnName = "";
+                }
+
             }
 
         }
@@ -192,7 +190,7 @@ namespace AutoMainTreeMaker
         public void AppendColumName(TreeNode node, string parentColumnName)
         {
             if(!parentColumnName.Equals(""))
-                node.ColumnName = parentColumnName + "=" + node.ColumnName;
+                node.ColumnName = parentColumnName + "=" + columnName[node.NodeSequence];
             while(node.ColumnName.Length > MAX_COL_LEN)
             {
                 int idx = node.ColumnName.IndexOf(COL_NAME_DELIMETER);
@@ -230,7 +228,6 @@ namespace AutoMainTreeMaker
 
             List<TreeNode> siblings = tree.GetSiblings(firstNode);
             MakeNames(siblings, "","","");
-            RemoveColumnNameOfParent();
 
             return isSuccessedForMaking=true;
         }
@@ -414,7 +411,8 @@ namespace AutoMainTreeMaker
                 newNode.Depth = presentNode.Depth;
             }
 
-            newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
+
+            newNode.ParamName = newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
             newNode.VariableName = GetVariableName(presentIdx, isNewParentNode);
 
             return newNode;
@@ -473,48 +471,26 @@ namespace AutoMainTreeMaker
         private string GetColumnName(int presentIdx, bool isParentNode)
         {
             string colname = "";
-            if (isParentNode)
+     
+            if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
             {
-                if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
+                if (columnName[presentIdx].Length > 0)
+                    colname = columnName[presentIdx];
+                else
                 {
-
-                    if (columnName[presentIdx].Length == 0)
-                        colname = "";
-                    else
-                    {
-                        MessageBox.Show("부모에 컬럼명을 넣을 수 없습니다.");
-                        wizard1.RichCol.Focus();
-                        wizard1.RichCol.SelectionStart = wizard1.RichCol.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoCol.CheckState == CheckState.Checked)
-                {
-                    colname = "";
+                    MessageBox.Show("컬럼명은 필수로 기입해야합니다.");
+                    wizard1.RichCol.Focus();
+                    wizard1.RichCol.SelectionStart = wizard1.RichCol.GetLenghtAsLineNumber(presentIdx);
+                    RemoveAll();
+                    return "";
                 }
             }
-            else
+            else if (wizard1.ChkAutoCol.CheckState == CheckState.Checked)
             {
-                if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
-                {
-                    if (columnName[presentIdx].Length > 0)
-                        colname = columnName[presentIdx];
-                    else
-                    {
-                        MessageBox.Show("컬럼명은 필수로 기입해야합니다.");
-                        wizard1.RichCol.Focus();
-                        wizard1.RichCol.SelectionStart = wizard1.RichCol.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoCol.CheckState == CheckState.Checked)
-                {
-                    colname = mainTree[presentIdx];
-                }
-
+                colname = mainTree[presentIdx];
             }
+
+            
             return colname;
 
         }

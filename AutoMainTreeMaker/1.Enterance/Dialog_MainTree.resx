@@ -177,28 +177,28 @@ LTEMTKPPOUCDIFF3DB
 LTEMTKPPOUCTHNEW</value>
   </data>
   <data name="richCol.Text" xml:space="preserve">
-    <value>
+    <value>Tx Power Info
 PUSCH Power
 PUCCH Power
 SRS Power
 Total Tx Power
 Power Headroom
-
-
+L1 Downlink
+PCell
 DL MCS0
 DL MCS1
 DL Modulation0
 DL Modulation1
 PDSCH PRB Number
 PDSCH BLER
-
+Scell[%d]
 DL MCS0
 DL MCS1
 DL Modulation0
 DL Modulation1
 PDSCH PRB Number
 PDSCH BLER
-
+L1 Uplink
 UL MCS
 UL Modulation
 PUSCH PRB Number
