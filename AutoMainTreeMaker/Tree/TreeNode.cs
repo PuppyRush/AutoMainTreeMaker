@@ -21,6 +21,7 @@ namespace AutoMainTreeMaker
         private int displaySeq;
         private int depth;
         private int columnNumber;
+        private string paramName;
         private string variableName;
         private string gubun;
         private string columnName;
@@ -175,6 +176,19 @@ namespace AutoMainTreeMaker
             set
             {
                 childNode = value;
+            }
+        }
+
+        public string ParamName
+        {
+            get
+            {
+                return paramName;
+            }
+
+            set
+            {
+                paramName = value;
             }
         }
 
