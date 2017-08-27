@@ -88,7 +88,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             // BtnNext
             // 
-            this.BtnNext.Font = new System.Drawing.Font("돋움", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnNext.Font = new System.Drawing.Font("Dotum", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnNext.Location = new System.Drawing.Point(608, 471);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(175, 41);
@@ -319,8 +319,8 @@ namespace AutoMainTreeMaker.MainTree
             this.richEnumName.Name = "richEnumName";
             this.richEnumName.Size = new System.Drawing.Size(117, 377);
             this.richEnumName.TabIndex = 23;
-            this.richEnumName.Text = "TXPWR\nPUS\nPUC\nSRS\nTOT\nPWR\nL1DL\nPC\nMCS0\nMCS1\nMOD0\nMOD1\nPRB\nBLER\nSC\nMCS0\nMCS1\nMOD0\n" +
-    "MOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER";
+            this.richEnumName.Text = "T\nA\nTXPWR\nPUS\nPUC\nSRS\nTOT\nPWR\nL1DL\nPC\nMCS0\nMCS1\nMOD0\nMOD1\nPRB\nBLER\nSC\nMCS0\nMCS1\nM" +
+    "OD0\nMOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER";
             // 
             // Dialog_MainTree
             // 

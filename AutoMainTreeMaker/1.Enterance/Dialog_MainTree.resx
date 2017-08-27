@@ -121,7 +121,9 @@
     <value>17, 17</value>
   </metadata>
   <data name="richVar.Text" xml:space="preserve">
-    <value>
+    <value>ttt
+aaa
+Tx Power Info
 PUSCH Power
 PUCCH Power
 SRS Power
@@ -149,7 +151,9 @@ PUSCH PRB Number
 PUSCH BLER</value>
   </data>
   <data name="richGubun.Text" xml:space="preserve">
-    <value>GL_CODE
+    <value>T
+A
+GL_CODE
 LTEMTKL1DLMCS0
 LTEMTKL1DLMCS1
 LTEMTKL1DLMOD0
@@ -177,7 +181,9 @@ LTEMTKPPOUCDIFF3DB
 LTEMTKPPOUCTHNEW</value>
   </data>
   <data name="richCol.Text" xml:space="preserve">
-    <value>Tx Power Info
+    <value>Ttt
+Aaa
+Tx Power Info
 PUSCH Power
 PUCCH Power
 SRS Power
@@ -205,7 +211,9 @@ PUSCH PRB Number
 PUSCH BLER</value>
   </data>
   <data name="richEnum.Text" xml:space="preserve">
-    <value>793520000
+    <value>32323231
+11231232
+793520000
 793520100
 793520200
 793520300
@@ -233,7 +241,9 @@ PUSCH BLER</value>
 793540400</value>
   </data>
   <data name="richMainTree.Text" xml:space="preserve">
-    <value>Tx Power Info
+    <value>TTT
+AAA
+Tx Power Info
 	PUSCH Power
 	PUCCH Power
 	SRS Power

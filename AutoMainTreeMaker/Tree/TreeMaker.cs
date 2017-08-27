@@ -222,7 +222,7 @@ namespace AutoMainTreeMaker
             TreeNode firstNode = new TreeNode(-1, 0);
             firstNode.ColumnNumber = 3;
             firstNode = GetNewNode(nodes, firstNode, true,true);
-            SetParnetNode(firstNode, firstNode,true);
+            //SetParnetNode(firstNode, firstNode,true);
 
             MakeTreeRecursive(nodes, firstNode, tree);
 
@@ -236,9 +236,7 @@ namespace AutoMainTreeMaker
         {
             List<int> sameDepthNodes = GetSameDepthNodes(originNodes, presentNode.NodeSequence);
 
-            List<TreeNode> depthedList = new List<TreeNode>();
-            depthedList.Add(presentNode);
-            tree.TreeMap.Add(sameDepthNodes[0], depthedList);
+            List<TreeNode> depthedList = tree.AddNode(sameDepthNodes[0], presentNode);
 
             for(int i=0; i < sameDepthNodes.Count; i++)
             {
@@ -259,7 +257,7 @@ namespace AutoMainTreeMaker
                     {
                         presentNode = parentNode = GetNewNode(originNodes, presentNode, false, true);
                         
-                        tree.PutNodeToMap(parentNode.NodeSequence, parentNode);
+                        tree.AddNode(parentNode);
                         depthedList.Add(parentNode);
                     }
 
@@ -275,7 +273,7 @@ namespace AutoMainTreeMaker
                     TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
                     SetSilblingNode(siblingNode, presentNode);
 
-                    tree.PutNodeToMap(siblingNode.NodeSequence, siblingNode);
+                    tree.AddNode(siblingNode);
                     depthedList.Add(siblingNode);
 
                     presentNode = siblingNode;
@@ -398,16 +396,13 @@ namespace AutoMainTreeMaker
             if (isNewHeadNode && !isNewParentNode)
             {
                 newNode.Depth = presentNode.Depth + 1;
-                newNode.ColumnNumber = presentNode.ColumnNumber;
             }
             else if (isNewParentNode)
             {
-                newNode.ColumnNumber = presentNode.ColumnNumber;
                 newNode.Depth = GetDepth(originNodes[newNode.NodeSequence]);
             }
             else
             {
-                newNode.ColumnNumber = presentNode.ColumnNumber + 1;
                 newNode.Depth = presentNode.Depth;
             }
 

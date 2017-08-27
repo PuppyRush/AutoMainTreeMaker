@@ -9,53 +9,87 @@ namespace AutoMainTreeMaker
     {
         //ColumnSequence가 키.
 
+        private int nodeCount;
+        private bool isChanged;
+
+        private List<TreeNode> orderedNode;
         private Dictionary<int, TreeNode> nodeMap;
+
+        /// <summary>
+        /// key는 형제노드들의 첫번째 nodeSequence입니다.
+        /// </summary>
         private Dictionary<int, List<TreeNode>> tree;
+
+        public int NodeCount
+        {
+            get
+            {
+                return nodeCount;
+            }
+
+            set
+            {
+                nodeCount = value;
+            }
+        }
 
         public Tree()
         {
-            NodeMap = new Dictionary<int, TreeNode>();
-            TreeMap = new Dictionary<int, List<TreeNode>>();
+            isChanged = true;
+            orderedNode = new List<TreeNode>();
+            nodeMap = new Dictionary<int, TreeNode>();
+            tree = new Dictionary<int, List<TreeNode>>();
 
         }
 
-        internal Dictionary<int, List<TreeNode>> TreeMap
+ 
+        public void AddNode(TreeNode node)
         {
-            get
+            if (!nodeMap.ContainsKey(node.NodeSequence))
             {
-                return tree;
+                NodeCount++;
             }
-
-
-            set
-            {
-                tree = value;
-
-            }
+            nodeMap[node.NodeSequence] = node;
         }
 
-        public Dictionary<int, TreeNode> NodeMap
+        public List<TreeNode> AddNode(int key, TreeNode node)
         {
-            get
+            List<TreeNode> silblings = null;
+            if (tree.ContainsKey(key))
             {
-                return nodeMap;
+                bool isAdded = false;
+                foreach(TreeNode _node in tree[key])
+                {
+                    if (_node.Equals(node))
+                    {
+                        isAdded = true;
+                        break;
+                    }
+                }
+                if (!isAdded)
+                {
+                    tree[key].Add(node);
+                    NodeCount++;
+                }
+                silblings = tree[key];
             }
-
-            set
+            else
             {
-                nodeMap = value;
+                NodeCount++;
+                silblings = new List<TreeNode>();
+                silblings.Add(node);
+                tree.Add(key, silblings); 
             }
-        }
+            if (silblings == null)
+                throw new ArgumentNullException("TreeNode의 add 작업중 에러가 발생했습니다.");
 
-        public void PutNodeToMap(int nodeSequence, TreeNode node)
-        {
-            NodeMap[nodeSequence] = node;
+            return silblings;
         }
 
         public TreeNode GetNode(int nodeSequece)
         {
-            if (NodeMap.ContainsKey(nodeSequece))
-                return NodeMap[nodeSequece];
+            if (nodeMap.ContainsKey(nodeSequece))
+                return nodeMap[nodeSequece];
 
             if (tree.ContainsKey(nodeSequece))
             {
@@ -70,7 +104,7 @@ namespace AutoMainTreeMaker
                 {
                     if (node.NodeSequence == nodeSequece)
                     {
-                        PutNodeToMap(nodeSequece, node);
+                        AddNode(nodeSequece, node);
                         return node;
                     }
                 }
@@ -87,16 +121,16 @@ namespace AutoMainTreeMaker
 
         public List<TreeNode> GetChildList(TreeNode parentNode)
         {
-            return TreeMap[parentNode.ChildNode.NodeSequence];
+            return tree[parentNode.ChildNode.NodeSequence];
         }
 
         public List<TreeNode> GetSiblings(TreeNode sibling)
         {
-            if (TreeMap.ContainsKey(sibling.NodeSequence))
-                return TreeMap[sibling.NodeSequence];
+            if (tree.ContainsKey(sibling.NodeSequence))
+                return tree[sibling.NodeSequence];
             else
             {
-                foreach(List<TreeNode> list in TreeMap.Values)
+                foreach(List<TreeNode> list in tree.Values)
                 {
                     foreach (TreeNode node in list)
                         if (node.Equals(sibling))
@@ -108,8 +142,20 @@ namespace AutoMainTreeMaker
 
         public List<TreeNode> GetOrderedNodeAsNodeSequence()
         {
-            List<TreeNode> firstSiblings = GetSiblings(GetNode(0));
-            return GetOrderedNodeAsNodeSequence_Recursive(firstSiblings);
+            if (isChanged)
+            {
+                List<TreeNode> firstSiblings = GetSiblings(GetNode(0));
+                return orderedNode = GetOrderedNodeAsNodeSequence_Recursive(firstSiblings);
+            }
+            else {
+                if(orderedNode.Count>0)
+                    return orderedNode;
+                else
+                {
+                    List<TreeNode> firstSiblings = GetSiblings(GetNode(0));
+                    return orderedNode = GetOrderedNodeAsNodeSequence_Recursive(firstSiblings);
+                }
+            }
         }
 
         private List<TreeNode> GetOrderedNodeAsNodeSequence_Recursive(List<TreeNode> list)
@@ -128,5 +174,6 @@ namespace AutoMainTreeMaker
 
             return _list;
         }
+        
     }
 }
