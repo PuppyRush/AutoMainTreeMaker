@@ -222,7 +222,7 @@ namespace AutoMainTreeMaker
             TreeNode firstNode = new TreeNode(-1, 0);
             firstNode.ColumnNumber = 3;
             firstNode = GetNewNode(nodes, firstNode, true,true);
-            SetParnetNode(firstNode, firstNode,true);
+            //SetParnetNode(firstNode, firstNode,true);
 
             MakeTreeRecursive(nodes, firstNode, tree);
 
