@@ -57,10 +57,13 @@ namespace AutoMainTreeMaker.Database
                     str = node.EnumNumber.ToString();
                     break;
                 case "PARAM_NAME":
-                    str = node.ColumnName;
+                    str = node.ParamName;
                     break;
                 case "COLUMN_NO":
-                    str = node.ColumnNumber.ToString();
+                    if (node.ColumnNumber == Dialog_ColumnNumberAndRecordset.DEFAULT_COL_NUMBER)
+                        str = "";
+                    else
+                        str = node.ColumnNumber.ToString();
                     break;
                 case "COLUMN_NAME":
                     str = node.ColumnName;
@@ -79,6 +82,20 @@ namespace AutoMainTreeMaker.Database
                         str = "0";
                     else
                         str = "1";
+                    break;
+                case "ICON_NO":
+                    if (node.IsParent)
+                        str = "3";
+                    else
+                        str = "0";
+                    break;
+                case "GUBUN_CODE":
+                case "GL_CODE":
+                case "ML_CODE":
+                    str = node.Gubun;
+                    break;
+                case "RS_NAME":
+                    str = node.RecordsetFileName;
                     break;
                 default:
                     str = "";

@@ -21,6 +21,7 @@ namespace AutoMainTreeMaker
         private int displaySeq;
         private int depth;
         private int columnNumber;
+        private string recordsetFileName;
         private string paramName;
         private string variableName;
         private string gubun;
@@ -189,6 +190,19 @@ namespace AutoMainTreeMaker
             set
             {
                 paramName = value;
+            }
+        }
+
+        public string RecordsetFileName
+        {
+            get
+            {
+                return recordsetFileName;
+            }
+
+            set
+            {
+                recordsetFileName = value;
             }
         }
 
