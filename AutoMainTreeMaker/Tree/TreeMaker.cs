@@ -221,8 +221,14 @@ namespace AutoMainTreeMaker
 
             TreeNode firstNode = new TreeNode(-1, 0);
             firstNode.ColumnNumber = 3;
-            firstNode = GetNewNode(nodes, firstNode, true,true);
-            //SetParnetNode(firstNode, firstNode,true);
+            if (GetDepthGap(0, 1) == 1)
+            {
+                firstNode = GetNewNode(nodes, firstNode, true, true);
+                SetParnetNode(firstNode, firstNode, true);
+            }
+            else
+                firstNode = GetNewNode(nodes, firstNode, true, false);
+            
 
             MakeTreeRecursive(nodes, firstNode, tree);
 
@@ -270,9 +276,26 @@ namespace AutoMainTreeMaker
                 }
                 else if(depthGap==0)
                 {
-                    TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
-                    SetSilblingNode(siblingNode, presentNode);
-
+                    TreeNode siblingNode = null;
+                    if (presentNode.NodeSequence+2 <= originNodes.Count - 1)
+                    {
+                        if (GetDepthGap(presentNode.NodeSequence + 1, presentNode.NodeSequence + 2) == 1)
+                        {
+                            siblingNode = GetNewNode(originNodes, presentNode, false, true);
+                            SetParnetNode(presentNode, siblingNode);
+                        }
+                        else
+                        {
+                            siblingNode = GetNewNode(originNodes, presentNode, false, false);
+                            SetSilblingNode(siblingNode, presentNode);
+                        }
+                    }
+                    else
+                    {
+                        siblingNode = GetNewNode(originNodes, presentNode, false, false);
+                        SetSilblingNode(siblingNode, presentNode);
+                    }
+    
                     tree.AddNode(siblingNode);
                     depthedList.Add(siblingNode);
 
