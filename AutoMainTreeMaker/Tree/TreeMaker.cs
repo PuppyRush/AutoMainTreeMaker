@@ -36,14 +36,6 @@ namespace AutoMainTreeMaker
             set { enumValue = value; }
         }
 
-        string[] variableName;
-
-        public string[] VariableName
-        {
-            get { return variableName; }
-            set { variableName = value; }
-        }
-
         string[] columnName;
 
         public string[] ColumnName
@@ -221,8 +213,14 @@ namespace AutoMainTreeMaker
 
             TreeNode firstNode = new TreeNode(-1, 0);
             firstNode.ColumnNumber = 3;
-            firstNode = GetNewNode(nodes, firstNode, true,true);
-            //SetParnetNode(firstNode, firstNode,true);
+            if (GetDepthGap(0, 1) == 1)
+            {
+                firstNode = GetNewNode(nodes, firstNode, true, true);
+                SetParnetNode(firstNode, firstNode, true);
+            }
+            else
+                firstNode = GetNewNode(nodes, firstNode, true, false);
+            
 
             MakeTreeRecursive(nodes, firstNode, tree);
 
@@ -270,6 +268,7 @@ namespace AutoMainTreeMaker
                 }
                 else if(depthGap==0)
                 {
+         
                     TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
                     SetSilblingNode(siblingNode, presentNode);
 
@@ -408,59 +407,8 @@ namespace AutoMainTreeMaker
 
 
             newNode.ParamName = newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
-            newNode.VariableName = GetVariableName(presentIdx, isNewParentNode);
 
             return newNode;
-        }
-
-        private string GetVariableName(int presentIdx, bool isParentNode)
-        {
-            string varName = "";
-            if (isParentNode)
-            {
-                if (wizard1.ChkAutoVar.CheckState == CheckState.Unchecked)
-                {
-
-                    if (variableName[presentIdx].Length == 0)
-                        varName = "";
-                    else
-                    {
-                        MessageBox.Show("부모에 변수명은 넣을 수 없습니다.");
-                        wizard1.RichVar.Focus();
-                        wizard1.RichVar.SelectionStart = wizard1.RichVar.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoVar.CheckState == CheckState.Checked)
-                {
-                    varName = "";
-                }
-            }
-            else
-            {
-                if (wizard1.ChkAutoVar.CheckState == CheckState.Unchecked)
-                {
-                    if (variableName[presentIdx].Length > 0)
-                        varName = variableName[presentIdx];
-                    else
-                    {
-                        MessageBox.Show("변수명은 필수로 기입해야합니다.");
-                        wizard1.RichVar.Focus();
-                        wizard1.RichVar.SelectionStart = wizard1.RichVar.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoVar.CheckState == CheckState.Checked)
-                {
-                    varName = mainTree[presentIdx];
-                }
-
-            }
-            return varName;
-
-
         }
 
         private string GetColumnName(int presentIdx, bool isParentNode)
@@ -500,7 +448,7 @@ namespace AutoMainTreeMaker
                 else
                     break;
             }
-            return depth;
+            return depth+1;
         }
 
         private int GetDepthGap(string parent, string child)
