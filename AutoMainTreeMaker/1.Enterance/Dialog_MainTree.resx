@@ -120,36 +120,6 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="richVar.Text" xml:space="preserve">
-    <value>ttt
-aaa
-Tx Power Info
-PUSCH Power
-PUCCH Power
-SRS Power
-Total Tx Power
-Power Headroom
-
-
-DL MCS0
-DL MCS1
-DL Modulation0
-DL Modulation1
-PDSCH PRB Number
-PDSCH BLER
-
-DL MCS0
-DL MCS1
-DL Modulation0
-DL Modulation1
-PDSCH PRB Number
-PDSCH BLER
-
-UL MCS
-UL Modulation
-PUSCH PRB Number
-PUSCH BLER</value>
-  </data>
   <data name="richGubun.Text" xml:space="preserve">
     <value>T
 A

@@ -36,14 +36,6 @@ namespace AutoMainTreeMaker
             set { enumValue = value; }
         }
 
-        string[] variableName;
-
-        public string[] VariableName
-        {
-            get { return variableName; }
-            set { variableName = value; }
-        }
-
         string[] columnName;
 
         public string[] ColumnName
@@ -276,26 +268,10 @@ namespace AutoMainTreeMaker
                 }
                 else if(depthGap==0)
                 {
-                    TreeNode siblingNode = null;
-                    if (presentNode.NodeSequence+2 <= originNodes.Count - 1)
-                    {
-                        if (GetDepthGap(presentNode.NodeSequence + 1, presentNode.NodeSequence + 2) == 1)
-                        {
-                            siblingNode = GetNewNode(originNodes, presentNode, false, true);
-                            SetParnetNode(presentNode, siblingNode);
-                        }
-                        else
-                        {
-                            siblingNode = GetNewNode(originNodes, presentNode, false, false);
-                            SetSilblingNode(siblingNode, presentNode);
-                        }
-                    }
-                    else
-                    {
-                        siblingNode = GetNewNode(originNodes, presentNode, false, false);
-                        SetSilblingNode(siblingNode, presentNode);
-                    }
-    
+         
+                    TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
+                    SetSilblingNode(siblingNode, presentNode);
+
                     tree.AddNode(siblingNode);
                     depthedList.Add(siblingNode);
 
@@ -431,59 +407,8 @@ namespace AutoMainTreeMaker
 
 
             newNode.ParamName = newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
-            newNode.VariableName = GetVariableName(presentIdx, isNewParentNode);
 
             return newNode;
-        }
-
-        private string GetVariableName(int presentIdx, bool isParentNode)
-        {
-            string varName = "";
-            if (isParentNode)
-            {
-                if (wizard1.ChkAutoVar.CheckState == CheckState.Unchecked)
-                {
-
-                    if (variableName[presentIdx].Length == 0)
-                        varName = "";
-                    else
-                    {
-                        MessageBox.Show("부모에 변수명은 넣을 수 없습니다.");
-                        wizard1.RichVar.Focus();
-                        wizard1.RichVar.SelectionStart = wizard1.RichVar.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoVar.CheckState == CheckState.Checked)
-                {
-                    varName = "";
-                }
-            }
-            else
-            {
-                if (wizard1.ChkAutoVar.CheckState == CheckState.Unchecked)
-                {
-                    if (variableName[presentIdx].Length > 0)
-                        varName = variableName[presentIdx];
-                    else
-                    {
-                        MessageBox.Show("변수명은 필수로 기입해야합니다.");
-                        wizard1.RichVar.Focus();
-                        wizard1.RichVar.SelectionStart = wizard1.RichVar.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoVar.CheckState == CheckState.Checked)
-                {
-                    varName = mainTree[presentIdx];
-                }
-
-            }
-            return varName;
-
-
         }
 
         private string GetColumnName(int presentIdx, bool isParentNode)
@@ -523,7 +448,7 @@ namespace AutoMainTreeMaker
                 else
                     break;
             }
-            return depth;
+            return depth+1;
         }
 
         private int GetDepthGap(string parent, string child)

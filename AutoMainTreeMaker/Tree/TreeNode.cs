@@ -222,10 +222,6 @@ namespace AutoMainTreeMaker
             else
                 this.depth = depth;
 
-            this.isVirtualNode = isVirtualNode;
-            this.isParent = isParent;
-
-            
             this.nodeSequence = nodeSeq;
         }
 
