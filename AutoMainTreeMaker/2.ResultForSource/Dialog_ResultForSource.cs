@@ -100,11 +100,13 @@ namespace AutoMainTreeMaker.ResltForSource
         {
             string[] sources = enumname;
             int maxi = GetLengthestOf(sources);
-            EqualizeStringLengths(sources, maxi);
+            PadRight(sources, maxi+5);
+            maxi = GetLengthestOf(sources);
+            //EqualizeStringLengths(sources, maxi);
             AppendBlanketAndEqualAndEnumNumberAndTree("        ", sources, enumNumber, mainTree);
 
-            maxi = GetLengthestOf(sources);
-            EqualizeStringLengths(sources, maxi);
+            //maxi = GetLengthestOf(sources);
+            //EqualizeStringLengths(sources, maxi);
 
             richMainTree.Lines = sources;
         }
@@ -121,22 +123,41 @@ namespace AutoMainTreeMaker.ResltForSource
 
         }
 
-        private void EqualizeStringLengths(string [] list, int len)
+        private void EqualizeStringLengths(string[] list, int len)
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                int _len = list[i].Length;
+                if (list[i].Length < len)
+                    list[i] = list[i].Remove(len - 1, _len - len); 
+            }
+        }
+
+        private void PadRight(string [] list, int len)
         {
             for(int i=0; i < list.Length; i++)
             {
-                //if (list[i].Length == len)
-                //    continue;
-                //else if(list[i].Length > len)
-                //{
-                //    EqualizeStringLengths(list, list[i].Length);
-                //    break;
-                //}
-                //else
-                //{
-                    int gap = len - list[i].Length;
-                    list[i] = list[i].PadRight(len);
-                //}
+                int neededTabCount = list[i].Length / 5;
+                if (list[i].Length % 5 == 0)
+                {
+                    neededTabCount += 1;
+                }
+
+                string str = "";
+                switch (neededTabCount)
+                {
+                    case 0:
+                        str = list[i] + new string('\t', 4);
+                        break;
+                    case 1:
+                        str = list[i] + new string('\t', 3);
+                        break;
+                    case 2:
+                        str = list[i] + new string('\t', 3);
+                        break;
+                }
+                list[i] = str;
+
             }
         }
 

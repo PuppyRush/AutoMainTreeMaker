@@ -42,14 +42,14 @@ namespace AutoMainTreeMaker.MainTree
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.메뉴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkAutoEnumName = new System.Windows.Forms.CheckBox();
+            this.richEnumName = new AutoMainTreeMaker.CRichTextbox();
             this.richLineNumber = new AutoMainTreeMaker.CRichTextbox();
             this.richGubun = new AutoMainTreeMaker.CRichTextbox();
             this.richCol = new AutoMainTreeMaker.CRichTextbox();
             this.richEnum = new AutoMainTreeMaker.CRichTextbox();
             this.richMainTree = new AutoMainTreeMaker.CRichTextbox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.chkAutoEnumName = new System.Windows.Forms.CheckBox();
-            this.richEnumName = new AutoMainTreeMaker.CRichTextbox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +57,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.label_tree.AutoSize = true;
             this.label_tree.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_tree.Location = new System.Drawing.Point(228, 19);
+            this.label_tree.Location = new System.Drawing.Point(228, 17);
             this.label_tree.Name = "label_tree";
             this.label_tree.Size = new System.Drawing.Size(70, 19);
             this.label_tree.TabIndex = 4;
@@ -67,7 +67,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.label_enum.AutoSize = true;
             this.label_enum.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_enum.Location = new System.Drawing.Point(643, 13);
+            this.label_enum.Location = new System.Drawing.Point(644, 18);
             this.label_enum.Name = "label_enum";
             this.label_enum.Size = new System.Drawing.Size(81, 18);
             this.label_enum.TabIndex = 5;
@@ -77,7 +77,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.label_Col.AutoSize = true;
             this.label_Col.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Col.Location = new System.Drawing.Point(743, 19);
+            this.label_Col.Location = new System.Drawing.Point(743, 18);
             this.label_Col.Name = "label_Col";
             this.label_Col.Size = new System.Drawing.Size(96, 18);
             this.label_Col.TabIndex = 7;
@@ -98,7 +98,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.labelGubun.AutoSize = true;
             this.labelGubun.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGubun.Location = new System.Drawing.Point(935, 19);
+            this.labelGubun.Location = new System.Drawing.Point(935, 18);
             this.labelGubun.Name = "labelGubun";
             this.labelGubun.Size = new System.Drawing.Size(89, 18);
             this.labelGubun.TabIndex = 12;
@@ -172,6 +172,39 @@ namespace AutoMainTreeMaker.MainTree
             this.도움말ToolStripMenuItem.Text = "도움말";
             this.도움말ToolStripMenuItem.Click += new System.EventHandler(this.도움말ToolStripMenuItem_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 11.25F);
+            this.label2.Location = new System.Drawing.Point(533, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 18);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Enum Name";
+            // 
+            // chkAutoEnumName
+            // 
+            this.chkAutoEnumName.AutoSize = true;
+            this.chkAutoEnumName.Location = new System.Drawing.Point(536, 423);
+            this.chkAutoEnumName.Name = "chkAutoEnumName";
+            this.chkAutoEnumName.Size = new System.Drawing.Size(72, 16);
+            this.chkAutoEnumName.TabIndex = 24;
+            this.chkAutoEnumName.Text = "자동생성";
+            this.chkAutoEnumName.UseVisualStyleBackColor = true;
+            // 
+            // richEnumName
+            // 
+            this.richEnumName.IsChanged = false;
+            this.richEnumName.IsDrawingLine = false;
+            this.richEnumName.IsEditMode = true;
+            this.richEnumName.IsNumeric = false;
+            this.richEnumName.Location = new System.Drawing.Point(517, 40);
+            this.richEnumName.Name = "richEnumName";
+            this.richEnumName.Size = new System.Drawing.Size(117, 377);
+            this.richEnumName.TabIndex = 23;
+            this.richEnumName.Text = "T\nA\nTXPWR\nPUS\nPUC\nSRS\nTOT\nPWR\nL1DL\nPC\nMCS0\nMCS1\nMOD0\nMOD1\nPRB\nBLER\nSC\nMCS0\nMCS1\nM" +
+    "OD0\nMOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER";
+            // 
             // richLineNumber
             // 
             this.richLineNumber.IsChanged = false;
@@ -197,7 +230,9 @@ namespace AutoMainTreeMaker.MainTree
             this.richGubun.Size = new System.Drawing.Size(194, 376);
             this.richGubun.TabIndex = 11;
             this.richGubun.TabStop = false;
-            this.richGubun.Text = resources.GetString("richGubun.Text");
+            this.richGubun.Text = "T\nA\nLTE\nDLMCS0\nDLMCS1\nDLMOD0\nDLMOD1\nPRBNUM\nLTEMTKL1BLER\nHPPDSCHPC\nHPPDSCHSC\nHPPDS" +
+    "CHALL\nULMCS\nULMOD\nULPRBNUM\nL1ULBLER\nAASAS\nMACDL\nMACUL\nRLCDL\nRLCUL\nDCPDL\nDCPUL\nGL" +
+    "_CODE\nCTHTOT\nCTH100DB\nCDIFF3DB\nCTHNEW";
             this.richGubun.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
             this.richGubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 
@@ -249,38 +284,6 @@ namespace AutoMainTreeMaker.MainTree
             this.richMainTree.Text = resources.GetString("richMainTree.Text");
             this.richMainTree.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
             this.richMainTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(547, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "단축이름";
-            // 
-            // chkAutoEnumName
-            // 
-            this.chkAutoEnumName.AutoSize = true;
-            this.chkAutoEnumName.Location = new System.Drawing.Point(536, 423);
-            this.chkAutoEnumName.Name = "chkAutoEnumName";
-            this.chkAutoEnumName.Size = new System.Drawing.Size(72, 16);
-            this.chkAutoEnumName.TabIndex = 24;
-            this.chkAutoEnumName.Text = "자동생성";
-            this.chkAutoEnumName.UseVisualStyleBackColor = true;
-            // 
-            // richEnumName
-            // 
-            this.richEnumName.IsChanged = false;
-            this.richEnumName.IsDrawingLine = false;
-            this.richEnumName.IsEditMode = true;
-            this.richEnumName.IsNumeric = false;
-            this.richEnumName.Location = new System.Drawing.Point(517, 40);
-            this.richEnumName.Name = "richEnumName";
-            this.richEnumName.Size = new System.Drawing.Size(117, 377);
-            this.richEnumName.TabIndex = 23;
-            this.richEnumName.Text = "T\nA\nTXPWR\nPUS\nPUC\nSRS\nTOT\nPWR\nL1DL\nPC\nMCS0\nMCS1\nMOD0\nMOD1\nPRB\nBLER\nSC\nMCS0\nMCS1\nM" +
-    "OD0\nMOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER";
             // 
             // Dialog_MainTree
             // 

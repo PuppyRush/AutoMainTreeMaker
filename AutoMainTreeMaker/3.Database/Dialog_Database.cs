@@ -75,9 +75,18 @@ namespace AutoMainTreeMaker.Database
                     str = "34";
                     break;
                 case "DISPLAY_SEQ":
-                    str = "";
+                    if (node.IsVirtualNode)
+                        str = "-1";
+                    else
+                        str = node.DisplaySeq.ToString();
                     break;
                 case "IS_DBLCLICK":
+                    if (node.IsParent)
+                        str = "0";
+                    else
+                        str = "1";
+                    break;
+                case "IS_DRAG":
                     if (node.IsParent)
                         str = "0";
                     else
@@ -226,3 +235,4 @@ namespace AutoMainTreeMaker.Database
         }
     }
 }
+
