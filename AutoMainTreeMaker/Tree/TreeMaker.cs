@@ -235,28 +235,39 @@ namespace AutoMainTreeMaker
             List<int> sameDepthNodes = GetSameDepthNodes(originNodes, presentNode.NodeSequence);
 
             List<TreeNode> depthedList = tree.AddNode(sameDepthNodes[0], presentNode);
-
+            
             for(int i=0; i < sameDepthNodes.Count; i++)
             {
                 int nodeSeq = sameDepthNodes[i];
 
-                //base contidion
+                //base contidition
                 if (originNodes.Count - 1 <= nodeSeq)
-                    continue;
+                {
+                    TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
+                    SetSilblingNode(siblingNode, presentNode);
+                    tree.AddNode(sameDepthNodes[0], siblingNode);
+                    presentNode = siblingNode;
+                    break;
+                }
+                else if (tree.NodeCount == originNodes.Count)
+                    break;
                 
                 int depthGap = GetDepthGap(nodeSeq, nodeSeq + 1);
+                int nextDepthgap = -1;
+                if (nodeSeq +2 != originNodes.Count)
+                    nextDepthgap = GetDepthGap(nodeSeq + 1, nodeSeq + 2);
 
                 if (depthGap == 1)
                 {
                     TreeNode parentNode = null;
-                    if (tree.containsNode(nodeSeq))
+                    if (tree.ContainsNode(nodeSeq))
+                    {
                         parentNode = tree.GetNode(nodeSeq);
+                    }
                     else
                     {
                         presentNode = parentNode = GetNewNode(originNodes, presentNode, false, true);
-                        
-                        tree.AddNode(parentNode);
-                        depthedList.Add(parentNode);
+                        tree.AddNode(sameDepthNodes[0], parentNode);
                     }
 
                     bool _isParent = isParent(originNodes, presentNode.NodeSequence+1);
@@ -265,16 +276,20 @@ namespace AutoMainTreeMaker
                     SetParnetNode(parentNode, headNode, false);
 
                     presentNode = MakeTreeRecursive(originNodes, headNode, tree);
+                    
                 }
+                else if (nextDepthgap == 1 && depthGap==0)
+                {
+                    TreeNode parentNode = presentNode = GetNewNode(originNodes, presentNode, false, true);
+                    tree.AddNode(sameDepthNodes[0],  parentNode);
+                }
+
                 else if(depthGap==0)
                 {
-         
                     TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
                     SetSilblingNode(siblingNode, presentNode);
-
-                    tree.AddNode(siblingNode);
-                    depthedList.Add(siblingNode);
-
+                
+                    tree.AddNode(sameDepthNodes[0], siblingNode);
                     presentNode = siblingNode;
                 }
             }
@@ -392,20 +407,7 @@ namespace AutoMainTreeMaker
                 newNode.EnumNumber = presentNode.EnumNumber + gubunDepthGap;
             }
 
-            if (isNewHeadNode && !isNewParentNode)
-            {
-                newNode.Depth = presentNode.Depth + 1;
-            }
-            else if (isNewParentNode)
-            {
-                newNode.Depth = GetDepth(originNodes[newNode.NodeSequence]);
-            }
-            else
-            {
-                newNode.Depth = presentNode.Depth;
-            }
-
-
+            newNode.Depth = GetDepth(originNodes[newNode.NodeSequence]);
             newNode.ParamName = newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
 
             return newNode;

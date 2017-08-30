@@ -203,7 +203,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richEnumName.Size = new System.Drawing.Size(117, 377);
             this.richEnumName.TabIndex = 23;
             this.richEnumName.Text = "T\nA\nTXPWR\nPUS\nPUC\nSRS\nTOT\nPWR\nL1DL\nPC\nMCS0\nMCS1\nMOD0\nMOD1\nPRB\nBLER\nSC\nMCS0\nMCS1\nM" +
-    "OD0\nMOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER";
+    "OD0\nMOD1\nPRB\nBLER\nL1UL\nMCS\nMOD\nPRB\nBLER\nLT\nNBIOT";
             // 
             // richLineNumber
             // 
@@ -230,9 +230,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richGubun.Size = new System.Drawing.Size(194, 376);
             this.richGubun.TabIndex = 11;
             this.richGubun.TabStop = false;
-            this.richGubun.Text = "T\nA\nLTE\nDLMCS0\nDLMCS1\nDLMOD0\nDLMOD1\nPRBNUM\nLTEMTKL1BLER\nHPPDSCHPC\nHPPDSCHSC\nHPPDS" +
-    "CHALL\nULMCS\nULMOD\nULPRBNUM\nL1ULBLER\nAASAS\nMACDL\nMACUL\nRLCDL\nRLCUL\nDCPDL\nDCPUL\nGL" +
-    "_CODE\nCTHTOT\nCTH100DB\nCDIFF3DB\nCTHNEW";
+            this.richGubun.Text = resources.GetString("richGubun.Text");
             this.richGubun.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
             this.richGubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 

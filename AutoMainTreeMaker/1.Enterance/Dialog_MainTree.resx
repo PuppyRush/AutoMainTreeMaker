@@ -120,6 +120,38 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="richGubun.Text" xml:space="preserve">
+    <value>T
+A
+LTE
+DLMCS0222222
+DLMCS1
+DLMOD0
+DLMOD1
+PRBNUM
+LTEMTKL1BLER
+HPPDSCHPC
+HPPDSCHSC
+HPPDSCHALL
+ULMCS
+ULMOD
+ULPRBNUM
+L1ULBLER
+AASAS
+MACDL
+MACUL
+RLCDL
+RLCUL
+DCPDL
+DCPUL
+GL_CODE
+CTHTOT
+CTH100DB
+CDIFF3DB
+CTHNEW
+LT
+NB</value>
+  </data>
   <data name="richCol.Text" xml:space="preserve">
     <value>Ttt
 Aaa
@@ -148,7 +180,9 @@ L1 Uplink
 UL MCS
 UL Modulation
 PUSCH PRB Number
-PUSCH BLER</value>
+PUSCH BLER
+col1
+col2</value>
   </data>
   <data name="richEnum.Text" xml:space="preserve">
     <value>32323231
@@ -178,7 +212,9 @@ PUSCH BLER</value>
 793540100
 793540200
 793540300
-793540400</value>
+793540400
+12121
+214412</value>
   </data>
   <data name="richMainTree.Text" xml:space="preserve">
     <value>TTT
@@ -208,6 +244,8 @@ L1 Uplink Info
 	UL MCS
 	UL Modulation
 	PUSCH PRB Number
-	PUSCH BLER</value>
+	PUSCH BLER
+LTE
+NBIOT</value>
   </data>
 </root>

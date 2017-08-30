@@ -137,26 +137,25 @@ namespace AutoMainTreeMaker.ResltForSource
         {
             for(int i=0; i < list.Length; i++)
             {
-                int neededTabCount = list[i].Length / 5;
-                if (list[i].Length % 5 == 0)
-                {
-                    neededTabCount += 1;
-                }
+                int neededTabCount = list[i].Length / 6;
+                if (neededTabCount>1 && list[i].Length % 6==0)
+                    neededTabCount -= (neededTabCount-1);
+                list[i] = list[i] + new string('\t', 3-neededTabCount);
 
-                string str = "";
-                switch (neededTabCount)
-                {
-                    case 0:
-                        str = list[i] + new string('\t', 4);
-                        break;
-                    case 1:
-                        str = list[i] + new string('\t', 3);
-                        break;
-                    case 2:
-                        str = list[i] + new string('\t', 3);
-                        break;
-                }
-                list[i] = str;
+                //string str = "";
+                //switch (neededTabCount)
+                //{
+                //    case 0:
+                //        str = list[i] + new string('\t', 4);
+                //        break;
+                //    case 1:
+                //        str = list[i] + new string('\t', 3);
+                //        break;
+                //    case 2:
+                //        str = list[i] + new string('\t', 3);
+                //        break;
+                //}
+                //list[i] = str;
 
             }
         }

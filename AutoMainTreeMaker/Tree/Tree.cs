@@ -43,15 +43,7 @@ namespace AutoMainTreeMaker
         }
 
  
-        public void AddNode(TreeNode node)
-        {
-            if (!nodeMap.ContainsKey(node.NodeSequence))
-            {
-                NodeCount++;
-            }
-            nodeMap[node.NodeSequence] = node;
-        }
-
+  
         public List<TreeNode> AddNode(int key, TreeNode node)
         {
             List<TreeNode> silblings = null;
@@ -83,7 +75,25 @@ namespace AutoMainTreeMaker
             if (silblings == null)
                 throw new ArgumentNullException("TreeNode의 add 작업중 에러가 발생했습니다.");
 
+            nodeMap[node.NodeSequence] = node;
+
             return silblings;
+        }
+
+        public int GetTopSiblingKey(int nodeSeq)
+        {
+            if (tree.ContainsKey(nodeSeq))
+                return nodeSeq;
+
+            foreach (List<TreeNode> list in tree.Values)
+            {
+                foreach(TreeNode node in list)
+                {
+                    if (node.NodeSequence == nodeSeq)
+                        return list[0].NodeSequence;
+                }
+            }
+            return -1;
         }
 
         public TreeNode GetNode(int nodeSequece)
@@ -104,7 +114,7 @@ namespace AutoMainTreeMaker
                 {
                     if (node.NodeSequence == nodeSequece)
                     {
-                        AddNode(nodeSequece, node);
+                        nodeMap[nodeSequece] = node;
                         return node;
                     }
                 }
@@ -113,15 +123,19 @@ namespace AutoMainTreeMaker
             return null;
         }
 
-        public bool containsNode(int nodeSeq)
+        public bool ContainsNode(int nodeSeq)
         {
-            return tree.ContainsKey(nodeSeq);
-                
+        
+
+            return nodeMap.ContainsKey(nodeSeq);
         }
 
         public List<TreeNode> GetChildList(TreeNode parentNode)
         {
-            return tree[parentNode.ChildNode.NodeSequence];
+            if (tree.ContainsKey(parentNode.ChildNode.NodeSequence))
+                return tree[parentNode.ChildNode.NodeSequence];
+            else
+                return null;
         }
 
         public List<TreeNode> GetSiblings(TreeNode sibling)
