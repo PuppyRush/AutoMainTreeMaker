@@ -40,7 +40,6 @@ namespace AutoMainTreeMaker.MainTree
             richs = new List<CRichTextbox>();
             richs.Add(richMainTree);
             richs.Add(richEnum);
-            richs.Add(richVar);
             richs.Add(richCol);
             richs.Add(richGubun);
             richs.Add(richLineNumber);
@@ -121,7 +120,6 @@ namespace AutoMainTreeMaker.MainTree
                         
             maker.ColumnName = richCol.Lines;
             maker.GubunName = richGubun.Lines;
-            maker.VariableName = richVar.Lines;
             maker.EnumValue = richEnum.Lines;
             maker.GubunName = richGubun.Lines;
             maker.EnumName = richEnumName.Lines;
@@ -169,13 +167,6 @@ namespace AutoMainTreeMaker.MainTree
                 RichGubun.Enabled = true;
         }
 
-        private void ChkAutoVar_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkAutoVar.CheckState == CheckState.Checked)
-                RichVar.Enabled = false;
-            else if (chkAutoVar.CheckState == CheckState.Unchecked)
-                RichVar.Enabled = true;
-        }
 
         private void 도움말ToolStripMenuItem_Click(object sender, EventArgs e)
         {

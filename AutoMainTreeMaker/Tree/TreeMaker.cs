@@ -15,6 +15,9 @@ namespace AutoMainTreeMaker
         int gubunNodeGap;
         bool isSuccessedForMaking;
 
+        const int MAX_COL_LEN = 100;
+        const char COL_NAME_DELIMETER = '=';
+        
         Tree tree;
 
         string[] mainTree;
@@ -31,14 +34,6 @@ namespace AutoMainTreeMaker
         {
             get { return enumValue; }
             set { enumValue = value; }
-        }
-
-        string[] variableName;
-
-        public string[] VariableName
-        {
-            get { return variableName; }
-            set { variableName = value; }
         }
 
         string[] columnName;
@@ -156,10 +151,11 @@ namespace AutoMainTreeMaker
             return newStr.ToArray();
         }
 
-        public void MakeNames(List<TreeNode> list, string gubunParent, string enumParent)
+        public void MakeNames(List<TreeNode> list, string gubunParent, string enumParent, string colParent)
         {
             foreach (TreeNode node in list)
             {
+                
                 if (enumParent.Equals(""))
                 {
                     node.EnumName = enumName[node.NodeSequence];
@@ -169,14 +165,42 @@ namespace AutoMainTreeMaker
                 {
                     node.EnumName = enumParent + "_" + enumName[node.NodeSequence];
                     node.Gubun = gubunParent + "_" + gubunName[node.NodeSequence];
-
                 }
+
+                AppendColumName(node, colParent);
+
                 if (node.IsParent)
                 {
-                    MakeNames(tree.GetChildList(node), node.Gubun, node.EnumName);
+                    MakeNames(tree.GetChildList(node), node.Gubun, node.EnumName, node.ColumnName);
+                    node.ColumnName = "";
                 }
+
             }
 
+        }
+
+        public void AppendColumName(TreeNode node, string parentColumnName)
+        {
+            if(!parentColumnName.Equals(""))
+                node.ColumnName = parentColumnName + "=" + columnName[node.NodeSequence];
+            while(node.ColumnName.Length > MAX_COL_LEN)
+            {
+                int idx = node.ColumnName.IndexOf(COL_NAME_DELIMETER);
+                node.ColumnName = node.ColumnName.Remove(0, idx);
+            }
+        }
+
+        /// <summary>
+        /// 부모노드는 DB상에서 column이름을 필요로 하지 않음.
+        /// </summary>
+        public void RemoveColumnNameOfParent()
+        {
+            List<TreeNode> list = tree.GetOrderedNodeAsNodeSequence();
+            foreach(TreeNode node in list)
+            {
+                if (node.IsParent)
+                    node.ColumnName = "";
+            }
         }
 
         public bool MakeTree(string[] mainTree)
@@ -189,13 +213,19 @@ namespace AutoMainTreeMaker
 
             TreeNode firstNode = new TreeNode(-1, 0);
             firstNode.ColumnNumber = 3;
-            firstNode = GetNewNode(nodes, firstNode, true,true);
-            SetParnetNode(firstNode, firstNode,true);
+            if (GetDepthGap(0, 1) == 1)
+            {
+                firstNode = GetNewNode(nodes, firstNode, true, true);
+                SetParnetNode(firstNode, firstNode, true);
+            }
+            else
+                firstNode = GetNewNode(nodes, firstNode, true, false);
+            
 
             MakeTreeRecursive(nodes, firstNode, tree);
 
             List<TreeNode> siblings = tree.GetSiblings(firstNode);
-            MakeNames(siblings, "","");
+            MakeNames(siblings, "","","");
 
             return isSuccessedForMaking=true;
         }
@@ -204,31 +234,40 @@ namespace AutoMainTreeMaker
         {
             List<int> sameDepthNodes = GetSameDepthNodes(originNodes, presentNode.NodeSequence);
 
-            List<TreeNode> depthedList = new List<TreeNode>();
-            depthedList.Add(presentNode);
-            tree.TreeMap.Add(sameDepthNodes[0], depthedList);
-
+            List<TreeNode> depthedList = tree.AddNode(sameDepthNodes[0], presentNode);
+            
             for(int i=0; i < sameDepthNodes.Count; i++)
             {
                 int nodeSeq = sameDepthNodes[i];
 
-                //base contidion
+                //base contidition
                 if (originNodes.Count - 1 <= nodeSeq)
-                    continue;
+                {
+                    TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
+                    SetSilblingNode(siblingNode, presentNode);
+                    tree.AddNode(sameDepthNodes[0], siblingNode);
+                    presentNode = siblingNode;
+                    break;
+                }
+                else if (tree.NodeCount == originNodes.Count)
+                    break;
                 
                 int depthGap = GetDepthGap(nodeSeq, nodeSeq + 1);
+                int nextDepthgap = -1;
+                if (nodeSeq +2 != originNodes.Count)
+                    nextDepthgap = GetDepthGap(nodeSeq + 1, nodeSeq + 2);
 
                 if (depthGap == 1)
                 {
                     TreeNode parentNode = null;
-                    if (tree.containsNode(nodeSeq))
+                    if (tree.ContainsNode(nodeSeq))
+                    {
                         parentNode = tree.GetNode(nodeSeq);
+                    }
                     else
                     {
                         presentNode = parentNode = GetNewNode(originNodes, presentNode, false, true);
-                        
-                        tree.PutNodeToMap(parentNode.NodeSequence, parentNode);
-                        depthedList.Add(parentNode);
+                        tree.AddNode(sameDepthNodes[0], parentNode);
                     }
 
                     bool _isParent = isParent(originNodes, presentNode.NodeSequence+1);
@@ -237,15 +276,20 @@ namespace AutoMainTreeMaker
                     SetParnetNode(parentNode, headNode, false);
 
                     presentNode = MakeTreeRecursive(originNodes, headNode, tree);
+                    
                 }
+                else if (nextDepthgap == 1 && depthGap==0)
+                {
+                    TreeNode parentNode = presentNode = GetNewNode(originNodes, presentNode, false, true);
+                    tree.AddNode(sameDepthNodes[0],  parentNode);
+                }
+
                 else if(depthGap==0)
                 {
                     TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
                     SetSilblingNode(siblingNode, presentNode);
-
-                    tree.PutNodeToMap(siblingNode.NodeSequence, siblingNode);
-                    depthedList.Add(siblingNode);
-
+                
+                    tree.AddNode(sameDepthNodes[0], siblingNode);
                     presentNode = siblingNode;
                 }
             }
@@ -363,123 +407,35 @@ namespace AutoMainTreeMaker
                 newNode.EnumNumber = presentNode.EnumNumber + gubunDepthGap;
             }
 
-            if (isNewHeadNode && !isNewParentNode)
-            {
-                newNode.Depth = presentNode.Depth + 1;
-                newNode.ColumnNumber = presentNode.ColumnNumber;
-            }
-            else if (isNewParentNode)
-            {
-                newNode.ColumnNumber = presentNode.ColumnNumber;
-                newNode.Depth = GetDepth(originNodes[newNode.NodeSequence]);
-            }
-            else
-            {
-                newNode.ColumnNumber = presentNode.ColumnNumber + 1;
-                newNode.Depth = presentNode.Depth;
-            }
-
-            newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
-            newNode.VariableName = GetVariableName(presentIdx, isNewParentNode);
+            newNode.Depth = GetDepth(originNodes[newNode.NodeSequence]);
+            newNode.ParamName = newNode.ColumnName = GetColumnName(presentIdx, isNewParentNode);
 
             return newNode;
-        }
-
-        private string GetVariableName(int presentIdx, bool isParentNode)
-        {
-            string varName = "";
-            if (isParentNode)
-            {
-                if (wizard1.ChkAutoVar.CheckState == CheckState.Unchecked)
-                {
-
-                    if (variableName[presentIdx].Length == 0)
-                        varName = "";
-                    else
-                    {
-                        MessageBox.Show("부모에 변수명은 넣을 수 없습니다.");
-                        wizard1.RichVar.Focus();
-                        wizard1.RichVar.SelectionStart = wizard1.RichVar.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoVar.CheckState == CheckState.Checked)
-                {
-                    varName = "";
-                }
-            }
-            else
-            {
-                if (wizard1.ChkAutoVar.CheckState == CheckState.Unchecked)
-                {
-                    if (variableName[presentIdx].Length > 0)
-                        varName = variableName[presentIdx];
-                    else
-                    {
-                        MessageBox.Show("변수명은 필수로 기입해야합니다.");
-                        wizard1.RichVar.Focus();
-                        wizard1.RichVar.SelectionStart = wizard1.RichVar.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoVar.CheckState == CheckState.Checked)
-                {
-                    varName = mainTree[presentIdx];
-                }
-
-            }
-            return varName;
-
-
         }
 
         private string GetColumnName(int presentIdx, bool isParentNode)
         {
             string colname = "";
-            if (isParentNode)
+     
+            if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
             {
-                if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
+                if (columnName[presentIdx].Length > 0)
+                    colname = columnName[presentIdx];
+                else
                 {
-
-                    if (columnName[presentIdx].Length == 0)
-                        colname = "";
-                    else
-                    {
-                        MessageBox.Show("부모에 컬럼명을 넣을 수 없습니다.");
-                        wizard1.RichCol.Focus();
-                        wizard1.RichCol.SelectionStart = wizard1.RichCol.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoCol.CheckState == CheckState.Checked)
-                {
-                    colname = "";
+                    MessageBox.Show("컬럼명은 필수로 기입해야합니다.");
+                    wizard1.RichCol.Focus();
+                    wizard1.RichCol.SelectionStart = wizard1.RichCol.GetLenghtAsLineNumber(presentIdx);
+                    RemoveAll();
+                    return "";
                 }
             }
-            else
+            else if (wizard1.ChkAutoCol.CheckState == CheckState.Checked)
             {
-                if (wizard1.ChkAutoCol.CheckState == CheckState.Unchecked)
-                {
-                    if (columnName[presentIdx].Length > 0)
-                        colname = columnName[presentIdx];
-                    else
-                    {
-                        MessageBox.Show("컬럼명은 필수로 기입해야합니다.");
-                        wizard1.RichCol.Focus();
-                        wizard1.RichCol.SelectionStart = wizard1.RichCol.GetLenghtAsLineNumber(presentIdx);
-                        RemoveAll();
-                        return "";
-                    }
-                }
-                else if (wizard1.ChkAutoCol.CheckState == CheckState.Checked)
-                {
-                    colname = mainTree[presentIdx];
-                }
-
+                colname = mainTree[presentIdx];
             }
+
+            
             return colname;
 
         }
@@ -494,7 +450,7 @@ namespace AutoMainTreeMaker
                 else
                     break;
             }
-            return depth;
+            return depth+1;
         }
 
         private int GetDepthGap(string parent, string child)

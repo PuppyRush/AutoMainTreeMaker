@@ -120,92 +120,74 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="richVar.Text" xml:space="preserve">
-    <value>
-PUSCH Power
-PUCCH Power
-SRS Power
-Total Tx Power
-Power Headroom
-
-
-DL MCS0
-DL MCS1
-DL Modulation0
-DL Modulation1
-PDSCH PRB Number
-PDSCH BLER
-
-DL MCS0
-DL MCS1
-DL Modulation0
-DL Modulation1
-PDSCH PRB Number
-PDSCH BLER
-
-UL MCS
-UL Modulation
-PUSCH PRB Number
-PUSCH BLER</value>
-  </data>
   <data name="richGubun.Text" xml:space="preserve">
-    <value>GL_CODE
-LTEMTKL1DLMCS0
-LTEMTKL1DLMCS1
-LTEMTKL1DLMOD0
-LTEMTKL1DLMOD1
-LTEMTKL1PRBNUM
+    <value>T
+A
+LTE
+DLMCS0222222
+DLMCS1
+DLMOD0
+DLMOD1
+PRBNUM
 LTEMTKL1BLER
-LTEMTKLTHPPDSCHPC
-LTEMTKLTHPPDSCHSC
-LTEMTKLTHPPDSCHALL
-LTEMTKL1ULMCS
-LTEMTKL1ULMOD
-LTEMTKL1ULPRBNUM
-LTEMTKL1ULBLER
+HPPDSCHPC
+HPPDSCHSC
+HPPDSCHALL
+ULMCS
+ULMOD
+ULPRBNUM
+L1ULBLER
 AASAS
-LTEMTKLTHPMACDL
-LTEMTKLTHPMACUL
-LTEMTKLTHPRLCDL
-LTEMTKLTHPRLCUL
-LTEMTKLTHPDCPDL
-LTEMTKLTHPDCPUL
+MACDL
+MACUL
+RLCDL
+RLCUL
+DCPDL
+DCPUL
 GL_CODE
-LTEMTKPPOUCTHTOT
-LTEMTKPPOUCTH100DB
-LTEMTKPPOUCDIFF3DB
-LTEMTKPPOUCTHNEW</value>
+CTHTOT
+CTH100DB
+CDIFF3DB
+CTHNEW
+LT
+NB</value>
   </data>
   <data name="richCol.Text" xml:space="preserve">
-    <value>
+    <value>Ttt
+Aaa
+Tx Power Info
 PUSCH Power
 PUCCH Power
 SRS Power
 Total Tx Power
 Power Headroom
-
-
+L1 Downlink
+PCell
 DL MCS0
 DL MCS1
 DL Modulation0
 DL Modulation1
 PDSCH PRB Number
 PDSCH BLER
-
+Scell[%d]
 DL MCS0
 DL MCS1
 DL Modulation0
 DL Modulation1
 PDSCH PRB Number
 PDSCH BLER
-
+L1 Uplink
 UL MCS
 UL Modulation
 PUSCH PRB Number
-PUSCH BLER</value>
+PUSCH BLER
+col1
+col2</value>
   </data>
   <data name="richEnum.Text" xml:space="preserve">
-    <value>793520000
+    <value>32323231
+11231232
+793520000
 793520100
 793520200
 793520300
@@ -230,10 +212,14 @@ PUSCH BLER</value>
 793540100
 793540200
 793540300
-793540400</value>
+793540400
+12121
+214412</value>
   </data>
   <data name="richMainTree.Text" xml:space="preserve">
-    <value>Tx Power Info
+    <value>TTT
+AAA
+Tx Power Info
 	PUSCH Power
 	PUCCH Power
 	SRS Power
@@ -258,6 +244,8 @@ L1 Uplink Info
 	UL MCS
 	UL Modulation
 	PUSCH PRB Number
-	PUSCH BLER</value>
+	PUSCH BLER
+LTE
+NBIOT</value>
   </data>
 </root>

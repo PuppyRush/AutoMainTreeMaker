@@ -21,6 +21,8 @@ namespace AutoMainTreeMaker
         private int displaySeq;
         private int depth;
         private int columnNumber;
+        private string recordsetFileName;
+        private string paramName;
         private string variableName;
         private string gubun;
         private string columnName;
@@ -178,6 +180,32 @@ namespace AutoMainTreeMaker
             }
         }
 
+        public string ParamName
+        {
+            get
+            {
+                return paramName;
+            }
+
+            set
+            {
+                paramName = value;
+            }
+        }
+
+        public string RecordsetFileName
+        {
+            get
+            {
+                return recordsetFileName;
+            }
+
+            set
+            {
+                recordsetFileName = value;
+            }
+        }
+
         public TreeNode(int nodeSeq)
         {
             nodeSequence = nodeSeq;
@@ -194,10 +222,6 @@ namespace AutoMainTreeMaker
             else
                 this.depth = depth;
 
-            this.isVirtualNode = isVirtualNode;
-            this.isParent = isParent;
-
-            
             this.nodeSequence = nodeSeq;
         }
 

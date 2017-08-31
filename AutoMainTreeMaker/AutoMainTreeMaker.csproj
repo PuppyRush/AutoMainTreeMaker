@@ -90,7 +90,6 @@
       <DependentUpon>Dialog_MainTree.cs</DependentUpon>
     </Compile>
     <Compile Include="CRichTextBoxInterface.cs" />
-    <Compile Include="SourceMaker\SourceMaker.cs" />
     <Compile Include="Tree\TreeMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

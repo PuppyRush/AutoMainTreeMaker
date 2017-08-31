@@ -36,13 +36,13 @@
             // 
             // richMainTree
             // 
+            this.richMainTree.AcceptsTab = true;
             this.richMainTree.IsChanged = false;
             this.richMainTree.IsDrawingLine = false;
             this.richMainTree.IsEditMode = true;
             this.richMainTree.IsNumeric = false;
             this.richMainTree.Location = new System.Drawing.Point(12, 34);
             this.richMainTree.Name = "richMainTree";
-            this.richMainTree.ReadOnly = true;
             this.richMainTree.Size = new System.Drawing.Size(795, 404);
             this.richMainTree.TabIndex = 0;
             this.richMainTree.Text = "";
