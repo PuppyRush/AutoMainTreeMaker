@@ -284,6 +284,7 @@ namespace AutoMainTreeMaker.Database
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "뒤로가기";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Dialog_Database
             // 

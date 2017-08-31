@@ -14,14 +14,17 @@ namespace AutoMainTreeMaker.Database
     public partial class Dialog_Database : Form
     {
 
+        Dialog_ColumnNumberAndRecordset colRecordDlg;
         List<TreeNode> orderedNode;
 
-        public Dialog_Database(List<TreeNode> orderedNode)
+        public Dialog_Database(List<TreeNode> orderedNode, Dialog_ColumnNumberAndRecordset dlg )
         {
             InitializeComponent();
             comboBoxDB.SelectedIndex = 0;
 
             this.orderedNode = orderedNode;
+            colRecordDlg = dlg;
+
             InitDataViewForLTE();
         }
 
@@ -232,6 +235,12 @@ namespace AutoMainTreeMaker.Database
             return;
 
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            colRecordDlg.ShowDialog();
         }
     }
 }

@@ -100,13 +100,9 @@ namespace AutoMainTreeMaker.ResltForSource
         {
             string[] sources = enumname;
             int maxi = GetLengthestOf(sources);
-            PadRight(sources, maxi+5);
-            maxi = GetLengthestOf(sources);
-            //EqualizeStringLengths(sources, maxi);
-            AppendBlanketAndEqualAndEnumNumberAndTree("        ", sources, enumNumber, mainTree);
+            PadRight(sources, 3);
 
-            //maxi = GetLengthestOf(sources);
-            //EqualizeStringLengths(sources, maxi);
+            AppendBlanketAndEqualAndEnumNumberAndTree("        ", sources, enumNumber, mainTree);
 
             richMainTree.Lines = sources;
         }
@@ -140,22 +136,7 @@ namespace AutoMainTreeMaker.ResltForSource
                 int neededTabCount = list[i].Length / 6;
                 if (neededTabCount>1 && list[i].Length % 6==0)
                     neededTabCount -= (neededTabCount-1);
-                list[i] = list[i] + new string('\t', 3-neededTabCount);
-
-                //string str = "";
-                //switch (neededTabCount)
-                //{
-                //    case 0:
-                //        str = list[i] + new string('\t', 4);
-                //        break;
-                //    case 1:
-                //        str = list[i] + new string('\t', 3);
-                //        break;
-                //    case 2:
-                //        str = list[i] + new string('\t', 3);
-                //        break;
-                //}
-                //list[i] = str;
+                list[i] = list[i] + new string('\t', len-neededTabCount);
 
             }
         }
@@ -171,14 +152,9 @@ namespace AutoMainTreeMaker.ResltForSource
                 bld.Append(" = ");
                 bld.Append(enumNumber[i]);
                 bld.Append(",");
-                bld.Append(blankets);
-
-                dest[i] = bld.ToString();
-                bld.Clear();
-                dest[i] = dest[i].PadRight(100);
-                bld.Append(dest[i]);
-                bld.Append("//        ");
+                bld.Append("\t\t");
                 bld.Append(mainTree[i]);
+
                 dest[i] = bld.ToString();
             }
         }
@@ -197,8 +173,9 @@ namespace AutoMainTreeMaker.ResltForSource
             this.Hide();
 
             if (columnRecordsetDlg == null)
-                columnRecordsetDlg = new Dialog_ColumnNumberAndRecordset(tree, mainTree);
-
+            {
+                columnRecordsetDlg = new Dialog_ColumnNumberAndRecordset(tree, mainTree,this);
+            }
             columnRecordsetDlg.ShowDialog();
         }
     }
