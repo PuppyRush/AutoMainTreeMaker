@@ -149,6 +149,7 @@
             this.btnBack.TabIndex = 17;
             this.btnBack.Text = "<- 이전";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Dialog_ColumnNumberAndRecordset
             // 

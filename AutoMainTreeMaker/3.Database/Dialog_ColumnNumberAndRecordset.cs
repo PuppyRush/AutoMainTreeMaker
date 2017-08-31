@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using AutoMainTreeMaker.ResltForSource;
 
 namespace AutoMainTreeMaker.Database
 {
@@ -13,13 +9,14 @@ namespace AutoMainTreeMaker.Database
     {
         public static int DEFAULT_COL_NUMBER = -100;
 
-        CRichTextBoxInterface richInterface;
-        List<CRichTextbox> richs;
-        Tree tree;
+        private CRichTextBoxInterface richInterface;
+        private List<CRichTextbox> richs;
+        private Tree tree;
 
-        Dialog_Database databaseDlg;
+        private Dialog_ResultForSource resultDlg;
+        private Dialog_Database databaseDlg;
 
-        public Dialog_ColumnNumberAndRecordset(Tree tree, string [] mainTree)
+        public Dialog_ColumnNumberAndRecordset(Tree tree, string [] mainTree, Dialog_ResultForSource dlg)
         {
             InitializeComponent();
 
@@ -36,6 +33,8 @@ namespace AutoMainTreeMaker.Database
 
             richColumnNumber.Lines = new string[tree.NodeCount];
             richRecordsetName.Lines = new string[tree.NodeCount];
+
+            resultDlg = dlg;
         }
 
         public void Make()
@@ -93,13 +92,18 @@ namespace AutoMainTreeMaker.Database
             }
 
             Make();
-            this.Hide();
 
+            this.Hide();
             if (databaseDlg == null)
-                databaseDlg = new Dialog_Database(tree.GetOrderedNodeAsNodeSequence());
+                databaseDlg = new Dialog_Database(tree.GetOrderedNodeAsNodeSequence(),this);
 
             databaseDlg.ShowDialog();
         }
-      
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            resultDlg.ShowDialog();
+        }
     }
 }
