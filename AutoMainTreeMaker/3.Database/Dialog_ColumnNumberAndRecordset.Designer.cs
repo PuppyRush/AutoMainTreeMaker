@@ -30,15 +30,16 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.richColumnNumber = new AutoMainTreeMaker.CRichTextbox();
-            this.richMainTree = new AutoMainTreeMaker.CRichTextbox();
-            this.richRecordsetName = new AutoMainTreeMaker.CRichTextbox();
             this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.메뉴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.richRecordsetName = new AutoMainTreeMaker.CRichTextbox();
+            this.richColumnNumber = new AutoMainTreeMaker.CRichTextbox();
+            this.richMainTree = new AutoMainTreeMaker.CRichTextbox();
+            this.comboMethod = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,43 +60,6 @@
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 9;
             this.label1.Text = "메인트리";
-            // 
-            // richColumnNumber
-            // 
-            this.richColumnNumber.IsChanged = false;
-            this.richColumnNumber.IsDrawingLine = false;
-            this.richColumnNumber.IsEditMode = true;
-            this.richColumnNumber.IsNumeric = false;
-            this.richColumnNumber.Location = new System.Drawing.Point(653, 43);
-            this.richColumnNumber.Name = "richColumnNumber";
-            this.richColumnNumber.Size = new System.Drawing.Size(38, 404);
-            this.richColumnNumber.TabIndex = 12;
-            this.richColumnNumber.Text = "";
-            // 
-            // richMainTree
-            // 
-            this.richMainTree.IsChanged = false;
-            this.richMainTree.IsDrawingLine = false;
-            this.richMainTree.IsEditMode = true;
-            this.richMainTree.IsNumeric = false;
-            this.richMainTree.Location = new System.Drawing.Point(12, 43);
-            this.richMainTree.Name = "richMainTree";
-            this.richMainTree.ReadOnly = true;
-            this.richMainTree.Size = new System.Drawing.Size(635, 404);
-            this.richMainTree.TabIndex = 11;
-            this.richMainTree.Text = "";
-            // 
-            // richRecordsetName
-            // 
-            this.richRecordsetName.IsChanged = false;
-            this.richRecordsetName.IsDrawingLine = false;
-            this.richRecordsetName.IsEditMode = true;
-            this.richRecordsetName.IsNumeric = false;
-            this.richRecordsetName.Location = new System.Drawing.Point(701, 43);
-            this.richRecordsetName.Name = "richRecordsetName";
-            this.richRecordsetName.Size = new System.Drawing.Size(148, 404);
-            this.richRecordsetName.TabIndex = 13;
-            this.richRecordsetName.Text = "";
             // 
             // label3
             // 
@@ -151,11 +115,61 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // richRecordsetName
+            // 
+            this.richRecordsetName.IsChanged = false;
+            this.richRecordsetName.IsDrawingLine = false;
+            this.richRecordsetName.IsEditMode = true;
+            this.richRecordsetName.IsNumeric = false;
+            this.richRecordsetName.Location = new System.Drawing.Point(701, 43);
+            this.richRecordsetName.Name = "richRecordsetName";
+            this.richRecordsetName.Size = new System.Drawing.Size(148, 404);
+            this.richRecordsetName.TabIndex = 13;
+            this.richRecordsetName.Text = "aa\n\n\nbb\n\n\n\nbb\n\n\ncc\n\n\n\n\ncc\n\ndd\n\n\n\n\ndd\n\n\n\n\n\n\naa";
+            // 
+            // richColumnNumber
+            // 
+            this.richColumnNumber.IsChanged = false;
+            this.richColumnNumber.IsDrawingLine = false;
+            this.richColumnNumber.IsEditMode = true;
+            this.richColumnNumber.IsNumeric = false;
+            this.richColumnNumber.Location = new System.Drawing.Point(653, 43);
+            this.richColumnNumber.Name = "richColumnNumber";
+            this.richColumnNumber.Size = new System.Drawing.Size(38, 404);
+            this.richColumnNumber.TabIndex = 12;
+            this.richColumnNumber.Text = "3\n\n\n3\n\n\n\n\n\n\n3\n\n\n\n\n\n\n3\n\n\n\n\n\n\n\n";
+            // 
+            // richMainTree
+            // 
+            this.richMainTree.IsChanged = false;
+            this.richMainTree.IsDrawingLine = false;
+            this.richMainTree.IsEditMode = true;
+            this.richMainTree.IsNumeric = false;
+            this.richMainTree.Location = new System.Drawing.Point(12, 43);
+            this.richMainTree.Name = "richMainTree";
+            this.richMainTree.ReadOnly = true;
+            this.richMainTree.Size = new System.Drawing.Size(635, 404);
+            this.richMainTree.TabIndex = 11;
+            this.richMainTree.Text = "";
+            // 
+            // comboMethod
+            // 
+            this.comboMethod.FormattingEnabled = true;
+            this.comboMethod.Items.AddRange(new object[] {
+            "최소방식",
+            "범위방식",
+            "수동방식"});
+            this.comboMethod.Location = new System.Drawing.Point(702, 453);
+            this.comboMethod.Name = "comboMethod";
+            this.comboMethod.Size = new System.Drawing.Size(121, 20);
+            this.comboMethod.TabIndex = 19;
+            // 
             // Dialog_ColumnNumberAndRecordset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 521);
+            this.Controls.Add(this.comboMethod);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.label3);
@@ -188,5 +202,6 @@
         private System.Windows.Forms.ToolStripMenuItem 도움말ToolStripMenuItem;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.ComboBox comboMethod;
     }
 }

@@ -7,7 +7,7 @@ namespace AutoMainTreeMaker.Database
 {
     public partial class Dialog_ColumnNumberAndRecordset : Form
     {
-        public static int DEFAULT_COL_NUMBER = -100;
+        public static int DEFAULT_COL_NUMBER = -1;
 
         private CRichTextBoxInterface richInterface;
         private List<CRichTextbox> richs;
@@ -15,6 +15,19 @@ namespace AutoMainTreeMaker.Database
 
         private Dialog_ResultForSource resultDlg;
         private Dialog_Database databaseDlg;
+
+        private struct RecordSetStackInfo
+        {
+            public string rsName;
+            public int beginConNumber;
+            public List<int> nodeSeqList;
+            public RecordSetStackInfo(string name, int beginColnum)
+            {
+                rsName = name;
+                beginConNumber = beginColnum;
+                nodeSeqList = new List<int>();
+            }
+        }
 
         public Dialog_ColumnNumberAndRecordset(Tree tree, string [] mainTree, Dialog_ResultForSource dlg)
         {
@@ -31,33 +44,128 @@ namespace AutoMainTreeMaker.Database
             richInterface = new CRichTextBoxInterface();
             richInterface.SetInterface(richs);
 
-            richColumnNumber.Lines = new string[tree.NodeCount];
-            richRecordsetName.Lines = new string[tree.NodeCount];
+            //richColumnNumber.Lines = new string[tree.NodeCount];
+            //richRecordsetName.Lines = new string[tree.NodeCount];
+            //richColumnNumber.Lines[0] = 3.ToString();
+            //richRecordsetName.Lines[0] = "foo.dat";
 
             resultDlg = dlg;
         }
 
         public void Make()
         {
-            List<TreeNode> OrderedNode = tree.GetOrderedNodeAsNodeSequence();
-            int colNum = 3;
-            string rsName = "";
-            foreach (TreeNode node in OrderedNode)
+            switch(comboMethod.SelectedIndex)
             {
+                case 0:
+                    MinimalMode();
+                    break;
+
+                case 1:
+                    RangeMode();
+                    break;
+
+                case 2:
+                    ManualMode();
+                    break;
+                default:
+                    ManualMode();
+                    break;
+            }
+        }
+
+        private void ManualMode()
+        {
+            List<TreeNode> orderedNode = tree.GetOrderedNodeAsNodeSequence();
+            foreach (TreeNode node in orderedNode)
+            {
+                if (node.IsParent)
+                {
+                    continue;
+                }
+                else
+                {
+
+                    string colnum = richColumnNumber.Lines[node.NodeSequence];
+                    string rs = richRecordsetName.Lines[node.NodeSequence];
+                    if (colnum != "")
+                        node.ColumnNumber = Int32.Parse(colnum);
+                    if (rs != "")
+                        node.RecordsetFileName = rs;
+                }
+            }
+        }
+
+        private void RangeMode()
+        {
+
+            List<TreeNode> orderedNode = tree.GetOrderedNodeAsNodeSequence();
+            Stack<RecordSetStackInfo> rsStack = new Stack<RecordSetStackInfo>();
+            foreach (TreeNode node in orderedNode)
+            {
+
                 if (node.IsParent)
                 {
                     node.ColumnNumber = DEFAULT_COL_NUMBER;
                     continue;
                 }
-                if (richColumnNumber.Lines[node.NodeSequence] != "")
-                    colNum = Int32.Parse(richColumnNumber.Lines[node.NodeSequence]);
-                node.ColumnNumber = colNum++;
+                else
+                {
+                    var thisRsName = richRecordsetName.Lines[node.NodeSequence];
+                    if (rsStack.Count == 0 && thisRsName != "")
+                    {
+                        var newRs = new RecordSetStackInfo(thisRsName, Int32.Parse(richColumnNumber.Lines[node.NodeSequence]));
+                        newRs.nodeSeqList.Add(node.NodeSequence);
+                        rsStack.Push(newRs);
+                    }
+                    else if (rsStack.Count > 0 && rsStack.Peek().rsName == thisRsName)
+                    {
+                        var rsInfo = rsStack.Peek();
+                        rsStack.Pop();
+                        rsInfo.nodeSeqList.Add(node.NodeSequence);
 
-                if (richRecordsetName.Lines[node.NodeSequence] != "")
+                        int firstNumber = rsInfo.beginConNumber;
+                        string rsName = rsInfo.rsName;
+                        foreach (int nodeSeq in rsInfo.nodeSeqList)
+                        {
+                            orderedNode[nodeSeq].ColumnNumber = firstNumber++;
+                            orderedNode[nodeSeq].RecordsetFileName = rsName;
+                        }
+                    }
+                    //새로운 레코드셋
+                    else if (rsStack.Count > 0 && thisRsName != "" && rsStack.Peek().rsName != thisRsName)
+                    {
+                        var newRs = new RecordSetStackInfo(thisRsName, Int32.Parse(richColumnNumber.Lines[node.NodeSequence]));
+                        newRs.nodeSeqList.Add(node.NodeSequence);
+                        rsStack.Push(newRs);
+                    }
+                    else
+                        rsStack.Peek().nodeSeqList.Add(node.NodeSequence);
+                }
+
+            }
+        }
+
+        private void MinimalMode()
+        {
+            List<TreeNode> OrderedNode = tree.GetOrderedNodeAsNodeSequence();
+            bool isBegin = false;
+            int colNum = 3;
+            string rsName = "";
+            foreach (TreeNode node in OrderedNode)
+            {
+                if (node.IsParent)
+                    continue;
+
+                if (!isBegin && (richColumnNumber.Lines[node.NodeSequence] != "" || richRecordsetName.Lines[node.NodeSequence] != ""))
+                {
+                    colNum = Int32.Parse(richColumnNumber.Lines[node.NodeSequence]);
                     rsName = richRecordsetName.Lines[node.NodeSequence];
+                    isBegin = true;
+                }
+                    
+                node.ColumnNumber = colNum++;
                 node.RecordsetFileName = rsName;
             }
-
         }
 
         public bool IsInvaliated()
@@ -89,8 +197,10 @@ namespace AutoMainTreeMaker.Database
             if(!IsInvaliated())
             {
                 MessageBox.Show("부모노드에는 숫자나 레코드셋 파일명이 들어갈 수 없습니다. 혹은 첫 헤드노드엔 컬럼번호를 입력해야 합니다.");
+                return;
             }
 
+            richInterface.EqualLinesToMaximumLine();
             Make();
 
             this.Hide();

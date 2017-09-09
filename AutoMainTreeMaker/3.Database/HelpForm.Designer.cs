@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelpForm));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
@@ -35,16 +36,15 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(17, 12);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(357, 56);
+            this.richTextBox1.Size = new System.Drawing.Size(475, 332);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "1. 새로운 컬럼이 시작되는 번호만 3으로 지정하고 레코드셋 파일 이름을 지정하세요.\n2. Left노드에만 컬럼 번호를 입력하세요.(부모는 지정하" +
-    "면 안됨)";
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // HelpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 79);
+            this.ClientSize = new System.Drawing.Size(504, 393);
             this.Controls.Add(this.richTextBox1);
             this.Name = "HelpForm";
             this.Text = "HelpForm";

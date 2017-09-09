@@ -108,15 +108,17 @@ namespace AutoMainTreeMaker.MainTree
 
         private void BtnMakeTree_Click(object sender, EventArgs e)
         {
-            foreach (CRichTextbox r in richs)
+            if (isCreatedTree)
             {
-                if (r.IsChanged)
+                foreach (CRichTextbox r in richs)
                 {
-                    MessageBox.Show("목록들 중에 변경사항이 있습니다. 트리를 다시 생성합니다");
-                    break;
+                    if (r.IsChanged)
+                    {
+                        MessageBox.Show("목록들 중에 변경사항이 있습니다. 트리를 다시 생성합니다");
+                        break;
+                    }
                 }
             }
-
                         
             maker.ColumnName = richCol.Lines;
             maker.GubunName = richGubun.Lines;
@@ -132,7 +134,7 @@ namespace AutoMainTreeMaker.MainTree
                 MessageBox.Show("트리생성에 성공하였습니다.");
             }
             else
-                MessageBox.Show("DOOOOOOOOOOOOHP");
+                MessageBox.Show("트리생성에 실패했습니다. 다시 작성하세요.");
                 
         }
 
@@ -199,7 +201,8 @@ namespace AutoMainTreeMaker.MainTree
                 dlg.MakeSource();
                 dlg.ShowDialog();
             }
-
+            else
+                MessageBox.Show("트리를 생성해야 진행할 수 있습니다.");
         }
     }
 }
