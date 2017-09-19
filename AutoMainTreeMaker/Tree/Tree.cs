@@ -1,14 +1,73 @@
 ﻿using System.Collections.Generic;
 
 using System;
+using AutoMainTreeMaker.SourceMaker;
 
 namespace AutoMainTreeMaker
 {
     
     public class Tree
     {
+
+        public class TreeAsRecordset
+        {
+            private string recordfileName;
+            private string subcode;
+            private string shortcutName;
+
+            List<TreeNode> nodeList;
+
+            public string RecordfileName
+            {
+                get
+                {
+                    return recordfileName;
+                }
+
+                set
+                {
+                    recordfileName = value;
+                }
+            }
+
+            public string Subcode
+            {
+                get
+                {
+                    return subcode;
+                }
+
+                set
+                {
+                    subcode = value;
+                }
+            }
+
+            public string ShortcutName
+            {
+                get
+                {
+                    return shortcutName;
+                }
+
+                set
+                {
+                    shortcutName = value;
+                }
+            }
+
+            public TreeAsRecordset(string rsName, List<TreeNode> list)
+            {
+                RecordfileName = rsName;
+                nodeList = list;
+            }
+
+
+        }
+
         //ColumnSequence가 키.
 
+        private bool isExistingVirtualNode;
         private int nodeCount;
         private bool isChanged;
 
@@ -19,6 +78,14 @@ namespace AutoMainTreeMaker
         /// key는 형제노드들의 첫번째 nodeSequence입니다.
         /// </summary>
         private Dictionary<int, List<TreeNode>> tree;
+
+        public Tree()
+        {
+            isChanged = true;
+            orderedNode = new List<TreeNode>();
+            nodeMap = new Dictionary<int, TreeNode>();
+            tree = new Dictionary<int, List<TreeNode>>();
+        }
 
         public int NodeCount
         {
@@ -33,17 +100,19 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public Tree()
+        public bool IsExistingVirtualNode
         {
-            isChanged = true;
-            orderedNode = new List<TreeNode>();
-            nodeMap = new Dictionary<int, TreeNode>();
-            tree = new Dictionary<int, List<TreeNode>>();
+            get
+            {
+                return isExistingVirtualNode;
+            }
 
+            set
+            {
+                isExistingVirtualNode = value;
+            }
         }
 
- 
-  
         public List<TreeNode> AddNode(int key, TreeNode node)
         {
             List<TreeNode> silblings = null;
@@ -189,5 +258,30 @@ namespace AutoMainTreeMaker
             return _list;
         }
         
+        public List<TreeNode> GetOrderedLeafNode()
+        {
+            List<TreeNode> nodes = new List<TreeNode>();
+            if (orderedNode.Count == 0)
+                orderedNode = GetOrderedNodeAsNodeSequence();
+
+            foreach(TreeNode node in orderedNode)
+            {
+                if (node.IsLeaf)
+                    nodes.Add(node);
+            }
+            return nodes;
+        }
+
+        public static List<TreeAsRecordset> GetLeafNodeByRecordset(SourceMaker.MappingData datas)
+        {
+            var list = new List<TreeAsRecordset>();
+            
+            //var nodes = this
+
+
+            return list;
+        }
     }
+
+   
 }

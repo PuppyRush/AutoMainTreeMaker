@@ -265,6 +265,7 @@ namespace AutoMainTreeMaker.Database
             this.btnMakeSource.TabIndex = 2;
             this.btnMakeSource.Text = "소스파일 생성하기";
             this.btnMakeSource.UseVisualStyleBackColor = true;
+            this.btnMakeSource.Click += new System.EventHandler(this.btnMakeSource_Click);
             // 
             // btnMakeExcel
             // 

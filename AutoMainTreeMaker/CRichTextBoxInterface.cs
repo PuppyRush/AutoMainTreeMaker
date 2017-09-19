@@ -29,6 +29,9 @@ namespace AutoMainTreeMaker
 
         public void SetInterface(List<CRichTextbox> richs)
         {
+            if (!(richs.Count >= 1))
+                throw new ArgumentException("CRichInterface초기화에는 최소 한개 이상의 CRichBox가 있어야합니다.");
+
             this.richs = richs;
             
             foreach(CRichTextbox rich in this.richs)
@@ -60,6 +63,32 @@ namespace AutoMainTreeMaker
         private void KeyUp_DrawLineAllForms(object sender, KeyEventArgs e)
         {
             
+        }
+
+
+        public void EqualLinesToMaximumLine()
+        {
+            int max = GetMaxmimumLines();
+            foreach(CRichTextbox rich in richs)
+            {
+                if(rich.Lines.Length < max)
+                {
+                    int adjustion = max - rich.Lines.Length;
+                    for(int i=0; i < adjustion; i++)
+                        rich.AppendText("\n");
+                }
+            }
+        }
+
+        private int GetMaxmimumLines()
+        {
+            int max = -1;
+            foreach(CRichTextbox rich in richs)
+            {
+                if (rich.Lines.Length > max)
+                    max = rich.Lines.Length;
+            }
+            return max;
         }
     }
 

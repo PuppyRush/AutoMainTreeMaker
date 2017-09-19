@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using Excel = Microsoft.Office.Interop.Excel;
+using AutoMainTreeMaker.SourceMaker;
 
 namespace AutoMainTreeMaker.Database
 {
     public partial class Dialog_Database : Form
     {
-
+        Dialog_MappingData mappingDlg;
         Dialog_ColumnNumberAndRecordset colRecordDlg;
         List<TreeNode> orderedNode;
+        List<string> recordsetNames;
 
-        public Dialog_Database(List<TreeNode> orderedNode, Dialog_ColumnNumberAndRecordset dlg )
+        public Dialog_Database(List<TreeNode> orderedNode, List<string> rsList, Dialog_ColumnNumberAndRecordset dlg )
         {
             InitializeComponent();
+            recordsetNames = rsList;
+            mappingDlg = new Dialog_MappingData();
             comboBoxDB.SelectedIndex = 0;
 
             this.orderedNode = orderedNode;
@@ -230,11 +229,9 @@ namespace AutoMainTreeMaker.Database
 
         private void btnMakeSource_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show("아직 지원하지 않는 기능입니다.");
-            return;
-
-
+            this.Hide();
+            mappingDlg.Init(recordsetNames);
+            mappingDlg.ShowDialog();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

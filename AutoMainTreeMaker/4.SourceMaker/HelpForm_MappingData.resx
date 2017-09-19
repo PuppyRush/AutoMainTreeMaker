@@ -117,40 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richMainTree.Text" xml:space="preserve">
-    <value>struct original{
-	long ttt;
-	short aaa;
-	struct L1down{
-		struct PCell{
-			long DL_MCS0;
-			long DL_MCS1;
-			long DL_Modulation0;
-			long DL_Modulation1;
-			long PDSCH;
-			long PDSCH;
-		}PCell;
-		strict SCell{
-			long DL_MCS0
-			long DL_MCS1
-			long DL_Modu
-			long DL_Modu
-			long PDSCH;
-			long PDSCH;
-		}Scell[10];
-		long legnth;
-	}L1Down;
-	struct L1Up{
-		byte UL_MCS;
-		byte UL_Modulation;
-		byte PUSCH;
-		byte PUSCH;
-	}L1Up;
-	BYTE lte;
-	BYTE nbiot;
-}original;</value>
-  </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

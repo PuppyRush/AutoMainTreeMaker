@@ -8,6 +8,16 @@ namespace AutoMainTreeMaker
     public class TreeNode
     {
 
+        public enum variableTypes
+        {
+            Long=0,
+            Short=1,
+            CharArray=2,
+            Char=3,
+            Byte=4,
+            Undefined=5
+        };
+
         //변수상의 순서. 0부터 시작이다.
         private int nodeSequence;
 
@@ -15,6 +25,7 @@ namespace AutoMainTreeMaker
         private bool isHead;
         private bool isLastSon;
         private bool isFinal;
+        private bool isLeaf;
 
         private bool isVirtualNode;
         private int enumNumber;
@@ -27,6 +38,9 @@ namespace AutoMainTreeMaker
         private string gubun;
         private string columnName;
         private string enumName;
+
+        private variableTypes variableType;
+        private long varLenght;
 
         private TreeNode parentNode;
         private TreeNode childNode;
@@ -203,6 +217,45 @@ namespace AutoMainTreeMaker
             set
             {
                 recordsetFileName = value;
+            }
+        }
+
+        public variableTypes VariableType
+        {
+            get
+            {
+                return VariableType2;
+            }
+
+            set
+            {
+                VariableType2 = value;
+            }
+        }
+
+        public long VarLenght
+        {
+            get
+            {
+                return VarLenght1;
+            }
+
+            set
+            {
+                VarLenght1 = value;
+            }
+        }
+
+        public bool IsLeaf
+        {
+            get
+            {
+                return isLeaf;
+            }
+
+            set
+            {
+                isLeaf = value;
             }
         }
 

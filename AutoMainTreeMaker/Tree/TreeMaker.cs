@@ -151,7 +151,7 @@ namespace AutoMainTreeMaker
             return newStr.ToArray();
         }
 
-        public void MakeNames(List<TreeNode> list, string gubunParent, string enumParent, string colParent)
+        private void MakeNames(List<TreeNode> list, string gubunParent, string enumParent, string colParent)
         {
             foreach (TreeNode node in list)
             {
@@ -179,7 +179,7 @@ namespace AutoMainTreeMaker
 
         }
 
-        public void AppendColumName(TreeNode node, string parentColumnName)
+        private void AppendColumName(TreeNode node, string parentColumnName)
         {
             if(!parentColumnName.Equals(""))
                 node.ColumnName = parentColumnName + "=" + columnName[node.NodeSequence];
@@ -346,9 +346,10 @@ namespace AutoMainTreeMaker
 
         private void SetSilblingNode(TreeNode presentNode, TreeNode prevNode)
         {
- 
-            prevNode.IsHead = false;
-            prevNode.IsParent = false;
+
+            presentNode.IsHead = false;
+            presentNode.IsParent = false;
+            presentNode.IsLeaf = true;
 
         }
 

@@ -9,6 +9,7 @@ namespace AutoMainTreeMaker.Database
     {
         public static int DEFAULT_COL_NUMBER = -1;
 
+        private Dictionary<string,bool> recordsetList;
         private CRichTextBoxInterface richInterface;
         private List<CRichTextbox> richs;
         private Tree tree;
@@ -32,7 +33,7 @@ namespace AutoMainTreeMaker.Database
         public Dialog_ColumnNumberAndRecordset(Tree tree, string [] mainTree, Dialog_ResultForSource dlg)
         {
             InitializeComponent();
-
+            recordsetList = new Dictionary<string, bool>();
             this.tree = tree;
             richMainTree.Lines = mainTree;
 
@@ -43,6 +44,8 @@ namespace AutoMainTreeMaker.Database
 
             richInterface = new CRichTextBoxInterface();
             richInterface.SetInterface(richs);
+
+            comboMethod.SelectedItem = 1;
 
             //richColumnNumber.Lines = new string[tree.NodeCount];
             //richRecordsetName.Lines = new string[tree.NodeCount];
@@ -90,7 +93,10 @@ namespace AutoMainTreeMaker.Database
                     if (colnum != "")
                         node.ColumnNumber = Int32.Parse(colnum);
                     if (rs != "")
+                    {
+                        recordsetList.Add(rs, true);
                         node.RecordsetFileName = rs;
+                    }
                 }
             }
         }
@@ -116,6 +122,7 @@ namespace AutoMainTreeMaker.Database
                         var newRs = new RecordSetStackInfo(thisRsName, Int32.Parse(richColumnNumber.Lines[node.NodeSequence]));
                         newRs.nodeSeqList.Add(node.NodeSequence);
                         rsStack.Push(newRs);
+                        recordsetList.Add(thisRsName,true);
                     }
                     else if (rsStack.Count > 0 && rsStack.Peek().rsName == thisRsName)
                     {
@@ -137,6 +144,7 @@ namespace AutoMainTreeMaker.Database
                         var newRs = new RecordSetStackInfo(thisRsName, Int32.Parse(richColumnNumber.Lines[node.NodeSequence]));
                         newRs.nodeSeqList.Add(node.NodeSequence);
                         rsStack.Push(newRs);
+                        recordsetList.Add(thisRsName,true);
                     }
                     else
                         rsStack.Peek().nodeSeqList.Add(node.NodeSequence);
@@ -204,8 +212,15 @@ namespace AutoMainTreeMaker.Database
             Make();
 
             this.Hide();
+
+            var rsList = new List<string>();
+            foreach(var keys in recordsetList.Keys)
+            {
+                rsList.Add(keys);
+            }
+
             if (databaseDlg == null)
-                databaseDlg = new Dialog_Database(tree.GetOrderedNodeAsNodeSequence(),this);
+                databaseDlg = new Dialog_Database(tree.GetOrderedNodeAsNodeSequence(),rsList,this);
 
             databaseDlg.ShowDialog();
         }
