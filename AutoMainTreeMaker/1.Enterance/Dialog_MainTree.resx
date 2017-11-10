@@ -120,132 +120,180 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="richGubun.Text" xml:space="preserve">
-    <value>T
-A
-LTE
-DLMCS0222222
-DLMCS1
-DLMOD0
-DLMOD1
-PRBNUM
-LTEMTKL1BLER
-HPPDSCHPC
-HPPDSCHSC
-HPPDSCHALL
-ULMCS
-ULMOD
-ULPRBNUM
-L1ULBLER
-AASAS
-MACDL
-MACUL
-RLCDL
-RLCUL
-DCPDL
-DCPUL
-GL_CODE
-CTHTOT
-CTH100DB
-CDIFF3DB
-CTHNEW
-LT
-NB</value>
+  <data name="richEnumName.Text" xml:space="preserve">
+    <value>LAASCELL_R13
+SUBF
+LAA
+LAASCELL_R1430
+CROSS
+SCH
+CIF
+IBT
+MAX
+ENER
+PDCCH
+MAX0B
+MAX4B
+SKIP0A
+SKIP4A
+PDCCH0A
+AL1
+AL2
+AL3
+AL4
+AL5
+PDCCH4A
+AL1
+AL2
+AL3
+AL4
+AL5
+PDCCH0B
+AL1
+AL2
+AL3
+AL4
+AL5
+PDCCH4B
+AL1
+AL2
+AL3
+AL4
+AL5
+ABS
+SOUND
+SRS</value>
   </data>
   <data name="richCol.Text" xml:space="preserve">
-    <value>Ttt
-Aaa
-Tx Power Info
-PUSCH Power
-PUCCH Power
-SRS Power
-Total Tx Power
-Power Headroom
-L1 Downlink
-PCell
-DL MCS0
-DL MCS1
-DL Modulation0
-DL Modulation1
-PDSCH PRB Number
-PDSCH BLER
-Scell[%d]
-DL MCS0
-DL MCS1
-DL Modulation0
-DL Modulation1
-PDSCH PRB Number
-PDSCH BLER
-L1 Uplink
-UL MCS
-UL Modulation
-PUSCH PRB Number
-PUSCH BLER
-col1
-col2</value>
+    <value>LAA-SCellConfiguration-r13	
+subframeStartPosition-r13
+laa-SCellSubframeConfig-r13
+LAA-SCellConfiguration-v1430	
+crossCarrierSchedulingConfigLAA-UL-r14	
+schedulingCellId-r14
+cif-InSchedulingCell-r14
+lbt-Config-r14	
+maxEnergyDetectionThreshold-r14	
+energyDetectionThresholdOffset-r14
+pdcch-ConfigLAA-r14	
+maxNumberOfSchedSubframes-Format0B-r14
+maxNumberOfSchedSubframes-Format4B-r14
+skipMonitoringDCI-Format0A-r14	
+skipMonitoringDCI-Format4A-r14	
+pdcch-CandidateReductions-Format0A-r14	
+pdcch-candidateReductionAL1-r13	
+pdcch-candidateReductionAL2-r13	
+pdcch-candidateReductionAL3-r13	
+pdcch-candidateReductionAL4-r13	
+pdcch-candidateReductionAL5-r13	
+pdcch-CandidateReductions-Format4A-r14	
+pdcch-candidateReductionAL1-r14	
+pdcch-candidateReductionAL2-r14	
+pdcch-candidateReductionAL3-r14	
+pdcch-candidateReductionAL4-r14	
+pdcch-candidateReductionAL5-r14	
+pdcch-CandidateReductions-Format0B-r14	
+pdcch-candidateReductionAL1-r14
+pdcch-candidateReductionAL2-r14
+pdcch-candidateReductionAL3-r14
+pdcch-candidateReductionAL4-r14
+pdcch-candidateReductionAL5-r14
+pdcch-CandidateReductions-Format4B-r14	
+pdcch-candidateReductionAL1-r14	
+pdcch-candidateReductionAL2-r14	
+pdcch-candidateReductionAL3-r14	
+pdcch-candidateReductionAL4-r14	
+pdcch-candidateReductionAL5-r14	
+absenceOfAnyOtherTechnology-r14
+soundingRS-UL-ConfigDedicatedAperiodic-v1430	
+srs-SubframeIndication-r14		</value>
   </data>
   <data name="richEnum.Text" xml:space="preserve">
-    <value>32323231
-11231232
-793520000
-793520100
-793520200
-793520300
-793520400
-793520500
-793530000
-793530050
-793530100
-793530200
-793530300
-793530400
-793530500
-793530600
-793530700
-793530800
-793530900
-793531000
-793531100
-793531200
-793531300
-793540000
-793540100
-793540200
-793540300
-793540400
-12121
-214412</value>
+    <value>794301000
+794301010
+794301020
+794301030
+794301040
+794301050
+794301060
+794301070
+794301080
+794301090
+794301100
+794301110
+794301120
+794301130
+794301140
+794301150
+794301160
+794301170
+794301180
+794301190
+794301200
+794301210
+794301220
+794301230
+794301240
+794301250
+794301260
+794301270
+794301280
+794301290
+794301300
+794301310
+794301320
+794301330
+794301340
+794301350
+794301360
+794301370
+794301380
+794301390
+794301400
+794301410</value>
   </data>
   <data name="richMainTree.Text" xml:space="preserve">
-    <value>TTT
-AAA
-Tx Power Info
-	PUSCH Power
-	PUCCH Power
-	SRS Power
-	Total Tx Power
-	Power Headroom
-L1 DownIink Info
-	PCell
-		DL MCS0
-		DL MCS1
-		DL Modulation0
-		DL Modulation1
-		PDSCH PRB Number
-		PDSCH BLER
-	SCell[#] #:1-7
-		DL MCS0
-		DL MCS1
-		DL Modulation0
-		DL Modulation1
-		PDSCH PRB Number
-		PDSCH BLER
-L1 Uplink Info
-	UL MCS
-	UL Modulation
-	PUSCH PRB Number
-	PUSCH BLER
-LTE
-NBIOT</value>
+    <value>LAA-SCellConfiguration-r13	
+	subframeStartPosition-r13
+	laa-SCellSubframeConfig-r13
+LAA-SCellConfiguration-v1430	
+	crossCarrierSchedulingConfigLAA-UL-r14	
+		schedulingCellId-r14
+		cif-InSchedulingCell-r14
+	lbt-Config-r14	
+		maxEnergyDetectionThreshold-r14	
+		energyDetectionThresholdOffset-r14
+	pdcch-ConfigLAA-r14	
+		maxNumberOfSchedSubframes-Format0B-r14
+		maxNumberOfSchedSubframes-Format4B-r14
+		skipMonitoringDCI-Format0A-r14	
+		skipMonitoringDCI-Format4A-r14	
+		pdcch-CandidateReductions-Format0A-r14	
+			pdcch-candidateReductionAL1-r13	
+			pdcch-candidateReductionAL2-r13	
+			pdcch-candidateReductionAL3-r13	
+			pdcch-candidateReductionAL4-r13	
+			pdcch-candidateReductionAL5-r13	
+		pdcch-CandidateReductions-Format4A-r14	
+			pdcch-candidateReductionAL1-r14	
+			pdcch-candidateReductionAL2-r14	
+			pdcch-candidateReductionAL3-r14	
+			pdcch-candidateReductionAL4-r14	
+			pdcch-candidateReductionAL5-r14	
+		pdcch-CandidateReductions-Format0B-r14	
+			pdcch-candidateReductionAL1-r14
+			pdcch-candidateReductionAL2-r14
+			pdcch-candidateReductionAL3-r14
+			pdcch-candidateReductionAL4-r14
+			pdcch-candidateReductionAL5-r14
+		pdcch-CandidateReductions-Format4B-r14	
+			pdcch-candidateReductionAL1-r14	
+			pdcch-candidateReductionAL2-r14	
+			pdcch-candidateReductionAL3-r14	
+			pdcch-candidateReductionAL4-r14	
+			pdcch-candidateReductionAL5-r14	
+	absenceOfAnyOtherTechnology-r14
+	soundingRS-UL-ConfigDedicatedAperiodic-v1430	
+		srs-SubframeIndication-r14		</value>
   </data>
 </root>

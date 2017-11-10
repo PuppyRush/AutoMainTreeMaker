@@ -136,8 +136,11 @@ namespace AutoMainTreeMaker.ResltForSource
                 int neededTabCount = list[i].Length / 6;
                 if (neededTabCount>1 && list[i].Length % 6==0)
                     neededTabCount -= (neededTabCount-1);
-                list[i] = list[i] + new string('\t', len-neededTabCount);
 
+                if(len-neededTabCount>0)                    
+                    list[i] = list[i] + new string('\t', len-neededTabCount);
+                else
+                    list[i] = list[i] + new string('\t', neededTabCount-len);
             }
         }
 
