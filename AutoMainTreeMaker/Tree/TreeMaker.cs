@@ -238,6 +238,9 @@ namespace AutoMainTreeMaker
             
             for(int i=0; i < sameDepthNodes.Count; i++)
             {
+                if (IsLastestNode(presentNode))
+                    break;
+
                 int nodeSeq = sameDepthNodes[i];
 
                 //base contidition
@@ -359,6 +362,15 @@ namespace AutoMainTreeMaker
                 return false;
 
             return GetDepthGap(nodeSeq, nodeSeq + 1) == 1 ? true : false;
+        }
+
+        private bool IsLastestNode(TreeNode presentNode)
+        {
+            if (mainTree.Length == presentNode.NodeSequence + 1)
+                return true;
+            else
+                return false;       
+
         }
 
         private TreeNode GetNewNode(List<string> originNodes, TreeNode presentNode, bool isNewHeadNode, bool isNewParentNode)

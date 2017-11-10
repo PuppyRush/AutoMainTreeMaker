@@ -43,7 +43,7 @@
             this.richMainTree.IsNumeric = false;
             this.richMainTree.Location = new System.Drawing.Point(12, 34);
             this.richMainTree.Name = "richMainTree";
-            this.richMainTree.Size = new System.Drawing.Size(795, 404);
+            this.richMainTree.Size = new System.Drawing.Size(1051, 396);
             this.richMainTree.TabIndex = 0;
             this.richMainTree.Text = "";
             // 
@@ -80,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 521);
+            this.ClientSize = new System.Drawing.Size(1096, 491);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.label1);
