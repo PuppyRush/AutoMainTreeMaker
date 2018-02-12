@@ -155,7 +155,9 @@ namespace AutoMainTreeMaker
         {
             foreach (TreeNode node in list)
             {
-                
+
+                enumName[node.NodeSequence] = enumName[node.NodeSequence].Trim();
+                gubunName[node.NodeSequence] = gubunName[node.NodeSequence].Trim();
                 if (enumParent.Equals(""))
                 {
                     node.EnumName = enumName[node.NodeSequence];
@@ -164,7 +166,7 @@ namespace AutoMainTreeMaker
                 else
                 {
                     node.EnumName = enumParent + "_" + enumName[node.NodeSequence];
-                    node.Gubun = gubunParent + "_" + gubunName[node.NodeSequence];
+                    node.Gubun = gubunParent + gubunName[node.NodeSequence];
                 }
 
                 AppendColumName(node, colParent);
@@ -186,7 +188,7 @@ namespace AutoMainTreeMaker
             while(node.ColumnName.Length > MAX_COL_LEN)
             {
                 int idx = node.ColumnName.IndexOf(COL_NAME_DELIMETER);
-                node.ColumnName = node.ColumnName.Remove(0, idx);
+                node.ColumnName = node.ColumnName.Remove(0, idx+1);
             }
         }
 

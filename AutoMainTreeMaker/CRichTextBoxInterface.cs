@@ -90,6 +90,12 @@ namespace AutoMainTreeMaker
             }
             return max;
         }
+
+        private void SetScrollbar()
+        {
+
+           // richs[0].AutoScrollOffset = 
+        }
     }
 
 

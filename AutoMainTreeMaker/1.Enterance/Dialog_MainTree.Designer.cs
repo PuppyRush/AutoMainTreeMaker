@@ -67,7 +67,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.label_enum.AutoSize = true;
             this.label_enum.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_enum.Location = new System.Drawing.Point(696, 17);
+            this.label_enum.Location = new System.Drawing.Point(755, 18);
             this.label_enum.Name = "label_enum";
             this.label_enum.Size = new System.Drawing.Size(81, 18);
             this.label_enum.TabIndex = 5;
@@ -77,7 +77,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.label_Col.AutoSize = true;
             this.label_Col.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Col.Location = new System.Drawing.Point(866, 16);
+            this.label_Col.Location = new System.Drawing.Point(925, 17);
             this.label_Col.Name = "label_Col";
             this.label_Col.Size = new System.Drawing.Size(96, 18);
             this.label_Col.TabIndex = 7;
@@ -98,7 +98,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.labelGubun.AutoSize = true;
             this.labelGubun.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGubun.Location = new System.Drawing.Point(1184, 16);
+            this.labelGubun.Location = new System.Drawing.Point(1243, 17);
             this.labelGubun.Name = "labelGubun";
             this.labelGubun.Size = new System.Drawing.Size(89, 18);
             this.labelGubun.TabIndex = 12;
@@ -117,7 +117,8 @@ namespace AutoMainTreeMaker.MainTree
             // chkAutoEnum
             // 
             this.chkAutoEnum.AutoSize = true;
-            this.chkAutoEnum.Location = new System.Drawing.Point(650, 423);
+            this.chkAutoEnum.Enabled = false;
+            this.chkAutoEnum.Location = new System.Drawing.Point(757, 423);
             this.chkAutoEnum.Name = "chkAutoEnum";
             this.chkAutoEnum.Size = new System.Drawing.Size(72, 16);
             this.chkAutoEnum.TabIndex = 17;
@@ -128,7 +129,8 @@ namespace AutoMainTreeMaker.MainTree
             // chkAutoCol
             // 
             this.chkAutoCol.AutoSize = true;
-            this.chkAutoCol.Location = new System.Drawing.Point(755, 423);
+            this.chkAutoCol.Enabled = false;
+            this.chkAutoCol.Location = new System.Drawing.Point(893, 423);
             this.chkAutoCol.Name = "chkAutoCol";
             this.chkAutoCol.Size = new System.Drawing.Size(72, 16);
             this.chkAutoCol.TabIndex = 18;
@@ -139,7 +141,8 @@ namespace AutoMainTreeMaker.MainTree
             // chkAutoGubun
             // 
             this.chkAutoGubun.AutoSize = true;
-            this.chkAutoGubun.Location = new System.Drawing.Point(943, 423);
+            this.chkAutoGubun.Enabled = false;
+            this.chkAutoGubun.Location = new System.Drawing.Point(1246, 424);
             this.chkAutoGubun.Name = "chkAutoGubun";
             this.chkAutoGubun.Size = new System.Drawing.Size(72, 16);
             this.chkAutoGubun.TabIndex = 19;
@@ -176,7 +179,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 11.25F);
-            this.label2.Location = new System.Drawing.Point(533, 18);
+            this.label2.Location = new System.Drawing.Point(592, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 18);
             this.label2.TabIndex = 25;
@@ -185,7 +188,8 @@ namespace AutoMainTreeMaker.MainTree
             // chkAutoEnumName
             // 
             this.chkAutoEnumName.AutoSize = true;
-            this.chkAutoEnumName.Location = new System.Drawing.Point(536, 423);
+            this.chkAutoEnumName.Enabled = false;
+            this.chkAutoEnumName.Location = new System.Drawing.Point(595, 424);
             this.chkAutoEnumName.Name = "chkAutoEnumName";
             this.chkAutoEnumName.Size = new System.Drawing.Size(72, 16);
             this.chkAutoEnumName.TabIndex = 24;
@@ -198,7 +202,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richEnumName.IsDrawingLine = false;
             this.richEnumName.IsEditMode = true;
             this.richEnumName.IsNumeric = false;
-            this.richEnumName.Location = new System.Drawing.Point(517, 40);
+            this.richEnumName.Location = new System.Drawing.Point(576, 41);
             this.richEnumName.Name = "richEnumName";
             this.richEnumName.Size = new System.Drawing.Size(175, 377);
             this.richEnumName.TabIndex = 23;
@@ -215,7 +219,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richLineNumber.Size = new System.Drawing.Size(45, 376);
             this.richLineNumber.TabIndex = 21;
             this.richLineNumber.TabStop = false;
-            this.richLineNumber.Text = "";
+            this.richLineNumber.Text = resources.GetString("richLineNumber.Text");
             // 
             // richGubun
             // 
@@ -224,13 +228,12 @@ namespace AutoMainTreeMaker.MainTree
             this.richGubun.IsDrawingLine = false;
             this.richGubun.IsEditMode = true;
             this.richGubun.IsNumeric = false;
-            this.richGubun.Location = new System.Drawing.Point(1135, 38);
+            this.richGubun.Location = new System.Drawing.Point(1194, 39);
             this.richGubun.Name = "richGubun";
             this.richGubun.Size = new System.Drawing.Size(194, 376);
             this.richGubun.TabIndex = 11;
             this.richGubun.TabStop = false;
-            this.richGubun.Text = "LTER10SCNUTL13\nSUB\nCON\nLTER10SCNUTL14\nCR\nSC\nCI\nLB\nMAX\nENE\nPD\nM0\nM4\nS0\nS4\n0A\nA1\nA2" +
-    "\nA3\nA4\nA5\n4A\nA1\nA2\nA3\nA4\nA5\n0B\nA1\nA2\nA3\nA4\nA5\n4B\nA1\nA2\nA3\nA4\nA5\nABS\nSOU\nSRS";
+            this.richGubun.Text = resources.GetString("richGubun.Text");
             this.richGubun.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click_DrawLineAllForms);
             this.richGubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_DrawLineAllForms);
             // 
@@ -241,7 +244,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richCol.IsDrawingLine = false;
             this.richCol.IsEditMode = true;
             this.richCol.IsNumeric = false;
-            this.richCol.Location = new System.Drawing.Point(786, 40);
+            this.richCol.Location = new System.Drawing.Point(845, 41);
             this.richCol.Name = "richCol";
             this.richCol.Size = new System.Drawing.Size(343, 376);
             this.richCol.TabIndex = 3;
@@ -257,7 +260,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richEnum.IsDrawingLine = false;
             this.richEnum.IsEditMode = true;
             this.richEnum.IsNumeric = true;
-            this.richEnum.Location = new System.Drawing.Point(698, 39);
+            this.richEnum.Location = new System.Drawing.Point(757, 40);
             this.richEnum.Name = "richEnum";
             this.richEnum.Size = new System.Drawing.Size(82, 377);
             this.richEnum.TabIndex = 1;
@@ -276,7 +279,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richMainTree.IsNumeric = false;
             this.richMainTree.Location = new System.Drawing.Point(63, 41);
             this.richMainTree.Name = "richMainTree";
-            this.richMainTree.Size = new System.Drawing.Size(439, 376);
+            this.richMainTree.Size = new System.Drawing.Size(507, 376);
             this.richMainTree.TabIndex = 0;
             this.richMainTree.TabStop = false;
             this.richMainTree.Text = resources.GetString("richMainTree.Text");

@@ -220,31 +220,31 @@ namespace AutoMainTreeMaker
             }
         }
 
-        public variableTypes VariableType
-        {
-            get
-            {
-                return VariableType2;
-            }
+        //public variableTypes VariableType
+        //{
+        //    get
+        //    {
+        //        return VariableType2;
+        //    }
 
-            set
-            {
-                VariableType2 = value;
-            }
-        }
+        //    set
+        //    {
+        //        VariableType2 = value;
+        //    }
+        //}
 
-        public long VarLenght
-        {
-            get
-            {
-                return VarLenght1;
-            }
+        //public long VarLenght
+        //{
+        //    get
+        //    {
+        //        return VarLenght1;
+        //    }
 
-            set
-            {
-                VarLenght1 = value;
-            }
-        }
+        //    set
+        //    {
+        //        VarLenght1 = value;
+        //    }
+        //}
 
         public bool IsLeaf
         {

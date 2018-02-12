@@ -10,6 +10,8 @@ namespace AutoMainTreeMaker.ResltForSource
     public partial class Dialog_ResultForSource : Form
     {
 
+        private static int TAB_SPACE = 6;
+
         private string[] enumname;
         private string[] enumNumber;
         private string[] mainTree;
@@ -96,7 +98,7 @@ namespace AutoMainTreeMaker.ResltForSource
         {
             string[] sources = enumname;
             int maxi = GetLengthestOf(sources);
-            PadRight(sources, 3);
+            PadRight(sources, maxi);
 
             AppendBlanketAndEqualAndEnumNumberAndTree("        ", sources, enumNumber, mainTree);
 
@@ -125,18 +127,21 @@ namespace AutoMainTreeMaker.ResltForSource
             }
         }
 
-        private void PadRight(string [] list, int len)
+        private void PadRight(string [] list, int maxLen)
         {
             for(int i=0; i < list.Length; i++)
             {
-                int neededTabCount = list[i].Length / 6;
-                if (neededTabCount>1 && list[i].Length % 6==0)
-                    neededTabCount -= (neededTabCount-1);
+                var strLen = list[i].Length;
+                int neededTabCount = (maxLen - strLen) / TAB_SPACE;
+               // if ( ((maxLen - strLen) % TAB_SPACE) > 0)
+                //    neededTabCount++;
 
-                if(len-neededTabCount>0)                    
-                    list[i] = list[i] + new string('\t', len-neededTabCount);
-                else
-                    list[i] = list[i] + new string('\t', neededTabCount-len);
+                list[i] = list[i] + new string('\t', neededTabCount);
+
+                //if (maxLen - strLen > 0)
+                //    list[i] = list[i] + new string('\t', (maxLen-strLen) / TAB_SPACE + neededTabCount);
+                //else
+                //    list[i] = list[i] + new string('\t', (strLen - strLen) / TAB_SPACE + neededTabCount);
             }
         }
 
@@ -162,7 +167,7 @@ namespace AutoMainTreeMaker.ResltForSource
         {
 
             this.Hide();
-            mainTreeDlg.ShowDialog();
+            mainTreeDlg.Show();
 
         }
 

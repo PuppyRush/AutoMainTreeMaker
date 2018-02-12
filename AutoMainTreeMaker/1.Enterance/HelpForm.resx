@@ -117,29 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>   -최소입력모드
-1. 새로운 컬럼이 시작되는 번호만 3으로 지정하고 맵핑할 레코드셋 파일 이름을 지정하세요.
-2. leaf node에 시작할 컬럼 번호를 입력하세요.(parent node에 지정하면 안됨)
-
-   -범위모드
-1. 범위를 이용한 방법입니다. 레코드명으로 둘러싸인 leaf트리는 범위 안에서 
-  처음으로 지정된 번호가 부여됩니다.
-========================
-예)
-A       3     rs1.dat
-B       
-ㄴ C     3   rs2.dat
-    D
-    G          rs2.dat
-E       
-F              rs1.dat
-============================
-위의 예시에서는 CDG가 각각 3,4,5가 지정되며 
-AEF역시 3,4,5가 지정됩니다. 
-
-   -수동모드
-직접 입력하는 방식.
-</value>
-  </data>
 </root>

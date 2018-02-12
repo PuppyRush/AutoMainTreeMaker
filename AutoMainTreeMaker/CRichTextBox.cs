@@ -110,6 +110,8 @@ namespace AutoMainTreeMaker
                 int beginIndex = SelectionStart;
                 currentLine = GetLineFromCharIndex(beginIndex);
             }
+            if (this.Lines.Length < currentLine + 1)
+                return;
 
             int lenghthOfLineCurrently = Lines[currentLine].Length;
 
@@ -132,6 +134,9 @@ namespace AutoMainTreeMaker
 
         public void EraseBlockedLineCurrently()
         {
+            if (this.Lines.Length < preLineIndex + 1)
+                return;
+
             SelectionStart = this.GetFirstCharIndexFromLine(preLineIndex);
             SelectionLength = this.preStrLen;
             SelectionBackColor = Color.White;
@@ -246,6 +251,7 @@ namespace AutoMainTreeMaker
             
             IsEditMode = false;
             selectionStartForEdit = SelectionStart;
+
 
             base.OnMouseClick(e);
             DrawBlockedLineCurrently();

@@ -46,7 +46,7 @@
             this.메뉴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNext = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -221,21 +221,22 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // button2
+            // btnBack
             // 
-            this.button2.Location = new System.Drawing.Point(216, 282);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 35);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "뒤로가기";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnBack.Location = new System.Drawing.Point(216, 282);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(137, 35);
+            this.btnBack.TabIndex = 16;
+            this.btnBack.Text = "뒤로가기";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.button2_Click);
             // 
             // Dialog_MappingData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 329);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.richStructName);
@@ -282,6 +283,6 @@
         private System.Windows.Forms.ToolStripMenuItem 메뉴ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 도움말ToolStripMenuItem;
         private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnBack;
     }
 }

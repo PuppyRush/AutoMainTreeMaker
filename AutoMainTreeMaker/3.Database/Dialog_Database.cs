@@ -12,16 +12,18 @@ namespace AutoMainTreeMaker.Database
         Dialog_MappingData mappingDlg;
         Dialog_ColumnNumberAndRecordset colRecordDlg;
         List<TreeNode> orderedNode;
+        Tree mainTree;
         List<string> recordsetNames;
 
-        public Dialog_Database(List<TreeNode> orderedNode, List<string> rsList, Dialog_ColumnNumberAndRecordset dlg )
+        public Dialog_Database(Tree mainTree, List<string> rsList, Dialog_ColumnNumberAndRecordset dlg )
         {
             InitializeComponent();
             recordsetNames = rsList;
-            mappingDlg = new Dialog_MappingData();
+            mappingDlg = new Dialog_MappingData(this);
             comboBoxDB.SelectedIndex = 0;
 
-            this.orderedNode = orderedNode;
+            this.orderedNode = mainTree.GetOrderedNodeAsNodeSequence();
+            this.mainTree = mainTree;
             colRecordDlg = dlg;
 
             InitDataViewForLTE();
@@ -93,6 +95,36 @@ namespace AutoMainTreeMaker.Database
                         str = "0";
                     else
                         str = "1";
+                    break;
+                case "IS_FAVORITE":
+                    if (node.IsParent)
+                        str = "0";
+                    else
+                        str = "1";
+                    break;
+                case "IS_FILTER":
+                    str = "1";
+                    break;
+                case "IS_FILTERING":
+                    if (node.IsParent)
+                        str = "0";
+                    else
+                        str = "1";
+                    break;
+                case "IS_CORRELATION":
+                    if (node.IsParent)
+                        str = "0";
+                    else
+                        str = "1";
+                    break;
+                case "IS_SETTING":
+                    str = "1";
+                    break;
+                case "IS_DEBUG":
+                    str = "N";
+                    break;
+                case "IS_USED":
+                    str = "Y";
                     break;
                 case "ICON_NO":
                     if (node.IsParent)
@@ -229,15 +261,16 @@ namespace AutoMainTreeMaker.Database
 
         private void btnMakeSource_Click(object sender, EventArgs e)
         {
+            return;
             this.Hide();
-            mappingDlg.Init(recordsetNames);
+            mappingDlg.Init(recordsetNames,mainTree);
             mappingDlg.ShowDialog();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
-            colRecordDlg.ShowDialog();
+            colRecordDlg.Show();
         }
     }
 }

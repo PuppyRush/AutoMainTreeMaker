@@ -121,179 +121,821 @@
     <value>17, 17</value>
   </metadata>
   <data name="richEnumName.Text" xml:space="preserve">
-    <value>LAASCELL_R13
-SUBF
-LAA
-LAASCELL_R1430
-CROSS
-SCH
-CIF
-IBT
+    <value>PHY14
+PU
 MAX
-ENER
-PDCCH
-MAX0B
-MAX4B
-SKIP0A
-SKIP4A
-PDCCH0A
-AL1
-AL2
-AL3
-AL4
-AL5
-PDCCH4A
-AL1
-AL2
-AL3
-AL4
-AL5
-PDCCH0B
-AL1
-AL2
-AL3
-AL4
-AL5
-PDCCH4B
-AL1
-AL2
-AL3
-AL4
-AL5
-ABS
-SOUND
-SRS</value>
+BAND
+TDD
+R
+SET
+SYS
+DMRS
+UL
+ENA
+REL
+SET
+TP
+S10
+S14
+S20
+S24
+NOT
+D0
+D4
+UE14
+PHY1430
+PUSCH-NB-M
+PDSCH-PUSC
+HARQ-ACKBU
+PDSCH-TENP
+RETUNING
+PDSCH-PUSC
+SCHEDULING
+SRS-ENHANC
+PUCCH-ENHA
+CLOSEDLOOP
+SPECIALSU
+TTIBUNDL
+LESSUPPT
+UEPARAM
+ALTERN
+FEMBMS
+UNICAST
+EMPTYUN
+UEDL1430
+UEUL1430
+UEUL1430B
+MAC1430
+FDDR14
+TDDR14
+DYNAMIC
+SPSR14
+MULTIPLE
+DATAINAC
+MEAS1430
+CEMEASUR
+NCSGR14
+SHORTMEA
+PERSERVI
+NONUNIF
+PDCD1430
+SUP
+PROF
+MAXNUM
+RLC1430
+EXTEND
+LAA1430
+CROSSCARR
+UPLINKLAA
+TWOSTEPSC
+ADJUST
+REDUCT
+OUTOFSEQ
+LWA1430
+LWAHOWIT
+LWAULR14
+WLANPERIO
+WLANREPOR
+WLANSUPPO
+LWIP1430
+DLR14
+ULR14
+OTH1430
+BW
+RLM
+MMTEL14
+DELAY
+PUSCH
+RATER14
+RATEQUERY
+MOB14
+MAKE
+RACH
+CE1430
+SWITCH
+MBBS14
+DEDICA
+MIXED
+KHZ7DOT5
+KHZ1DOT25
+SL1430
+ZONE
+WITHFULL
+WITHPART
+SLCONGE
+V2XTXWI
+V2XNUMB
+V2XNONA
+SLSSTXRX
+BASE14
+LOCATION
+HIGH14
+MEAS1430
+DEM
+PRACH</value>
+  </data>
+  <data name="richLineNumber.Text" xml:space="preserve">
+    <value>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246</value>
+  </data>
+  <data name="richGubun.Text" xml:space="preserve">
+    <value>PHY14
+PUSCH
+NBMAX
+MAXBAND
+TDD
+RELEASE
+SETUP
+SYMPUSCH
+DMRS
+UL
+ENABLE
+RELEASE
+SETUP
+TPCCONF
+SET1FMT0
+SET1FMT4
+SET2FMT0
+SET2FMT4
+TPCNT
+FMT0
+FMT4
+UE14
+PHY
+PUSC
+PDSC
+HARQ
+PDSC
+RETU
+PDSC
+SCHE
+SRS
+PUCC
+CLOS
+SPECI
+TTIB
+LESS
+UEP
+RNATI
+MSUN
+UNICA
+EMPTY
+YDLV1430
+YULV1430
+YULV1430B
+MAC1430
+SHORT
+SHORT
+SKIPU
+SKIPU
+MULTI
+DATAI
+MEAS
+CEME
+NCSG
+SHOR
+PERS
+NONU
+P1430
+SUP
+PRO
+MAX
+RLC1430
+EXT
+L1430
+SCA
+NKL
+TEP
+BLI
+BLI
+FSE
+L14
+HO
+UL
+PE
+PRORE
+SUP
+LW14
+DL
+UL
+OT14
+BW
+RLM
+MMT
+DE
+PUS
+QU
+M14
+MAK
+RACH
+CE14
+CE
+SW
+MB
+CE
+MI
+KH
+KK
+S14
+NO
+ES
+IT
+BE
+AD
+RX
+U14
+LOC
+HI
+MEAS
+DEMO
+PRAC
+AA
+DD</value>
   </data>
   <data name="richCol.Text" xml:space="preserve">
-    <value>LAA-SCellConfiguration-r13	
-subframeStartPosition-r13
-laa-SCellSubframeConfig-r13
-LAA-SCellConfiguration-v1430	
-crossCarrierSchedulingConfigLAA-UL-r14	
-schedulingCellId-r14
-cif-InSchedulingCell-r14
-lbt-Config-r14	
-maxEnergyDetectionThreshold-r14	
-energyDetectionThresholdOffset-r14
-pdcch-ConfigLAA-r14	
-maxNumberOfSchedSubframes-Format0B-r14
-maxNumberOfSchedSubframes-Format4B-r14
-skipMonitoringDCI-Format0A-r14	
-skipMonitoringDCI-Format4A-r14	
-pdcch-CandidateReductions-Format0A-r14	
-pdcch-candidateReductionAL1-r13	
-pdcch-candidateReductionAL2-r13	
-pdcch-candidateReductionAL3-r13	
-pdcch-candidateReductionAL4-r13	
-pdcch-candidateReductionAL5-r13	
-pdcch-CandidateReductions-Format4A-r14	
-pdcch-candidateReductionAL1-r14	
-pdcch-candidateReductionAL2-r14	
-pdcch-candidateReductionAL3-r14	
-pdcch-candidateReductionAL4-r14	
-pdcch-candidateReductionAL5-r14	
-pdcch-CandidateReductions-Format0B-r14	
-pdcch-candidateReductionAL1-r14
-pdcch-candidateReductionAL2-r14
-pdcch-candidateReductionAL3-r14
-pdcch-candidateReductionAL4-r14
-pdcch-candidateReductionAL5-r14
-pdcch-CandidateReductions-Format4B-r14	
-pdcch-candidateReductionAL1-r14	
-pdcch-candidateReductionAL2-r14	
-pdcch-candidateReductionAL3-r14	
-pdcch-candidateReductionAL4-r14	
-pdcch-candidateReductionAL5-r14	
-absenceOfAnyOtherTechnology-r14
-soundingRS-UL-ConfigDedicatedAperiodic-v1430	
-srs-SubframeIndication-r14		</value>
+    <value>PhysicalConfigDedicated(r14)
+pusch-ConfigDedicated-v1430
+ce-PUSCH-NB-MaxTBS-r14
+ce-PUSCH-MaxBandwidth-r14
+tdd-PUSCH-UpPTS-r14
+release
+setup
+symPUSCH-UpPTS-r14
+dmrs-LessUpPTS-Config-r14
+ul-DMRS-IFDMA-r14
+enable256QAM-r14
+release
+setup
+tpc-SubframeSet-Configured-r14
+subframeSet1-DCI-Format0-r14
+subframeSet1-DCI-Format4-r14
+subframeSet2-DCI-Format0-r14
+subframeSet2-DCI-Format4-r14
+tpc-SubframeSet-NotConfigured-r14
+dci-Format0-r14
+dci-Format4-r14
+UE Capability-v14
+PhyLayerParameters-v1430
+ce-PUSCH-NB-MaxTBS-r14
+ce-PDSCH-PUSCH-MaxBandwidth-r14
+ce-HARQ-AckBundling-r14
+ce-PDSCH-TenProcesses-r14
+ce-RetuningSymbols-r14
+ce-PDSCH-PUSCH-Enhancement-r14
+ce-SchedulingEnhancement-r14
+ce-SRS-Enhancement-r14
+ce-PUCCH-Enhancement-r14
+ce-ClosedLoopTxAntennaSelection-r14
+tdd-SpecialSubframe-r14
+tdd-TTI-Bundling-r14
+dmrs-LessUpPTS-r14
+mimo-UE-Parameters-v1430
+alternativeTBS-Index-r14
+feMBMS-Unicast-Parameters-r14
+unicast-fembmsMixedSCell-r14
+emptyUnicastRegion-r14
+ue-CategoryDL-v1430
+ue-CategoryUL-v1430
+ue-CategoryUL-v1430b
+mac-Parameters-v1430
+shortSPS-IntervalFDD-r14
+shortSPS-IntervalTDD-r14
+skipUplinkDynamic-r14
+skipUplinkSPS-r14
+multipleUplinkSPS-r14
+dataInactMon-r14
+measParameters-v1430
+ceMeasurements-r14
+ncsg-r14
+shortMeasurementGap-r14
+perServingCellMeasurementGap-r14
+nonUniformGap-r14
+pdcp-Parameters-v1430
+supportedUplinkOnlyROHC-Profiles-r14
+profile0x0006-r14
+maxNumberROHC-ContextSessions-r14
+rlc-Parameters-v1430
+extendedPollByte-r14
+laa-Parameters-v1430
+crossCarrierSchedulingLAA-UL-r14
+uplinkLAA-r14
+twoStepSchedulingTimingInfo-r14
+uss-BlindDecodingAdjustment-r14
+uss-BlindDecodingReduction-r14
+outOfSequenceGrantHandling-r14
+lwa-Parameters-v1430
+lwa-HO-WithoutWT-Change-r14
+lwa-UL-r14
+wlan-PeriodicMeas-r14
+wlan-ReportAnyWLAN-r14
+wlan-SupportedDataRate-r14
+lwip-Parameters-v1430
+lwip-Aggregation-DL-r14
+lwip-Aggregation-UL-r14
+otherParameters-v1430
+bwPrefInd-r14
+rlm-ReportSupport-r14
+mmtel-Parameters-r14
+delayBudgetReporting-r14
+pusch-Enhancements-r14
+recommendedBitRate-r14
+recommendedBitRateQuery-r14
+mobilityParameters-r14
+makeBeforeBreak-r14
+rach-Less-r14
+ce-Parameters-v1430
+ce-SwitchWithoutHO-r14
+mbms-Parameters-v1430
+fembmsDedicatedCell-r14
+fembmsMixedCell-r14
+subcarrierSpacingMBMS-khz7dot5-r14
+subcarrierSpacingMBMS-khz1dot25-r14
+sl-Parameters-v1430
+zoneBasedPoolSelection-r14
+ue-AutonomousWithFullSensing-r14
+ue-AutonomousWithPartialSensing-r14
+sl-CongestionControl-r14
+v2x-TxWithShortResvInterval-r14
+v2x-numberTxRxTiming-r14
+v2x-nonAdjacentPSCCH-PSSCH-r14
+slss-TxRx-r14
+ue-BasedNetwPerfMeasParameters-v1430
+locationReport-r14
+highSpeedEnhParameters-r14
+measurementEnhancements-r14
+demodulationEnhancements-r14
+prach-Enhancements-r14</value>
   </data>
   <data name="richEnum.Text" xml:space="preserve">
-    <value>794301000
-794301010
-794301020
-794301030
-794301040
-794301050
-794301060
-794301070
-794301080
-794301090
-794301100
-794301110
-794301120
-794301130
-794301140
-794301150
-794301160
-794301170
-794301180
-794301190
-794301200
-794301210
-794301220
-794301230
-794301240
-794301250
-794301260
-794301270
-794301280
-794301290
-794301300
-794301310
-794301320
-794301330
-794301340
-794301350
-794301360
-794301370
-794301380
-794301390
-794301400
-794301410</value>
+    <value>794460000
+794460005
+794460010
+794460015
+794460020
+794460025
+794460030
+794460035
+794460040
+794460045
+794460050
+794460055
+794460060
+794460065
+794460070
+794460075
+794460080
+794460085
+794460090
+794460095
+794460100
+794460105
+794460110
+794460115
+794460120
+794460125
+794460130
+794460135
+794460140
+794460145
+794460150
+794460155
+794460160
+794460165
+794460170
+794460175
+794460180
+794460185
+794460190
+794460195
+794460200
+794460205
+794460210
+794460215
+794460220
+794460225
+794460230
+794460235
+794460240
+794460245
+794460250
+794460255
+794460260
+794460265
+794460270
+794460275
+794460280
+794460285
+794460290
+794460295
+794460300
+794460305
+794460310
+794460315
+794460320
+794460325
+794460330
+794460335
+794460340
+794460345
+794460350
+794460355
+794460360
+794460365
+794460370
+794460375
+794460380
+794460385
+794460390
+794460395
+794460400
+794460405
+794460410
+794460415
+794460420
+794460425
+794460430
+794460435
+794460440
+794460445
+794460450
+794460455
+794460460
+794460465
+794460470
+794460475
+794460480
+794460485
+794460490
+794460495
+794460500
+794460505
+794460510
+794460515
+794460520
+794460525
+794460530
+794460535
+794460540
+794460545
+794460550
+794460555</value>
   </data>
   <data name="richMainTree.Text" xml:space="preserve">
-    <value>LAA-SCellConfiguration-r13	
-	subframeStartPosition-r13
-	laa-SCellSubframeConfig-r13
-LAA-SCellConfiguration-v1430	
-	crossCarrierSchedulingConfigLAA-UL-r14	
-		schedulingCellId-r14
-		cif-InSchedulingCell-r14
-	lbt-Config-r14	
-		maxEnergyDetectionThreshold-r14	
-		energyDetectionThresholdOffset-r14
-	pdcch-ConfigLAA-r14	
-		maxNumberOfSchedSubframes-Format0B-r14
-		maxNumberOfSchedSubframes-Format4B-r14
-		skipMonitoringDCI-Format0A-r14	
-		skipMonitoringDCI-Format4A-r14	
-		pdcch-CandidateReductions-Format0A-r14	
-			pdcch-candidateReductionAL1-r13	
-			pdcch-candidateReductionAL2-r13	
-			pdcch-candidateReductionAL3-r13	
-			pdcch-candidateReductionAL4-r13	
-			pdcch-candidateReductionAL5-r13	
-		pdcch-CandidateReductions-Format4A-r14	
-			pdcch-candidateReductionAL1-r14	
-			pdcch-candidateReductionAL2-r14	
-			pdcch-candidateReductionAL3-r14	
-			pdcch-candidateReductionAL4-r14	
-			pdcch-candidateReductionAL5-r14	
-		pdcch-CandidateReductions-Format0B-r14	
-			pdcch-candidateReductionAL1-r14
-			pdcch-candidateReductionAL2-r14
-			pdcch-candidateReductionAL3-r14
-			pdcch-candidateReductionAL4-r14
-			pdcch-candidateReductionAL5-r14
-		pdcch-CandidateReductions-Format4B-r14	
-			pdcch-candidateReductionAL1-r14	
-			pdcch-candidateReductionAL2-r14	
-			pdcch-candidateReductionAL3-r14	
-			pdcch-candidateReductionAL4-r14	
-			pdcch-candidateReductionAL5-r14	
-	absenceOfAnyOtherTechnology-r14
-	soundingRS-UL-ConfigDedicatedAperiodic-v1430	
-		srs-SubframeIndication-r14		</value>
+    <value>PhysicalConfigDedicated(r14)	
+	pusch-ConfigDedicated-v1430
+		ce-PUSCH-NB-MaxTBS-r14				
+		ce-PUSCH-MaxBandwidth-r14			
+		tdd-PUSCH-UpPTS-r14 	
+			release
+			setup	
+				symPUSCH-UpPTS-r14			
+				dmrs-LessUpPTS-Config-r14	
+		ul-DMRS-IFDMA-r14					
+		enable256QAM-r14	
+			release							
+			setup	
+				tpc-SubframeSet-Configured-r14	
+					subframeSet1-DCI-Format0-r14
+					subframeSet1-DCI-Format4-r14
+					subframeSet2-DCI-Format0-r14
+					subframeSet2-DCI-Format4-r14
+				tpc-SubframeSet-NotConfigured-r14	
+					dci-Format0-r14
+					dci-Format4-r14
+UE Capability-v14
+	PhyLayerParameters-v1430
+		ce-PUSCH-NB-MaxTBS-r14
+		ce-PDSCH-PUSCH-MaxBandwidth-r14
+		ce-HARQ-AckBundling-r14
+		ce-PDSCH-TenProcesses-r14
+		ce-RetuningSymbols-r14
+		ce-PDSCH-PUSCH-Enhancement-r14
+		ce-SchedulingEnhancement-r14
+		ce-SRS-Enhancement-r14
+		ce-PUCCH-Enhancement-r14
+		ce-ClosedLoopTxAntennaSelection-r14
+		tdd-SpecialSubframe-r14
+		tdd-TTI-Bundling-r14
+		dmrs-LessUpPTS-r14
+		mimo-UE-Parameters-v1430
+		alternativeTBS-Index-r14
+		feMBMS-Unicast-Parameters-r14
+			unicast-fembmsMixedSCell-r14
+			emptyUnicastRegion-r14
+	ue-CategoryDL-v1430
+	ue-CategoryUL-v1430
+	ue-CategoryUL-v1430b
+	mac-Parameters-v1430
+		shortSPS-IntervalFDD-r14
+		shortSPS-IntervalTDD-r14
+		skipUplinkDynamic-r14
+		skipUplinkSPS-r14
+		multipleUplinkSPS-r14
+		dataInactMon-r14
+	measParameters-v1430
+		ceMeasurements-r14
+		ncsg-r14
+		shortMeasurementGap-r14
+		perServingCellMeasurementGap-r14
+		nonUniformGap-r14
+	pdcp-Parameters-v1430
+		supportedUplinkOnlyROHC-Profiles-r14
+			profile0x0006-r14
+		maxNumberROHC-ContextSessions-r14
+	rlc-Parameters-v1430
+		extendedPollByte-r14
+	laa-Parameters-v1430
+		crossCarrierSchedulingLAA-UL-r14
+		uplinkLAA-r14
+		twoStepSchedulingTimingInfo-r14
+		uss-BlindDecodingAdjustment-r14
+		uss-BlindDecodingReduction-r14
+		outOfSequenceGrantHandling-r14
+	lwa-Parameters-v1430
+		lwa-HO-WithoutWT-Change-r14
+		lwa-UL-r14
+		wlan-PeriodicMeas-r14
+		wlan-ReportAnyWLAN-r14
+		wlan-SupportedDataRate-r14
+	lwip-Parameters-v1430
+		lwip-Aggregation-DL-r14
+		lwip-Aggregation-UL-r14
+	otherParameters-v1430
+		bwPrefInd-r14
+		rlm-ReportSupport-r14
+	mmtel-Parameters-r14
+		delayBudgetReporting-r14
+		pusch-Enhancements-r14
+		recommendedBitRate-r14
+		recommendedBitRateQuery-r14
+	mobilityParameters-r14
+		makeBeforeBreak-r14
+		rach-Less-r14
+	ce-Parameters-v1430
+		ce-SwitchWithoutHO-r14
+	mbms-Parameters-v1430
+		fembmsDedicatedCell-r14
+		fembmsMixedCell-r14
+		subcarrierSpacingMBMS-khz7dot5-r14
+		subcarrierSpacingMBMS-khz1dot25-r14
+	sl-Parameters-v1430	
+		zoneBasedPoolSelection-r14
+		ue-AutonomousWithFullSensing-r14
+		ue-AutonomousWithPartialSensing-r14
+		sl-CongestionControl-r14
+		v2x-TxWithShortResvInterval-r14
+		v2x-numberTxRxTiming-r14
+		v2x-nonAdjacentPSCCH-PSSCH-r14
+		slss-TxRx-r14
+	ue-BasedNetwPerfMeasParameters-v1430
+		locationReport-r14
+	highSpeedEnhParameters-r14
+		measurementEnhancements-r14
+		demodulationEnhancements-r14
+		prach-Enhancements-r14</value>
   </data>
 </root>

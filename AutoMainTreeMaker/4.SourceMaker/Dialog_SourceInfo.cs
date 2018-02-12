@@ -49,7 +49,7 @@ namespace AutoMainTreeMaker.SourceMaker
                 if(IsVariable( richStruct.Lines[i]))
                 {
                     richMainTree.Lines[i] = nodes[nodeSeq].ParamName;
-                    nodes[nodeSeq]
+                   // nodes[nodeSeq]
                 }
                 
 
@@ -73,7 +73,7 @@ namespace AutoMainTreeMaker.SourceMaker
 
         private int FindNextStructSeq(int beginIdx)
         {
-
+            return -1;
         }
 
         private void 도움말ToolStripMenuItem_Click(object sender, EventArgs e)

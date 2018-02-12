@@ -45,12 +45,7 @@ namespace AutoMainTreeMaker.Database
             richInterface = new CRichTextBoxInterface();
             richInterface.SetInterface(richs);
 
-            comboMethod.SelectedItem = 1;
-
-            //richColumnNumber.Lines = new string[tree.NodeCount];
-            //richRecordsetName.Lines = new string[tree.NodeCount];
-            //richColumnNumber.Lines[0] = 3.ToString();
-            //richRecordsetName.Lines[0] = "foo.dat";
+            comboMethod.SelectedIndex = 0;
 
             resultDlg = dlg;
         }
@@ -202,13 +197,15 @@ namespace AutoMainTreeMaker.Database
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            richInterface.EqualLinesToMaximumLine();
+
             if(!IsInvaliated())
             {
                 MessageBox.Show("부모노드에는 숫자나 레코드셋 파일명이 들어갈 수 없습니다. 혹은 첫 헤드노드엔 컬럼번호를 입력해야 합니다.");
                 return;
             }
 
-            richInterface.EqualLinesToMaximumLine();
+            
             Make();
 
             this.Hide();
@@ -220,7 +217,7 @@ namespace AutoMainTreeMaker.Database
             }
 
             if (databaseDlg == null)
-                databaseDlg = new Dialog_Database(tree.GetOrderedNodeAsNodeSequence(),rsList,this);
+                databaseDlg = new Dialog_Database(tree,rsList,this);
 
             databaseDlg.ShowDialog();
         }
@@ -228,7 +225,7 @@ namespace AutoMainTreeMaker.Database
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
-            resultDlg.ShowDialog();
+            resultDlg.Show();
         }
     }
 }

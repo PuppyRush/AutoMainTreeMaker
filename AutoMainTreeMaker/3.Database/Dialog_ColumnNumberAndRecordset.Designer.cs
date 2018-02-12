@@ -125,7 +125,7 @@
             this.richRecordsetName.Name = "richRecordsetName";
             this.richRecordsetName.Size = new System.Drawing.Size(148, 404);
             this.richRecordsetName.TabIndex = 13;
-            this.richRecordsetName.Text = "aa\n\n\nbb\n\n\n\nbb\n\n\ncc\n\n\n\n\ncc\n\ndd\n\n\n\n\ndd\n\n\n\n\n\n\naa";
+            this.richRecordsetName.Text = "";
             // 
             // richColumnNumber
             // 
@@ -137,7 +137,7 @@
             this.richColumnNumber.Name = "richColumnNumber";
             this.richColumnNumber.Size = new System.Drawing.Size(38, 404);
             this.richColumnNumber.TabIndex = 12;
-            this.richColumnNumber.Text = "3\n\n\n3\n\n\n\n\n\n\n3\n\n\n\n\n\n\n3\n\n\n\n\n\n\n\n";
+            this.richColumnNumber.Text = "";
             // 
             // richMainTree
             // 
