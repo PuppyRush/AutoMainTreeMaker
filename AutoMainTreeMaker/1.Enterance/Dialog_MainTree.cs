@@ -117,6 +117,8 @@ namespace AutoMainTreeMaker.MainTree
                 }
             }
 
+            
+            FillEnumsAndNumber(maker.startingEnum,maker.enumInterval );
                         
             maker.ColumnName = richCol.Lines;
             maker.GubunName = richGubun.Lines;
@@ -136,20 +138,56 @@ namespace AutoMainTreeMaker.MainTree
                 
         }
 
-        private void Wizard1_Resize(object sender, EventArgs e)
+        private void FillEnumsAndNumber(int startingEnum, int interval)
         {
-            
-        }
+            int lines = richInterface.GetMaxmimumLines();
 
+            richLineNumber.Text = "";
+            string line = "";
+            for(int i=0; i <lines; i++)
+            {
+                line += i.ToString() + '\n';
+            }
+            richLineNumber.Text = line;
+
+            if (ChkAutoEnum.CheckState == CheckState.Checked)
+            {
+                string enumsLine = "";
+                int starting = maker.startingEnum;
+                for (int i = 0; i < lines; i++)
+                {
+                    line += i.ToString() + '\n';
+
+                    enumsLine += startingEnum.ToString();
+                    starting += maker.enumInterval;
+                }
+                richEnum.Text = enumsLine;
+            }
+
+        }
+  
         private void ChkAutoEnum_CheckedChanged(object sender, EventArgs e)
         {
             if (chkAutoEnum.CheckState == CheckState.Checked)
+            {
                 RichEnum.Enabled = false;
+                AutoEnumDianlog dlg = new AutoEnumDianlog();
+                dlg.ShowDialog();
+                RichEnum.Text = dlg.StartingEnumValue.ToString();
+                maker.startingEnum = dlg.StartingEnumValue;
+                maker.enumInterval = dlg.IntervalValue;
+                maker.isAutoEnumSet = true;
+            }
             else if (chkAutoEnum.CheckState == CheckState.Unchecked)
+            {
                 RichEnum.Enabled = true;
+                maker.isAutoEnumSet = false;
+            }
 
 
         }
+
+       
 
         private void ChkAutoCol_CheckedChanged(object sender, EventArgs e)
         {

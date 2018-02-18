@@ -85,7 +85,7 @@ namespace AutoMainTreeMaker.MainTree
             // 
             // BtnNext
             // 
-            this.BtnNext.Font = new System.Drawing.Font("돋움", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnNext.Font = new System.Drawing.Font("Dotum", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnNext.Location = new System.Drawing.Point(459, 466);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(175, 41);
@@ -117,7 +117,7 @@ namespace AutoMainTreeMaker.MainTree
             // chkAutoEnum
             // 
             this.chkAutoEnum.AutoSize = true;
-            this.chkAutoEnum.Location = new System.Drawing.Point(650, 423);
+            this.chkAutoEnum.Location = new System.Drawing.Point(698, 423);
             this.chkAutoEnum.Name = "chkAutoEnum";
             this.chkAutoEnum.Size = new System.Drawing.Size(72, 16);
             this.chkAutoEnum.TabIndex = 17;
@@ -128,7 +128,7 @@ namespace AutoMainTreeMaker.MainTree
             // chkAutoCol
             // 
             this.chkAutoCol.AutoSize = true;
-            this.chkAutoCol.Location = new System.Drawing.Point(755, 423);
+            this.chkAutoCol.Location = new System.Drawing.Point(890, 427);
             this.chkAutoCol.Name = "chkAutoCol";
             this.chkAutoCol.Size = new System.Drawing.Size(72, 16);
             this.chkAutoCol.TabIndex = 18;
@@ -139,7 +139,7 @@ namespace AutoMainTreeMaker.MainTree
             // chkAutoGubun
             // 
             this.chkAutoGubun.AutoSize = true;
-            this.chkAutoGubun.Location = new System.Drawing.Point(943, 423);
+            this.chkAutoGubun.Location = new System.Drawing.Point(1201, 427);
             this.chkAutoGubun.Name = "chkAutoGubun";
             this.chkAutoGubun.Size = new System.Drawing.Size(72, 16);
             this.chkAutoGubun.TabIndex = 19;
@@ -209,9 +209,10 @@ namespace AutoMainTreeMaker.MainTree
             this.richLineNumber.IsChanged = false;
             this.richLineNumber.IsDrawingLine = false;
             this.richLineNumber.IsEditMode = true;
-            this.richLineNumber.IsNumeric = false;
+            this.richLineNumber.IsNumeric = true;
             this.richLineNumber.Location = new System.Drawing.Point(12, 41);
             this.richLineNumber.Name = "richLineNumber";
+            this.richLineNumber.ReadOnly = true;
             this.richLineNumber.Size = new System.Drawing.Size(45, 376);
             this.richLineNumber.TabIndex = 21;
             this.richLineNumber.TabStop = false;
@@ -309,7 +310,6 @@ namespace AutoMainTreeMaker.MainTree
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Dialog_MainTree";
             this.Text = "Wizard1";
-            this.Resize += new System.EventHandler(this.Wizard1_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

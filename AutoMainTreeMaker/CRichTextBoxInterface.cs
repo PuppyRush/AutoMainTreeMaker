@@ -61,6 +61,19 @@ namespace AutoMainTreeMaker
         {
             
         }
+
+        public int GetMaxmimumLines()
+        {
+            int lines = 0;
+            foreach(var rich in richs)
+            {
+                if(lines < rich.Text.Length)
+                {
+                    lines = rich.Text.Length;
+                }
+            }
+            return lines;
+        }
     }
 
 
