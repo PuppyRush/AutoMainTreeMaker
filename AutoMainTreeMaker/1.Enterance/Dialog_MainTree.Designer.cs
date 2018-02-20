@@ -206,6 +206,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richEnumName.Name = "richEnumName";
             this.richEnumName.Size = new System.Drawing.Size(175, 377);
             this.richEnumName.TabIndex = 23;
+            this.richEnumName.TabStop = false;
             this.richEnumName.Text = resources.GetString("richEnumName.Text");
             // 
             // richLineNumber
@@ -262,7 +263,7 @@ namespace AutoMainTreeMaker.MainTree
             this.richEnum.IsNumeric = true;
             this.richEnum.Location = new System.Drawing.Point(757, 40);
             this.richEnum.Name = "richEnum";
-            this.richEnum.Size = new System.Drawing.Size(82, 377);
+            this.richEnum.Size = new System.Drawing.Size(82, 375);
             this.richEnum.TabIndex = 1;
             this.richEnum.TabStop = false;
             this.richEnum.Text = resources.GetString("richEnum.Text");
