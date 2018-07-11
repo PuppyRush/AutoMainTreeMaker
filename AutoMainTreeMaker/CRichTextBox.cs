@@ -110,9 +110,10 @@ namespace AutoMainTreeMaker
                 int beginIndex = SelectionStart;
                 currentLine = GetLineFromCharIndex(beginIndex);
             }
-            if (this.Lines.Length < currentLine + 1)
-                return;
-
+            if(Lines.Length <= currentLine+1)
+            {
+                currentLine = Lines.Length - 1;
+            }
             int lenghthOfLineCurrently = Lines[currentLine].Length;
 
             int lengthOfLines = GetLenghtAsLineNumber(currentLine);
@@ -134,9 +135,12 @@ namespace AutoMainTreeMaker
 
         public void EraseBlockedLineCurrently()
         {
-            if (this.Lines.Length < preLineIndex + 1)
+            if (this.Lines.Length == 0)
                 return;
-
+            if (this.Lines.Length <= preLineIndex + 1)
+            {
+                preLineIndex = this.Lines.Length - 1;
+            }
             SelectionStart = this.GetFirstCharIndexFromLine(preLineIndex);
             SelectionLength = this.preStrLen;
             SelectionBackColor = Color.White;
@@ -159,13 +163,6 @@ namespace AutoMainTreeMaker
         }
 
 
-        #endregion
-
-        
-
-        #region private Properties
-
-    
         #endregion
 
         #region event

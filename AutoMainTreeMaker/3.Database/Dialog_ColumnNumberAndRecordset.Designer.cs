@@ -151,6 +151,7 @@
             this.richMainTree.Size = new System.Drawing.Size(635, 404);
             this.richMainTree.TabIndex = 11;
             this.richMainTree.Text = "";
+            this.richMainTree.WordWrap = false;
             // 
             // comboMethod
             // 

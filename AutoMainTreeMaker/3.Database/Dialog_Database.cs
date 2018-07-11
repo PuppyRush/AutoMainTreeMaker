@@ -132,10 +132,20 @@ namespace AutoMainTreeMaker.Database
                     else
                         str = "0";
                     break;
+                case "GRAPH_TYPE":
+                    str = "TM";
+                    break;
+                case "MAP_TYPE":
+                    str = "GR";
+                    break;
+                case "LEGEND_TYPE":
+                    str = "PC";
+                    break;
                 case "GUBUN_CODE":
                 case "GL_CODE":
                 case "ML_CODE":
-                    str = node.Gubun;
+                    if(node.IsLeaf)
+                       str = node.Gubun;
                     break;
                 case "RS_NAME":
                     str = node.RecordsetFileName;

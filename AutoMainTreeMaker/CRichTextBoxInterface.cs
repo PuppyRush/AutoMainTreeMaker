@@ -80,21 +80,23 @@ namespace AutoMainTreeMaker
             }
         }
 
-        private int GetMaxmimumLines()
-        {
-            int max = -1;
-            foreach(CRichTextbox rich in richs)
-            {
-                if (rich.Lines.Length > max)
-                    max = rich.Lines.Length;
-            }
-            return max;
-        }
-
         private void SetScrollbar()
         {
 
            // richs[0].AutoScrollOffset = 
+		}
+		
+        public int GetMaxmimumLines()
+        {
+            int lines = 0;
+            foreach(var rich in richs)
+            {
+                if(lines < rich.Lines.Length)
+                {
+                    lines = rich.Lines.Length;
+                }
+            }
+            return lines;
         }
     }
 

@@ -11,8 +11,10 @@ namespace AutoMainTreeMaker
     {
 
         private Dialog_MainTree wizard1;
-        int gubunDepthGap;
-        int gubunNodeGap;
+        public int gubunNodeGap;
+        public int startingEnum;
+        public int enumInterval;
+        public bool isAutoEnumSet;
         bool isSuccessedForMaking;
 
         const int MAX_COL_LEN = 100;
@@ -101,14 +103,20 @@ namespace AutoMainTreeMaker
         {
             tree = new AutoMainTreeMaker.Tree();
             isSuccessedForMaking = false;
-            gubunDepthGap = 10;
             gubunNodeGap = 1;
             this.wizard1 = wizard;
+            isAutoEnumSet = false;
         }
 
         private bool IsValidData()
         {
             int NodeCount = mainTree.Length;
+            
+            if(NodeCount<=1)
+            {
+                MessageBox.Show("트리는 최소한 2개 이상이어야 합니다.");
+                return false;
+            }
 
             char[] buf = new char[1];
             buf[0] = ' ';
@@ -116,6 +124,8 @@ namespace AutoMainTreeMaker
             foreach (CRichTextbox r in wizard1.Richs)
             {
                 if (r.Equals(wizard1.RichMainTree))
+                    continue;
+                if (r.Equals(wizard1.RichEnum) && wizard1.ChkAutoEnum.CheckState== CheckState.Checked)
                     continue;
                 r.Lines = RemoveEmptyLine(r.Lines);
 
@@ -126,7 +136,6 @@ namespace AutoMainTreeMaker
                     return false;
                 }
             }
-
 
             return true;
         }
@@ -215,6 +224,7 @@ namespace AutoMainTreeMaker
 
             TreeNode firstNode = new TreeNode(-1, 0);
             firstNode.ColumnNumber = 3;
+            firstNode.EnumNumber = startingEnum;
             if (GetDepthGap(0, 1) == 1)
             {
                 firstNode = GetNewNode(nodes, firstNode, true, true);
@@ -288,12 +298,19 @@ namespace AutoMainTreeMaker
                     TreeNode parentNode = presentNode = GetNewNode(originNodes, presentNode, false, true);
                     tree.AddNode(sameDepthNodes[0],  parentNode);
                 }
-
                 else if(depthGap==0)
                 {
                     TreeNode siblingNode = GetNewNode(originNodes, presentNode, false, false);
                     SetSilblingNode(siblingNode, presentNode);
                 
+                    tree.AddNode(sameDepthNodes[0], siblingNode);
+                    presentNode = siblingNode;
+                }
+                else if (depthGap == -1 && nextDepthgap == 1)
+                {
+                    var siblingNode = presentNode = GetNewNode(originNodes, presentNode, false, false);
+                    SetSilblingNode(siblingNode, presentNode);
+
                     tree.AddNode(sameDepthNodes[0], siblingNode);
                     presentNode = siblingNode;
                 }
@@ -419,7 +436,7 @@ namespace AutoMainTreeMaker
             }
             else if (wizard1.ChkAutoEnum.CheckState == CheckState.Checked)
             {
-                newNode.EnumNumber = presentNode.EnumNumber + gubunDepthGap;
+                newNode.EnumNumber = presentNode.EnumNumber + enumInterval;
             }
 
             newNode.Depth = GetDepth(originNodes[newNode.NodeSequence]);

@@ -100,8 +100,9 @@ namespace AutoMainTreeMaker.ResltForSource
             int maxi = GetLengthestOf(sources);
             PadRight(sources, maxi);
 
-            AppendBlanketAndEqualAndEnumNumberAndTree("        ", sources, enumNumber, mainTree);
+            AppendComment(mainTree);
 
+            richTextCommnt.Lines = mainTree;
             richMainTree.Lines = sources;
         }
 
@@ -145,21 +146,15 @@ namespace AutoMainTreeMaker.ResltForSource
             }
         }
 
-        private void AppendBlanketAndEqualAndEnumNumberAndTree(string blankets,string [] dest, string [] enumNumber, string [] mainTree)
+        private void AppendComment(string []maintree)
         {
-            
-            for (int i = 0; i < dest.Length; i++)
-            {
-                string s = dest[i];
-                StringBuilder bld = new StringBuilder(s);
-                bld.Append(blankets);
-                bld.Append(" = ");
-                bld.Append(enumNumber[i]);
-                bld.Append(",");
-                bld.Append("\t\t");
-                bld.Append(mainTree[i]);
 
-                dest[i] = bld.ToString();
+            for (int i = 0; i < maintree.Length; i++ )
+            {
+                StringBuilder bld = new StringBuilder("//");
+                bld.Append("\t\t");
+                bld.Append(maintree[i]);
+                maintree[i] = bld.ToString();
             }
         }
 

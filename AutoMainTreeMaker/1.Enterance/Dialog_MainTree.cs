@@ -119,7 +119,9 @@ namespace AutoMainTreeMaker.MainTree
                     }
                 }
             }
-                        
+   
+            FillEnumsAndNumber(maker.startingEnum,maker.enumInterval );
+     
             maker.ColumnName = richCol.Lines;
             maker.GubunName = richGubun.Lines;
             maker.EnumValue = richEnum.Lines;
@@ -138,20 +140,55 @@ namespace AutoMainTreeMaker.MainTree
                 
         }
 
-        private void Wizard1_Resize(object sender, EventArgs e)
+        private void FillEnumsAndNumber(int startingEnum, int interval)
         {
-            
-        }
+            richLineNumber.Text = "";
+            RichEnum.Text = "";
+            int lines = richInterface.GetMaxmimumLines();
 
+            string line = "";
+            for(int i=0; i <lines; i++)
+            {
+                line += i.ToString() + '\n';
+            }
+            richLineNumber.Text = line;
+
+            if (ChkAutoEnum.CheckState == CheckState.Checked)
+            {
+                line = "";
+                int starting = maker.startingEnum;
+                for (int i = 0; i < lines; i++)
+                {
+                    line += starting.ToString() + '\n';
+                    starting += maker.enumInterval;
+                }
+                richEnum.Text = line;
+            }
+
+        }
+  
         private void ChkAutoEnum_CheckedChanged(object sender, EventArgs e)
         {
             if (chkAutoEnum.CheckState == CheckState.Checked)
-                RichEnum.Enabled = false;
+            {
+                RichEnum.ReadOnly = true;
+                AutoEnumDianlog dlg = new AutoEnumDianlog();
+                dlg.ShowDialog();
+                RichEnum.Text = dlg.StartingEnumValue.ToString();
+                maker.startingEnum = dlg.StartingEnumValue;
+                maker.enumInterval = dlg.IntervalValue;
+                maker.isAutoEnumSet = true;
+            }
             else if (chkAutoEnum.CheckState == CheckState.Unchecked)
-                RichEnum.Enabled = true;
+            {
+                RichEnum.ReadOnly = false;
+                maker.isAutoEnumSet = false;
+            }
 
 
         }
+
+       
 
         private void ChkAutoCol_CheckedChanged(object sender, EventArgs e)
         {
