@@ -144,8 +144,7 @@ namespace AutoMainTreeMaker.Database
                 case "GUBUN_CODE":
                 case "GL_CODE":
                 case "ML_CODE":
-                    if(node.IsLeaf)
-                       str = node.Gubun;
+                    str = node.Gubun;
                     break;
                 case "RS_NAME":
                     str = node.RecordsetFileName;
