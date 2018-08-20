@@ -247,7 +247,10 @@ namespace AutoMainTreeMaker
             List<int> sameDepthNodes = GetSameDepthNodes(originNodes, presentNode.NodeSequence);
 
             List<TreeNode> depthedList = tree.AddNode(sameDepthNodes[0], presentNode);
-            
+
+            if (sameDepthNodes.Count == 1)
+                return presentNode;
+
             for(int i=0; i < sameDepthNodes.Count; i++)
             {
                 if (IsLastestNode(presentNode))
