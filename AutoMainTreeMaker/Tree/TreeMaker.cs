@@ -19,7 +19,8 @@ namespace AutoMainTreeMaker
 
         const int MAX_COL_LEN = 100;
         const char COL_NAME_DELIMETER = '=';
-        
+        const int NOT_FOUND_DEPTH = -100;
+
         Tree tree;
 
         string[] mainTree;
@@ -249,7 +250,16 @@ namespace AutoMainTreeMaker
             List<TreeNode> depthedList = tree.AddNode(sameDepthNodes[0], presentNode);
 
             if (sameDepthNodes.Count == 1)
-                return presentNode;
+            {
+                if (IsLastestNode(presentNode))
+                    return presentNode;
+
+                int nodeSeq = sameDepthNodes[0];
+                int depthGap = GetDepthGap(nodeSeq, nodeSeq + 1);
+                int nextDepthgap = GetDepthGap(nodeSeq + 1, nodeSeq + 2);
+                if(depthGap==1 && nextDepthgap == -1)
+                    return presentNode;
+            }
 
             for(int i=0; i < sameDepthNodes.Count; i++)
             {
@@ -495,6 +505,9 @@ namespace AutoMainTreeMaker
 
         private int GetDepthGap(int parent, int child)
         {
+            if (mainTree.Length <= parent || mainTree.Length <= child)
+                return NOT_FOUND_DEPTH;
+
             return GetDepthGap(mainTree[parent],mainTree[child]);
         }
 
